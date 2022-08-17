@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :users, only: [:update]
+  get "users/profile"
   devise_for :users
   root to: "dashboard#index"
   get "dashboard/index"

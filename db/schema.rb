@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 2022_05_23_152948) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "ci"
+    t.string "address"
+    t.string "address_two"
+    t.string "city"
+    t.date "birthday"
+    t.string "phone"
     t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
