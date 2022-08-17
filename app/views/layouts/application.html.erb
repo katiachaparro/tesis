@@ -13,25 +13,12 @@
 
   <body>
   <%= console if Rails.env.development? %>
-  <div class="toast-container position-absolute start-0 py-3">
-    <% if notice.present? %>
-      <div class="toast align-items-center border-1 border-success text-success" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-body"><%= notice %></div>
-          <button type="button" class="btn-close btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
-    <% end %>
-    <% if alert.present? %>
-      <div class="toast align-items-center border-1 border-danger text-danger" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-body"><%= alert %></div>
-          <button type="button" class="btn-close btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <%= yield %>
+  <%= render 'layouts/toast', locals: {alert: alert, notice: notice } %>
+  <%= render 'layouts/navbar' if user_signed_in? %>
+  <main class="content">
+    <%= render 'layouts/header' if user_signed_in? %>
+    <%= yield %>
+  </main>
   <%=  button_to "Sign Out", destroy_user_session_path, method: :delete  %>
   </body>
 </html>
