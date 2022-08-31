@@ -10,15 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_23_152948) do
+ActiveRecord::Schema.define(version: 2022_08_31_201916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "parent_organization_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_organization_id"], name: "index_organizations_on_parent_organization_id"
+  end
+
+  create_table "resource_per_organizations", force: :cascade do |t|
+    t.bigint "resource_id", null: false
+    t.bigint "organization_id", null: false
+    t.decimal "quantity"
+    t.decimal "quantity_available"
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_resource_per_organizations_on_organization_id"
+    t.index ["resource_id"], name: "index_resource_per_organizations_on_resource_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_permissions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
+    t.bigint "role_id", null: false
+    t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_user_permissions_on_organization_id"
+    t.index ["role_id"], name: "index_user_permissions_on_role_id"
+    t.index ["user_id"], name: "index_user_permissions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,13 +76,16 @@ ActiveRecord::Schema.define(version: 2022_05_23_152948) do
     t.string "city"
     t.date "birthday"
     t.string "phone"
-    t.bigint "role_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "users", "roles"
+  add_foreign_key "organizations", "organizations", column: "parent_organization_id"
+  add_foreign_key "resource_per_organizations", "organizations"
+  add_foreign_key "resource_per_organizations", "resources"
+  add_foreign_key "user_permissions", "organizations"
+  add_foreign_key "user_permissions", "roles"
+  add_foreign_key "user_permissions", "users"
 end
