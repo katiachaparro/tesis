@@ -40,7 +40,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string     :city
       t.date       :birthday
       t.string     :phone
-      t.references :role, null: false, foreign_key: true
 
       t.timestamps null: false
     end
