@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :roles, through: :user_permissions
 
   def super_admin?
-    roles.any(name: 'Super-admin')
+    roles.where(name: 'Super-admin').any?
   end
 end
