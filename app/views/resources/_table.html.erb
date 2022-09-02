@@ -1,0 +1,21 @@
+<% resources.each do |resource| %>
+  <tr>
+    <td class="collapsed collapse-icon px-0"></td>
+    <td class="text-start col-5">
+      <div class="d-flex align-items-center">
+        <div class="dot rounded-circle me-1 <%= resource.active?? 'bg-success':'bg-secondary' %>"></div>
+        <%= resource.name %>
+      </div>
+    </td>
+    <td class="text-start d-none d-md-table-cell"><%= resource.kind %></td>
+    <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= resource.description %></td>
+    <td class="settings px-0">
+      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="resource-settings<%=resource.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
+      <ul class="dropdown-menu" aria-labelledby="resource-settings<%=resource.id%>">
+        <li><%= link_to 'Editar', edit_resource_path(resource), class:'dropdown-item'%></li>
+        <li><button class="dropdown-item" type="button">Another action</button></li>
+        <li><button class="dropdown-item" type="button">Something else here</button></li>
+      </ul>
+    </td>
+  </tr>
+<% end %>

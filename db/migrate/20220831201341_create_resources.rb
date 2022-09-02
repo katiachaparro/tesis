@@ -3,7 +3,8 @@ class CreateResources < ActiveRecord::Migration[6.1]
     create_table :resources do |t|
       t.string :name
       t.string :description
-      t.string :type
+      t.string :kind
+      t.boolean :active
 
       t.timestamps
     end

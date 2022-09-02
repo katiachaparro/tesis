@@ -38,7 +38,7 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to organizations_url, notice: "La organización fue editada exitosamente." }
+        format.html { redirect_to organizations_url, notice: "La organización fue actualizada exitosamente." }
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit, status: :unprocessable_entity }

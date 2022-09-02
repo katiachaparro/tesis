@@ -7,18 +7,13 @@
     <list default="true" id="ffdd556b-5b3b-43fc-9a7a-9c35f7f95440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/organizations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/organizations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/resource_per_organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/resource_per_organization.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/role.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/role.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/organizations/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/organizations/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/resource.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/resource.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/organizations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/organizations/_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/organizations/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/organizations/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/organizations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/organizations/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/profile.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/profile.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20220831201916_create_resource_per_organizations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20220831201916_create_resource_per_organizations.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20220831201341_create_resources.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20220831201341_create_resources.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/fatima/Documents/tesis/app/views/organizations",
+    "last_opened_file_path": "/home/fatima/Documents/tesis/app/views/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,6 +55,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/resources" />
       <recent name="$PROJECT_DIR$/app/views/organizations" />
       <recent name="$PROJECT_DIR$/app/assets/images" />
     </key>
@@ -181,7 +177,7 @@
       <workItem from="1661521868714" duration="23000" />
       <workItem from="1661955024167" duration="2817000" />
       <workItem from="1661975183114" duration="8039000" />
-      <workItem from="1662058566620" duration="23609000" />
+      <workItem from="1662058566620" duration="34403000" />
     </task>
     <servers />
   </component>

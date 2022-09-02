@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :organizations, :except => [:destroy]
+  resources :resources, :except => [:destroy, :show]
+  resources :organizations, :except => [:destroy, :show]
   resources :users, only: [:update]
   get "users/profile"
   devise_for :users

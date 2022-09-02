@@ -4,7 +4,7 @@
     <td class="text-start col-5"><%= organization.name %></td>
     <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= organization.description %></td>
     <td class="settings px-0">
-      <i class="fa-solid fa-ellipsis-vertical w-100" type="button" id="organization-settings<%=organization.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
+      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="organization-settings<%=organization.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
       <ul class="dropdown-menu" aria-labelledby="organization-settings<%=organization.id%>">
         <li><%= link_to 'Editar', edit_organization_path(organization), class:'dropdown-item'%></li>
         <li><button class="dropdown-item" type="button">Another action</button></li>
