@@ -13,12 +13,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
-    @organizations = Organization.allow_sub_organizations
   end
 
   # GET /organizations/1/edit
   def edit
-    @organizations = Organization.allow_sub_organizations
   end
 
   # POST /organizations or /organizations.json
