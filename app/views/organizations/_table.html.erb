@@ -1,10 +1,16 @@
 <% organizations.each do |organization| %>
   <tr>
-    <td class="collapsed <%= organization.child_organizations.any?? '':'disabled' %>" type="button" data-bs-toggle="collapse" data-bs-target="#organization-collapse<%= organization.id %>" aria-expanded="false" aria-controls="#organization-collapse<%= organization.id %>"><i class="fa-solid fa-chevron-down"></i></td>
-    <td><%= organization.name %></td>
-    <td><%= organization.description %></td>
-    <td><%= link_to 'Show', organization %></td>
-    <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
+    <td class="collapsed collapse-icon px-0 <%= organization.child_organizations.any?? '':'disabled' %>" type="button" data-bs-toggle="collapse" data-bs-target="#organization-collapse<%= organization.id %>" aria-expanded="false" aria-controls="#organization-collapse<%= organization.id %>"><i class="fa-solid fa-chevron-down"></i></td>
+    <td class="text-start"><%= organization.name %></td>
+    <td class="text-start d-none d-md-table-cell"><%= organization.description %></td>
+    <td class="settings" type="button" id="organization-settings<%=organization.id%>" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa-solid fa-ellipsis-vertical" ></i>
+      <ul class="dropdown-menu" aria-labelledby="organization-settings<%=organization.id%>">
+        <li><button class="dropdown-item" type="button">Action</button></li>
+        <li><button class="dropdown-item" type="button">Another action</button></li>
+        <li><button class="dropdown-item" type="button">Something else here</button></li>
+      </ul>
+    </td>
   </tr>
   <%= render 'table_collapse', organization: organization if organization.child_organizations.any? %>
 <% end %>
