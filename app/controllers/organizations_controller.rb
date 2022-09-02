@@ -13,10 +13,12 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
+    @organizations = Organization.allow_sub_organizations
   end
 
   # GET /organizations/1/edit
   def edit
+    @organizations = Organization.allow_sub_organizations
   end
 
   # POST /organizations or /organizations.json
@@ -25,7 +27,7 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to organization_url(@organization), notice: "Organization was successfully created." }
+        format.html { redirect_to organizations_url, notice: "La organización fue creada exitosamente." }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to organization_url(@organization), notice: "Organization was successfully updated." }
+        format.html { redirect_to organizations_url, notice: "La organización fue editada exitosamente." }
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,6 +54,6 @@ class OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.permit(:name, :description, :parent_organization_id)
+      params.require(:organization).permit(:name, :description, :parent_organization_id)
     end
 end

@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(version: 2022_08_31_201916) do
     t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["organization_id"], name: "index_resource_per_organizations_on_organization_id"
-    t.index ["resource_id"], name: "index_resource_per_organizations_on_resource_id"
+    t.index ["resource_id", "organization_id"], name: "user_permission_index", unique: true
   end
 
   create_table "resources", force: :cascade do |t|

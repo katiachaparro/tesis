@@ -1,8 +1,8 @@
-<%= form_with(model: user) do |f| %>
-  <% if user.errors.any? %>
+<%= form_with(model: @user) do |f| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
       <ul>
-        <% user.errors.each do |error| %>
+        <% @user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -20,7 +20,7 @@
       </div>
       <div class="form-group mb-4">
         <label for="email">Email</label>
-        <%= f.email_field :email, id: "email", required: true, class: "form-control", placeholder: "example@company.com", readonly: "#{!user.new_record?}"  %>
+        <%= f.email_field :email, id: "email", required: true, class: "form-control", placeholder: "example@company.com", readonly: "#{!@user.new_record?}"  %>
       </div>
       <div class="form-group mb-4">
         <label for="email">C&eacute;dula de Identidad</label>
