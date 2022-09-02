@@ -7,6 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "@fortawesome/fontawesome-free/css/all"
 
 
 Rails.start()
@@ -21,14 +22,4 @@ document.addEventListener("turbolinks:load", () => {
     return new Toast(toastEl)
   })
   toastList.forEach(toast => toast.show())
-});
-$('.spinner').on('click', function(e) {
-  $(this).attr('data-clicked', true);
-});
-document.on('page:fetch', function(e) {
-  $('.spinner[data-clicked="true"]').replaceWith( "<img src='<%= asset_path('spinner.gif') %>'>" );
-  //$('.spinner').show();
-});
-document.on("page:receive", function(e){
-  $('.spinner').hide();
 });

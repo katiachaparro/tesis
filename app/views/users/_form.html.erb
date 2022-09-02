@@ -1,8 +1,6 @@
 <%= form_with(model: user) do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this entity from being saved:</h2>
-
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -59,6 +57,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-success" %>
+    <%= f.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
   </div>
 <% end %>

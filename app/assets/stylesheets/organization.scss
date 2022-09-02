@@ -1,0 +1,16 @@
+td[type=button] {
+  -webkit-appearance: initial;
+}
+tr:last-child {
+  border-bottom: transparent;
+}
+td .fa-chevron-down{
+  transition: transform .4s ease;
+}
+td.collapsed .fa-chevron-down {
+  transform: rotate(-90deg);
+}
+td.disabled{
+  cursor: initial !important;
+  color: lightgray;
+}

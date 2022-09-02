@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Organizations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Organization', new_organization_path %>
+<div class="col-12 mb-4">
+  <div class="card border-0 shadow components-section">
+    <div class="card-header bg-white border-0 pb-0">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+        <h2 class="h4 m-0">Organizaciones</h2>
+        <%= link_to "Crear Organización", new_organization_path, class: 'btn btn-gray-800 mt-2 animate-up-2'%>
+      </div>
+    </div>
+    <div class="card-body pt-0 pb-4">
+      <div class="table-responsive">
+        <table class="table table-centered table-nowrap mb-0 rounded">
+          <thead class="thead-light">
+          <tr>
+            <th class="border-0 rounded-start"></th>
+            <th class="border-0">Nombre</th>
+            <th class="border-0">Descripci&oacute;n</th>
+            <th class="border-0 rounded-end" colspan="2"></th>
+          </tr>
+          </thead>
+          <tbody>
+            <%= render 'table', organizations: @organizations %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
