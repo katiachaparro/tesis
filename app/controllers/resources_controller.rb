@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources or /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resource.resource_with_total
   end
 
   # GET /resources/1 or /resources/1.json
