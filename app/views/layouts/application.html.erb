@@ -16,7 +16,7 @@
   <%= console if Rails.env.development? %>
   <%= render 'layouts/toast', locals: {alert: alert, notice: notice } %>
   <%= render 'layouts/navbar' if user_signed_in? %>
-  <main class="content">
+  <main class="content <%= 'm-0 p-0' unless user_signed_in? %>">
     <%= render 'layouts/header' if user_signed_in? %>
     <%= yield %>
   </main>
