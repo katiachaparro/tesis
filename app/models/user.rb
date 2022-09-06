@@ -14,6 +14,14 @@ class User < ApplicationRecord
     user_permissions.super_admin.any?
   end
 
+  def admin?
+    user_permissions.admin.any?
+  end
+
+  def user?
+    user_permissions.user.any?
+  end
+
   def user_permission
     user_permissions.first
   end

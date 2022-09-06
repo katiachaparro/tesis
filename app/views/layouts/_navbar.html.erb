@@ -66,7 +66,7 @@
         <%= link_to user_permissions_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-user-group"></i>
           <span class="sidebar-text">Usuarios</span>
-        <% end %>
+        <% end if can? :read, UserPermission %>
       </li>
     </ul>
   </div>

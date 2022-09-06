@@ -1,9 +1,12 @@
 es:
+  unauthorized:
+    manage:
+      all: "No tienes permisos para accedeer a esta página"
   enumerize:
     resource:
       kind:
         logistics: "Logísticos"
-        human_talent: "Tanlento humano"
+        human_talent: "Talento humano"
         physical: "Físicos"
     user_permission:
       role:

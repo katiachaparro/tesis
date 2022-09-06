@@ -3,7 +3,7 @@
     <div class="card-header bg-white border-0 pb-0">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <h2 class="h4 m-0">Recursos - <%= @organization&.name %></h2>
-        <%= link_to "Agregar Recurso", new_organization_resource_per_organization_path(@organization), class: 'btn btn-gray-800 mt-2 animate-up-2'%>
+        <%= link_to "Agregar Recurso", new_organization_resource_per_organization_path(@organization), class: 'btn btn-gray-800 mt-2 animate-up-2' if can? :create, ResourcePerOrganization %>
       </div>
     </div>
     <div class="card-body pt-0 pb-4">

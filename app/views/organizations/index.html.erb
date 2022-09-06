@@ -3,7 +3,7 @@
     <div class="card-header bg-white border-0 pb-0">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <h2 class="h4 m-0">Organizaciones</h2>
-        <%= link_to "Crear Organización", new_organization_path, class: 'btn btn-gray-800 mt-2 animate-up-2'%>
+        <%= link_to "Crear Organización", new_organization_path, class: 'btn btn-gray-800 mt-2 animate-up-2' if can? :create, Organization%>
       </div>
     </div>
     <div class="card-body pt-0 pb-4">

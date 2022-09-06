@@ -6,7 +6,7 @@
     <td class="settings px-0">
       <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="resource-settings<%=rpo.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
       <ul class="dropdown-menu" aria-labelledby="resource-settings<%=rpo.id%>">
-        <li><%= link_to 'Editar cantidad', edit_organization_resource_per_organization_path(@organization, rpo), class:'dropdown-item'%></li>
+        <li><%= link_to 'Editar cantidad', edit_organization_resource_per_organization_path(@organization, rpo), class:'dropdown-item' if can? :edit, rpo %></li>
         <li><button class="dropdown-item" type="button">Another action</button></li>
         <li><button class="dropdown-item" type="button">Something else here</button></li>
       </ul>
