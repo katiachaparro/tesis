@@ -2,6 +2,8 @@ class ResourcePerOrganization < ApplicationRecord
   belongs_to :resource
   belongs_to :organization
 
+  #validations
+  validates :organization, :resource, presence: true
   validates :organization, uniqueness: { scope: :resource }
 
   #scopes

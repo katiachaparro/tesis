@@ -13,7 +13,8 @@
     <div class="col-lg-6">
       <div class="form-group mb-4">
         <label for="type">Recurso</label>
-        <%= select_tag(:resource_id, options_from_collection_for_select(Resource.active_resources, 'id', 'name', @resource_per_organization.resource_id), class: 'form-select', prompt: 'Selecciona un resurso', required: true, name:'resource_per_organization[resource_id]', disabled: @resource_per_organization.persisted?) %>
+        <%= select_tag(:resource_id, options_from_collection_for_select(Resource.active_resources, 'id', 'name', @resource_per_organization.resource_id), class: 'form-select', prompt: 'Selecciona un resurso', required: true, name:'resource_per_organization[resource_id]', disabled:true) if @resource_per_organization.persisted? %>
+        <%= select_tag(:resource_id, options_from_collection_for_select(Resource.active_resources, 'id', 'name', @resource_per_organization.resource_id), class: 'form-select', prompt: 'Selecciona un resurso', required: true, name:'resource_per_organization[resource_id]') unless @resource_per_organization.persisted? %>
       </div>
       <div class="form-group mb-4">
         <label for="type">Cantidad</label>

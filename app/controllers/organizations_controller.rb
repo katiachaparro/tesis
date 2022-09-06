@@ -3,7 +3,8 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations or /organizations.json
   def index
-    @organizations = current_user.organizations
+    # TODO: get descendents with recursive SQL
+    @organizations = current_user.organizations.includes(:child_organizations)
   end
 
   # GET /organizations/1 or /organizations/1.json

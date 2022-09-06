@@ -1,27 +1,34 @@
-<%= form_with(model: user_permission) do |form| %>
-  <% if user_permission.errors.any? %>
+<%= form_with(model: @user_permission) do |f| %>
+  <% if @user_permission.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user_permission.errors.count, "error") %> prohibited this user_permission from being saved:</h2>
-
       <ul>
-        <% user_permission.errors.each do |error| %>
+        <% @user_permission.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :organization_id %>
-    <%= form.text_field :organization_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <%= render 'user_form', f: f %>
+  <div class="border-top border-light border-1 mb-4"></div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group mb-4">
+        <label for="organization">Organizaci&oacute;n</label>
+        <%= select_tag(:organization_id, options_from_collection_for_select(Organization.all, 'id', 'name', @user_permission.organization_id), class: 'form-select', prompt: 'Selecciona una organización', required: true, name:'user_permission[organization_id]', disabled: true) if @user_permission.persisted? %>
+        <%= select_tag(:organization_id, options_from_collection_for_select(Organization.all, 'id', 'name', @user_permission.organization_id), class: 'form-select', prompt: 'Selecciona una organización', required: true, name:'user_permission[organization_id]') unless @user_permission.persisted? %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group mb-4">
+        <label for="type">Rol</label>
+        <%= select_tag(:role, options_for_select(UserPermission.role.options, @user_permission.role), class: 'form-select', name: 'user_permission[role]', required:true, prompt: 'Selecciona un rol') %>
+      </div>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    <%= link_to 'Cancelar', user_permissions_path, class: 'link-secondary ms-3'%>
   </div>
 <% end %>
+

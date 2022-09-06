@@ -6,19 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="ffdd556b-5b3b-43fc-9a7a-9c35f7f95440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/organizations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/organizations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/user_permissions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/user_permissions_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/resource.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/resource.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/role.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/resource_per_organization.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/resource_per_organization.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/user_permission.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user_permission.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/resources/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resources/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/resources/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resources/_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/locales/es.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/es.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20220523152925_create_roles.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20220831201019_create_user_permissions.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20220831201019_create_user_permissions.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/resource_per_organizations/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resource_per_organizations/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/user_permissions/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_permissions/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/user_permissions/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_permissions/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/user_permissions/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_permissions/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/user_permissions/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_permissions/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,28 +42,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/fatima/Documents/tesis/config/locales&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/fatima/Documents/tesis/app/views/user_permissions",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ruby.rails.projectView.checked": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/user_permissions" />
       <recent name="$PROJECT_DIR$/config/locales" />
       <recent name="$PROJECT_DIR$/app/views/resource_per_organizations" />
       <recent name="$PROJECT_DIR$/app/views/resources" />
       <recent name="$PROJECT_DIR$/app/views/organizations" />
-      <recent name="$PROJECT_DIR$/app/assets/images" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: tesis">
@@ -185,7 +184,7 @@
       <workItem from="1661955024167" duration="2817000" />
       <workItem from="1661975183114" duration="8039000" />
       <workItem from="1662058566620" duration="54558000" />
-      <workItem from="1662393979767" duration="10810000" />
+      <workItem from="1662393979767" duration="20250000" />
     </task>
     <servers />
   </component>

@@ -1,29 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>User Permissions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Organization</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_permissions.each do |user_permission| %>
-      <tr>
-        <td><%= user_permission.organization_id %></td>
-        <td><%= user_permission.user_id %></td>
-        <td><%= link_to 'Show', user_permission %></td>
-        <td><%= link_to 'Edit', edit_user_permission_path(user_permission) %></td>
-        <td><%= link_to 'Destroy', user_permission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User Permission', new_user_permission_path %>
+<div class="col-12 mb-4">
+  <div class="card border-0 shadow components-section">
+    <div class="card-header bg-white border-0 pb-0">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+        <h2 class="h4 m-0">Permisos de usuarios</h2>
+        <%= link_to "Crear Usuario", new_user_permission_path, class: 'btn btn-gray-800 mt-2 animate-up-2'%>
+      </div>
+    </div>
+    <div class="card-body pt-0 pb-4">
+      <div class="table-responsive">
+        <table class="table table-centered table-nowrap mb-0 rounded">
+          <thead class="thead-light">
+          <tr>
+            <th class="border-0 rounded-start">Usuario</th>
+            <th class="border-0 d-none d-md-table-cell">Rol</th>
+            <th class="border-0 d-none d-md-table-cell">Organizaci&oacute;n</th>
+            <th class="border-0 rounded-end"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render 'table' %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
