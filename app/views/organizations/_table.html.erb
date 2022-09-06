@@ -1,6 +1,6 @@
 <% organizations.each do |organization| %>
   <tr>
-    <td class="collapsed collapse-icon px-0 <%= organization.child_organizations.any?? '':'disabled' %>" type="button" data-bs-toggle="collapse" data-bs-target="#organization-collapse<%= organization.id %>" aria-expanded="false" aria-controls="#organization-collapse<%= organization.id %>"><i class="fa-solid fa-chevron-down"></i></td>
+    <td class="collapse-icon px-0 <%= organization.child_organizations.any?? '':'disabled' %>" type="button" data-bs-toggle="collapse" data-bs-target="#organization-collapse<%= organization.id %>" aria-expanded="true" aria-controls="#organization-collapse<%= organization.id %>"><i class="fa-solid fa-chevron-down"></i></td>
     <td class="text-start col-5"><%= organization.name %></td>
     <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= organization.description %></td>
     <td class="settings px-0">
