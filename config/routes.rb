@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_permissions, :except => [:destroy, :show]
   resources :resources, :except => [:destroy, :show]
   resources :organizations, :except => [:destroy, :show] do
     resources :resource_per_organizations, :except => [:destroy, :show]
