@@ -1,4 +1,15 @@
 es:
+  enumerize:
+    resource:
+      kind:
+        logistics: "Logísticos"
+        human_talent: "Tanlento humano"
+        physical: "Físicos"
+    user_permission:
+      role:
+        user: "Usuario"
+        admin: "Administrador"
+        super_admin: "Super Admin"
   activerecord:
     errors:
       messages:

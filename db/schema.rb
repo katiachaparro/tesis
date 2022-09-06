@@ -45,21 +45,15 @@ ActiveRecord::Schema.define(version: 2022_08_31_201916) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "user_permissions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "organization_id", null: false
-    t.bigint "role_id", null: false
+    t.string "role"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_id"], name: "index_user_permissions_on_organization_id"
-    t.index ["role_id"], name: "index_user_permissions_on_role_id"
+    t.index ["user_id", "organization_id"], name: "user_organization_index", unique: true
     t.index ["user_id"], name: "index_user_permissions_on_user_id"
   end
 
@@ -87,6 +81,5 @@ ActiveRecord::Schema.define(version: 2022_08_31_201916) do
   add_foreign_key "resource_per_organizations", "organizations"
   add_foreign_key "resource_per_organizations", "resources"
   add_foreign_key "user_permissions", "organizations"
-  add_foreign_key "user_permissions", "roles"
   add_foreign_key "user_permissions", "users"
 end

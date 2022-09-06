@@ -91,6 +91,8 @@ GEM
       responders
       warden (~> 1.2.3)
     digest (3.1.0)
+    enumerize (2.5.0)
+      activesupport (>= 3.2)
     erubi (1.11.0)
     ffi (1.15.5)
     ffi (1.15.5-x64-mingw-ucrt)
@@ -263,6 +265,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 3.26)
   devise
+  enumerize
   hotwire-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)

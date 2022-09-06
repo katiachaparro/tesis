@@ -5,9 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :user_permissions
   has_many :organizations, through: :user_permissions
-  has_many :roles, through: :user_permissions
 
   def super_admin?
-    roles.where(name: 'Super-admin').any?
+    user_permissions.super_admin.any?
   end
 end
