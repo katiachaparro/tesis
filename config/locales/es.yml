@@ -3,6 +3,10 @@ es:
     manage:
       all: "No tienes permisos para accedeer a esta página"
   enumerize:
+    event:
+      kind:
+        event: "Evento"
+        incident: "Incidente"
     resource:
       kind:
         logistics: "Logísticos"

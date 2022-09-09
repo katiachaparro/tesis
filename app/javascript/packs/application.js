@@ -4,22 +4,23 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "@fortawesome/fontawesome-free/css/all"
+import { Turbo } from "@hotwired/turbo-rails"
+import { Toast } from "bootstrap"
 
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
+Turbo.session.drive = false
 
-import { Toast } from "bootstrap"
 
-document.addEventListener("turbolinks:load", () => {
+$(function (){
   let toastElList = [].slice.call(document.querySelectorAll('.toast'))
   let toastList = toastElList.map(function (toastEl) {
     return new Toast(toastEl)
   })
   toastList.forEach(toast => toast.show())
 });
+

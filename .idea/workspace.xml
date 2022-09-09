@@ -6,19 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ffdd556b-5b3b-43fc-9a7a-9c35f7f95440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ability.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ability.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/packs/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/application.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/_navbar.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/organizations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/organizations/_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/organizations/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/organizations/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/resource_per_organizations/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resource_per_organizations/_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/resource_per_organizations/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resource_per_organizations/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/resources/_table.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resources/_table.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/resources/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/resources/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/user_permissions/_user_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/user_permissions/_user_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/locales/es.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/es.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,28 +38,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/fatima/Documents/tesis/app/views/user_permissions&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/fatima/Documents/tesis/app/views/events",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ruby.rails.projectView.checked": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/events" />
+      <recent name="$PROJECT_DIR$/app/views/event_actions" />
       <recent name="$PROJECT_DIR$/app/views/user_permissions" />
       <recent name="$PROJECT_DIR$/config/locales" />
       <recent name="$PROJECT_DIR$/app/views/resource_per_organizations" />
-      <recent name="$PROJECT_DIR$/app/views/resources" />
-      <recent name="$PROJECT_DIR$/app/views/organizations" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: tesis">
@@ -186,7 +181,9 @@
       <workItem from="1661975183114" duration="8039000" />
       <workItem from="1662058566620" duration="54558000" />
       <workItem from="1662393979767" duration="20940000" />
-      <workItem from="1662491403179" duration="3249000" />
+      <workItem from="1662491403179" duration="8716000" />
+      <workItem from="1662556115641" duration="9521000" />
+      <workItem from="1662576939724" duration="3055000" />
     </task>
     <servers />
   </component>

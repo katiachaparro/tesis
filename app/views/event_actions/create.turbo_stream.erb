@@ -1,0 +1,15 @@
+<%= fields model: @event do |form| %>
+  <%= form.fields_for :event_actions, child_index: params[:index] do |event_form| %>
+    <%= turbo_stream.replace "add-event-action" do %>
+      <%= form.submit "Add action",
+                      formaction: event_action_path(event_form.index.to_i + 1),
+                      formmethod: :post,
+                      formnovalidate: true,
+                      id: "add-event-action" %>
+    <% end %>
+
+    <%= turbo_stream.append "event_actions" do %>
+      <%= render "event_actions/form", form: event_form %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_31_201916) do
+ActiveRecord::Schema.define(version: 2022_09_07_034640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_actions", force: :cascade do |t|
+    t.text "description"
+    t.datetime "date"
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_event_actions_on_event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.datetime "form_start"
+    t.datetime "event_start"
+    t.text "location"
+    t.text "event_nature"
+    t.text "threats"
+    t.text "affected_area"
+    t.text "isolation"
+    t.text "objectives"
+    t.text "strategy"
+    t.text "tactics"
+    t.text "pc_location"
+    t.text "e_location"
+    t.text "entry_route"
+    t.text "egress_route"
+    t.text "security_message"
+    t.text "communication_channels"
+    t.string "commander"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
@@ -77,6 +109,7 @@ ActiveRecord::Schema.define(version: 2022_08_31_201916) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "event_actions", "events"
   add_foreign_key "organizations", "organizations", column: "parent_organization_id"
   add_foreign_key "resource_per_organizations", "organizations"
   add_foreign_key "resource_per_organizations", "resources"

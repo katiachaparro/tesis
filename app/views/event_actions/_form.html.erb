@@ -1,0 +1,28 @@
+<%= turbo_frame_tag "event_action_#{form.index}" do %>
+  <%= form.hidden_field :id %>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <%= form.submit "destroy action",
+                  formaction: event_action_path(form.index, form.object.id),
+                  formmethod: :delete,
+                  formnovalidate: true,
+                  data: { turbo_frame: "event_action_#{form.index}" } %>
+<% end %>
+
+
+<h4>Acciones</h4>
+<div id="event_actions">
+  <%= form.fields_for :event_actions do |event_form| %>
+    <%= render "event_actions/form", form: event_form %>
+  <% end %>
+</div>
+
+<%= form.submit "Add accion",
+                formaction: event_action_path(@event.event_actions.size),
+                formmethod: :post,
+                formnovalidate: true,
+                id: "add-event-action" %>

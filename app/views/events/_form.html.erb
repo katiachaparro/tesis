@@ -1,0 +1,109 @@
+<%= form_with(model: event) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :form_start %>
+    <%= form.datetime_select :form_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_start %>
+    <%= form.datetime_select :event_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_area :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_nature %>
+    <%= form.text_area :event_nature %>
+  </div>
+
+  <div class="field">
+    <%= form.label :threats %>
+    <%= form.text_area :threats %>
+  </div>
+
+  <div class="field">
+    <%= form.label :affected_area %>
+    <%= form.text_area :affected_area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :isolation %>
+    <%= form.text_area :isolation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :objectives %>
+    <%= form.text_area :objectives %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strategy %>
+    <%= form.text_area :strategy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tactics %>
+    <%= form.text_area :tactics %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pc_location %>
+    <%= form.text_area :pc_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :e_location %>
+    <%= form.text_area :e_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :entry_route %>
+    <%= form.text_area :entry_route %>
+  </div>
+
+  <div class="field">
+    <%= form.label :egress_route %>
+    <%= form.text_area :egress_route %>
+  </div>
+
+  <div class="field">
+    <%= form.label :security_message %>
+    <%= form.text_area :security_message %>
+  </div>
+
+  <div class="field">
+    <%= form.label :communication_channels %>
+    <%= form.text_area :communication_channels %>
+  </div>
+
+  <div class="field">
+    <%= form.label :commander %>
+    <%= form.text_field :commander %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

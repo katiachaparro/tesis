@@ -1,0 +1,21 @@
+<% @events.each do |event| %>
+  <tr>
+    <td class="text-start col-4">
+      <div class="d-flex">
+        <span><%= event.name %></span>
+      </div>
+    </td>
+    <td class="text-start d-none d-md-table-cell"><%= event.commander %></td>
+    <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= event.location %></td>
+    <td class="text-start d-none d-md-table-cell"><%= event.event_start.strftime('%d-%m-%Y %H:%M') %></td>
+    <td class="text-start d-none d-md-table-cell"><%= event.event_start.strftime('%d-%m-%Y %H:%M') %></td>
+    <td class="settings px-0">
+      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="event-settings<%=event.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
+      <ul class="dropdown-menu" aria-labelledby="event-settings<%=event.id%>">
+        <li><%= link_to 'Editar', edit_event_path(event), class:'dropdown-item'%></li>
+        <li><button class="dropdown-item" type="button">Another action</button></li>
+        <li><button class="dropdown-item" type="button">Something else here</button></li>
+      </ul>
+    </td>
+  </tr>
+<% end %>

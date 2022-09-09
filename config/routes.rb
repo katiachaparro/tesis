@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :events
+  resources :event_actions, only: [], param: :index do
+    member do
+      delete '(:id)' => "event_actions#destroy", as: ""
+      post '/' => "event_actions#create"
+    end
+  end
   resources :user_permissions, :except => [:destroy, :show]
   resources :resources, :except => [:destroy, :show]
   resources :organizations, :except => [:destroy, :show] do

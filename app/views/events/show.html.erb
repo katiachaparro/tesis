@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Form start:</strong>
+  <%= @event.form_start %>
+</p>
+
+<p>
+  <strong>Event start:</strong>
+  <%= @event.event_start %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @event.location %>
+</p>
+
+<p>
+  <strong>Event nature:</strong>
+  <%= @event.event_nature %>
+</p>
+
+<p>
+  <strong>Threats:</strong>
+  <%= @event.threats %>
+</p>
+
+<p>
+  <strong>Affected area:</strong>
+  <%= @event.affected_area %>
+</p>
+
+<p>
+  <strong>Isolation:</strong>
+  <%= @event.isolation %>
+</p>
+
+<p>
+  <strong>Objectives:</strong>
+  <%= @event.objectives %>
+</p>
+
+<p>
+  <strong>Strategy:</strong>
+  <%= @event.strategy %>
+</p>
+
+<p>
+  <strong>Tactics:</strong>
+  <%= @event.tactics %>
+</p>
+
+<p>
+  <strong>Pc location:</strong>
+  <%= @event.pc_location %>
+</p>
+
+<p>
+  <strong>E location:</strong>
+  <%= @event.e_location %>
+</p>
+
+<p>
+  <strong>Entry route:</strong>
+  <%= @event.entry_route %>
+</p>
+
+<p>
+  <strong>Egress route:</strong>
+  <%= @event.egress_route %>
+</p>
+
+<p>
+  <strong>Security message:</strong>
+  <%= @event.security_message %>
+</p>
+
+<p>
+  <strong>Comunication channels:</strong>
+  <%= @event.communication_channels %>
+</p>
+
+<p>
+  <strong>Commander:</strong>
+  <%= @event.commander %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

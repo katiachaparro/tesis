@@ -68,6 +68,12 @@
           <span class="sidebar-text">Usuarios</span>
         <% end if can? :read, UserPermission %>
       </li>
+      <li class="nav-item">
+        <%= link_to events_path, class:'nav-link' do %>
+          <i class="sidebar-icon fa-solid fa-house-fire"></i>
+          <span class="sidebar-text">Eventos e Incidentes</span>
+        <% end if can? :read, Event %>
+      </li>
     </ul>
   </div>
   </div>
