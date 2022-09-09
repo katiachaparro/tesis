@@ -1,109 +1,99 @@
-<%= form_with(model: event) do |form| %>
-  <% if event.errors.any? %>
+<%= form_with(model: @event) do |form| %>
+  <% if @event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
       <ul>
-        <% event.errors.each do |error| %>
+        <% @event.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_field :name, class:'form-control' %>
+      <label for="name">Nombre del Incidente</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_field :event_start, class:'form-control' %>
+      <label for="event_start">Fecha y hora del Incidente</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :form_start %>
-    <%= form.datetime_select :form_start %>
+  <div class="border-top border-light border-1 mt-2 mb-4"></div>
+  <label>Evaluación  Inicial:</label>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :event_nature, class:'form-control', style:'height:7rem' %>
+      <label for="event_nature">Naturaleza del incidente</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :threats, class:'form-control', style:'height:7rem' %>
+      <label for="threats">Amenazas</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :affected_area, class:'form-control', style:'height:7rem' %>
+      <label for="affected_area">&Aacute;reas afectadas</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :isolation, class:'form-control', style:'height:7rem' %>
+      <label for="isolation">Aislamiento</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :event_start %>
-    <%= form.datetime_select :event_start %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :objectives, class:'form-control', style:'height:10rem' %>
+      <label for="objectives">Objetivo(s) inicial(es)</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :strategy, class:'form-control', style:'height:10rem' %>
+      <label for="strategy">Estrategias</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :tactics, class:'form-control', style:'height:10rem' %>
+      <label for="tactics">T&aacute;cticas</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_area :location %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :pc_location, class:'form-control' %>
+      <label for="pc_location">Ubicaci&oacute;n del PC</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :e_location, class:'form-control' %>
+      <label for="e_location">Ubicaci&oacute;n del E</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :event_nature %>
-    <%= form.text_area :event_nature %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :entry_route, class:'form-control' %>
+      <label for="entry_route">Ruta Ingreso</label>
+    </div>
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :egress_route, class:'form-control' %>
+      <label for="egress_route">Ruta Egreso</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :threats %>
-    <%= form.text_area :threats %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :security_message, class:'form-control' %>
+      <label for="security_message">Mensaje general de seguridad</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :affected_area %>
-    <%= form.text_area :affected_area %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_area :communication_channels, class:'form-control' %>
+      <label for="communication_channels">Distribuci&oacute;n inicial de canales de comunicaci&oacute;n</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :isolation %>
-    <%= form.text_area :isolation %>
+  <div class="row">
+    <div class="form-floating mb-3 col">
+      <%= form.text_field :commander, class:'form-control' %>
+      <label for="communication_channels">Comandante del Incidente</label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :objectives %>
-    <%= form.text_area :objectives %>
-  </div>
-
-  <div class="field">
-    <%= form.label :strategy %>
-    <%= form.text_area :strategy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tactics %>
-    <%= form.text_area :tactics %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pc_location %>
-    <%= form.text_area :pc_location %>
-  </div>
-
-  <div class="field">
-    <%= form.label :e_location %>
-    <%= form.text_area :e_location %>
-  </div>
-
-  <div class="field">
-    <%= form.label :entry_route %>
-    <%= form.text_area :entry_route %>
-  </div>
-
-  <div class="field">
-    <%= form.label :egress_route %>
-    <%= form.text_area :egress_route %>
-  </div>
-
-  <div class="field">
-    <%= form.label :security_message %>
-    <%= form.text_area :security_message %>
-  </div>
-
-  <div class="field">
-    <%= form.label :communication_channels %>
-    <%= form.text_area :communication_channels %>
-  </div>
-
-  <div class="field">
-    <%= form.label :commander %>
-    <%= form.text_field :commander %>
-  </div>
-
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    <%= link_to 'Cancelar', events_path, class: 'link-secondary ms-3'%>
   </div>
 <% end %>
