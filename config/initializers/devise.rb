@@ -1,16 +1,4 @@
-class TurboFailureApp < Devise::FailureApp
-  def respond
-    if request_format == :turbo_stream
-      redirect
-    else
-      super
-    end
-  end
-
-  def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
-  end
-end
+# frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
@@ -30,14 +18,7 @@ Devise.setup do |config|
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  # Turbo requirenments
-  config.parent_controller = 'TurboDeviseUserController'
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
-
-  # Warden configuration
-  config.warden do |manager|
-    manager.failure_app = TurboFailureApp
-  end
+  # config.parent_controller = 'DeviseController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,

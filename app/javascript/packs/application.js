@@ -13,7 +13,7 @@ import { Toast } from "bootstrap"
 
 Rails.start()
 ActiveStorage.start()
-Turbo.session.drive = true
+Turbo.session.drive = false
 
 
 $(function (){
