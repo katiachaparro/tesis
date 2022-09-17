@@ -3,24 +3,15 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
-import "@fortawesome/fontawesome-free/css/all"
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
+
 import { Turbo } from "@hotwired/turbo-rails"
-import { Toast } from "bootstrap"
+import "bootstrap";
+import "@fortawesome/fontawesome-free/css/all.css"
 
-
-Rails.start()
-ActiveStorage.start()
-Turbo.session.drive = false
-
-
-$(function (){
-  let toastElList = [].slice.call(document.querySelectorAll('.toast'))
-  let toastList = toastElList.map(function (toastEl) {
-    return new Toast(toastEl)
-  })
-  toastList.forEach(toast => toast.show())
-});
+import "controllers"
+Turbo.session.drive = true
 
