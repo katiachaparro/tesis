@@ -3,8 +3,9 @@
     <div class="card-header bg-white border-0 pb-0">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <h2 class="h4 m-0">Eventos e Incidentes</h2>
-        <%= link_to "Crear Incidente", new_event_path, class: 'btn btn-gray-800 mt-2 animate-up-2'%>
+        <%= link_to "Crear Incidente", new_event_path, class: 'btn btn-gray-800 mt-2 animate-up-2', data: { turbo_frame: dom_id(Event.new) } %>
       </div>
+      <%= turbo_frame_tag Event.new %>
     </div>
     <div class="card-body pt-0 pb-4">
       <div class="table-responsive">
@@ -16,11 +17,11 @@
             <th class="border-0 d-none d-md-table-cell">Lugar</th>
             <th class="border-0 d-none d-md-table-cell">Inicio</th>
             <th class="border-0 d-none d-md-table-cell">Fin</th>
-            <th class="border-0 rounded-end"></th>
+            <th class="border-0 rounded-end">Fin</th>
           </tr>
           </thead>
           <tbody>
-          <%= render 'table' %>
+          <%= render @events %>
           </tbody>
         </table>
       </div>

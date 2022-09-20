@@ -9,88 +9,24 @@
     </div>
   <% end %>
   <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_field :name, class:'form-control' %>
+    <div class="form-floating mb-3 col-12 col-lg-6">
+      <%= form.text_field :name, class:'form-control', required:'true', placeholder:'Nombre del Incidente' %>
       <label for="name">Nombre del Incidente</label>
     </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_field :event_start, class:'form-control' %>
+    <div class="form-floating mb-3 col-12 col-lg-6">
+      <%= form.text_field :event_start, class:'form-control', placeholder:'Fecha y hora del Incidente', data: {
+        controller: "flatpickr",
+        enable_time: "true",
+        flatpickr_date_format: "d-m-Y H:i",
+        flatpickr_default_date: (form.object&.event_start || Time.zone.now).strftime("%d-%m-%Y %H:%M"),
+      } %>
       <label for="event_start">Fecha y hora del Incidente</label>
     </div>
-  </div>
-  <div class="border-top border-light border-1 mt-2 mb-4"></div>
-  <label>Evaluación  Inicial:</label>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :event_nature, class:'form-control', style:'height:7rem' %>
-      <label for="event_nature">Naturaleza del incidente</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :threats, class:'form-control', style:'height:7rem' %>
-      <label for="threats">Amenazas</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :affected_area, class:'form-control', style:'height:7rem' %>
-      <label for="affected_area">&Aacute;reas afectadas</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :isolation, class:'form-control', style:'height:7rem' %>
-      <label for="isolation">Aislamiento</label>
+    <div class="form-floating mb-4 col-12">
+      <%= form.text_field :location, class:'form-control', required:'true', placeholder:'Locación' %>
+      <label for="location">Locaci&oacute;n</label>
     </div>
   </div>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :objectives, class:'form-control', style:'height:10rem' %>
-      <label for="objectives">Objetivo(s) inicial(es)</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :strategy, class:'form-control', style:'height:10rem' %>
-      <label for="strategy">Estrategias</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :tactics, class:'form-control', style:'height:10rem' %>
-      <label for="tactics">T&aacute;cticas</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :pc_location, class:'form-control' %>
-      <label for="pc_location">Ubicaci&oacute;n del PC</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :e_location, class:'form-control' %>
-      <label for="e_location">Ubicaci&oacute;n del E</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :entry_route, class:'form-control' %>
-      <label for="entry_route">Ruta Ingreso</label>
-    </div>
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :egress_route, class:'form-control' %>
-      <label for="egress_route">Ruta Egreso</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :security_message, class:'form-control' %>
-      <label for="security_message">Mensaje general de seguridad</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_area :communication_channels, class:'form-control' %>
-      <label for="communication_channels">Distribuci&oacute;n inicial de canales de comunicaci&oacute;n</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-floating mb-3 col">
-      <%= form.text_field :commander, class:'form-control' %>
-      <label for="communication_channels">Comandante del Incidente</label>
-    </div>
-  </div>
-
 
   <div class="actions">
     <%= form.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>

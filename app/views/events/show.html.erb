@@ -1,94 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Form start:</strong>
-  <%= @event.form_start %>
-</p>
-
-<p>
-  <strong>Event start:</strong>
-  <%= @event.event_start %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Event nature:</strong>
-  <%= @event.event_nature %>
-</p>
-
-<p>
-  <strong>Threats:</strong>
-  <%= @event.threats %>
-</p>
-
-<p>
-  <strong>Affected area:</strong>
-  <%= @event.affected_area %>
-</p>
-
-<p>
-  <strong>Isolation:</strong>
-  <%= @event.isolation %>
-</p>
-
-<p>
-  <strong>Objectives:</strong>
-  <%= @event.objectives %>
-</p>
-
-<p>
-  <strong>Strategy:</strong>
-  <%= @event.strategy %>
-</p>
-
-<p>
-  <strong>Tactics:</strong>
-  <%= @event.tactics %>
-</p>
-
-<p>
-  <strong>Pc location:</strong>
-  <%= @event.pc_location %>
-</p>
-
-<p>
-  <strong>E location:</strong>
-  <%= @event.e_location %>
-</p>
-
-<p>
-  <strong>Entry route:</strong>
-  <%= @event.entry_route %>
-</p>
-
-<p>
-  <strong>Egress route:</strong>
-  <%= @event.egress_route %>
-</p>
-
-<p>
-  <strong>Security message:</strong>
-  <%= @event.security_message %>
-</p>
-
-<p>
-  <strong>Comunication channels:</strong>
-  <%= @event.communication_channels %>
-</p>
-
-<p>
-  <strong>Commander:</strong>
-  <%= @event.commander %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="col-12 mb-4" >
+  <div class="card border-0 shadow components-section">
+    <div class="card-header bg-white border-0 pb-0">
+      <div class="d-flex justify-content-between">
+        <strong class="h5"><%= @event.name %></strong>
+        <span><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %></span>
+      </div>
+      <%= @event.location %>
+    </div>
+    <div class="card-body pb-4">
+      <div class="row">
+        <div class="col-12">
+          <!-- Tab -->
+          <nav>
+            <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">201 <span class="d-none d-md-inline">- Resumen del Incidente</span></a>
+              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">207 <span class="d-none d-md-inline">- Registro de Víctimas</span></a>
+              <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">211 <span class="d-none d-md-inline">- Registro y Control de Recursos</span></a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-201-tab">
+              <%= render 'form_201' %>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-207-tab">
+              <div>Tab 2</div>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-211-tab">
+              <div>Tab 3</div>
+            </div>
+          </div>
+          <!-- End of tab -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

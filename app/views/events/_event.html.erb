@@ -1,0 +1,12 @@
+<tr>
+  <td class="text-start col-4">
+    <div class="d-flex">
+      <span><%= event.name %></span>
+    </div>
+  </td>
+  <td class="text-start d-none d-md-table-cell"><%= event.commander %></td>
+  <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= event.location %></td>
+  <td class="text-start d-none d-md-table-cell"><%= event.event_start.strftime('%d-%m-%Y %H:%M') %></td>
+  <td class="text-start d-none d-md-table-cell"><%= event.event_start.strftime('%d-%m-%Y %H:%M') %></td>
+  <td class="text-end"><%= link_to "Ver", event_path(event), class: "btn btn-info" %></td>
+</tr>
