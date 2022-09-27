@@ -13,19 +13,23 @@
           <!-- Tab -->
           <nav>
             <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">201 <span class="d-none d-md-inline">- Resumen del Incidente</span></a>
-              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">207 <span class="d-none d-md-inline">- Registro de Víctimas</span></a>
-              <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">211 <span class="d-none d-md-inline">- Registro y Control de Recursos</span></a>
+              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201 <span class="d-none d-md-inline">- Resumen del Incidente</span></a>
+              <a class="nav-item nav-link" id="nav-201-actions-tab" data-bs-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-actions" aria-selected="false">201 <span class="d-none d-md-inline">- Resumen de las Acciones</span></a>
+              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-victims" role="tab" aria-controls="nav-victims" aria-selected="false">207 <span class="d-none d-md-inline">- Registro de Víctimas</span></a>
+              <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-resources" role="tab" aria-controls="nav-resources" aria-selected="false">211 <span class="d-none d-md-inline">- Registro y Control de Recursos</span></a>
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-201-tab">
+            <div class="tab-pane fade show active" id="nav-event" role="tabpanel" aria-labelledby="nav-201-tab">
               <%= render 'form_201' %>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-207-tab">
+            <div class="tab-pane fade" id="nav-actions" role="tabpanel" aria-labelledby="nav-201-actions-tab">
+              <%= render 'event_actions/index' %>
+            </div>
+            <div class="tab-pane fade" id="nav-victims" role="tabpanel" aria-labelledby="nav-207-tab">
               <div>Tab 2</div>
             </div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-211-tab">
+            <div class="tab-pane fade" id="nav-resources" role="tabpanel" aria-labelledby="nav-211-tab">
               <div>Tab 3</div>
             </div>
           </div>

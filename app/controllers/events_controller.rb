@@ -3,11 +3,13 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.all.order(event_start: :desc)
   end
 
   # GET /events/1 or /events/1.json
   def show
+    @event_actions = @event.event_actions.order(date: :desc)
+    @victims = @event.victims
   end
 
   # GET /events/new

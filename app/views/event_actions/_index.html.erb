@@ -1,0 +1,7 @@
+<%= turbo_frame_tag EventAction.new do  %>
+  <%= render 'event_actions/new_action_button' %>
+<% end %>
+
+<%= turbo_frame_tag "event_actions" do  %>
+  <%= render @event_actions %>
+<% end %>

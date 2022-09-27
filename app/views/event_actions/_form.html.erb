@@ -1,28 +1,32 @@
-<%= turbo_frame_tag "event_action_#{form.index}" do %>
-  <%= form.hidden_field :id %>
+<%= form_with( model: [@event, @event_action]) do |form| %>
+  <% if @event_action.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @event_action.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <div class="form-floating mb-3 col-12 col-lg-3">
+      <%= form.text_field :date, class:'form-control', placeholder:'Fecha y hora', data: {
+        controller: "flatpickr",
+        enable_time: "true",
+        flatpickr_date_format: "d-m-Y H:i",
+        flatpickr_default_date: (form.object&.date || Time.zone.now).strftime("%d-%m-%Y %H:%M"),
+      } %>
+      <label for="event_start">Fecha y hora</label>
+    </div>
+    <div class="form-floating mb-3 col-12 col-lg-9">
+      <%= form.text_field :description, class:'form-control', required:'true', placeholder:'Descripción' %>
+      <label for="name">Descripci&oacute;n</label>
+    </div>
   </div>
 
-  <%= form.submit "destroy action",
-                  formaction: event_action_path(form.index, form.object.id),
-                  formmethod: :delete,
-                  formnovalidate: true,
-                  data: { turbo_frame: "event_action_#{form.index}" } %>
+  <div class="actions text-end">
+    <%= form.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    <%= link_to 'Cancelar', event_path(@event), class: 'link-secondary ms-3'%>
+  </div>
 <% end %>
-
-
-<h4>Acciones</h4>
-<div id="event_actions">
-  <%= form.fields_for :event_actions do |event_form| %>
-    <%= render "event_actions/form", form: event_form %>
-  <% end %>
-</div>
-
-<%= form.submit "Add accion",
-                formaction: event_action_path(@event.event_actions.size),
-                formmethod: :post,
-                formnovalidate: true,
-                id: "add-event-action" %>

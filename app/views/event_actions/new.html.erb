@@ -1,0 +1,12 @@
+<div class="col-12 mb-4" >
+  <div class="card border-0 shadow components-section">
+    <div class="card-header bg-white border-0 pb-0">
+      <h2 class="h4">Registar Acci&oacute;n</h2>
+    </div>
+    <div class="card-body pb-4">
+      <%= turbo_frame_tag @event_action do %>
+        <%= render 'form' %>
+      <% end %>
+    </div>
+  </div>
+</div>
