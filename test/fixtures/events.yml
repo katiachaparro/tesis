@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  form_start: 2022-09-06 23:41:40
+  event_start: 2022-09-06 23:41:40
+  location: MyText
+  event_nature: MyText
+  threats: MyText
+  affected_area: MyText
+  isolation: MyText
+  objectives: MyText
+  strategy: MyText
+  tactics: MyText
+  pc_location: MyText
+  e_location: MyText
+  entry_route: MyText
+  egress_route: MyText
+  security_message: MyText
+  communication_channels: MyText
+  commander: MyString
+
+two:
+  name: MyString
+  form_start: 2022-09-06 23:41:40
+  event_start: 2022-09-06 23:41:40
+  location: MyText
+  event_nature: MyText
+  threats: MyText
+  affected_area: MyText
+  isolation: MyText
+  objectives: MyText
+  strategy: MyText
+  tactics: MyText
+  pc_location: MyText
+  e_location: MyText
+  entry_route: MyText
+  egress_route: MyText
+  security_message: MyText
+  communication_channels: MyText
+  commander: MyString

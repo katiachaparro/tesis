@@ -1,0 +1,23 @@
+table table > tbody > tr > * {
+  --bs-table-accent-bg: rgba(17, 24, 39, 0.075)
+}
+td[type=button] {
+  -webkit-appearance: initial;
+}
+tr:last-child {
+  border-bottom: transparent;
+}
+td .fa-chevron-down{
+  transition: transform .3s ease;
+}
+td.collapsed .fa-chevron-down {
+  transform: rotate(-90deg);
+}
+td.disabled{
+  cursor: initial !important;
+  color: lightgray;
+}
+td.settings, td.collapse-icon{
+  width: 50px;
+  text-align: center;
+}

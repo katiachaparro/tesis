@@ -1,0 +1,17 @@
+<%= form_with(model: victim) do |form| %>
+  <% if victim.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(victim.errors.count, "error") %> prohibited this victim from being saved:</h2>
+
+      <ul>
+        <% victim.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

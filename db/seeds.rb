@@ -1,5 +1,28 @@
-r1 = Role.create({ name: 'User'})
-r2 = Role.create({ name: 'Admin'})
-r3 = Role.create({ name: 'Super-admin'})
+Resource.create({name:'Enfermeros' , kind: :human_talent, active: true})
+Resource.create({name:'Bomberos' , kind: :human_talent, active: true})
+Resource.create({name:'Camion bomba' , kind: :logistics, active: true})
+Resource.create({name:'Ambulancia' , kind: :logistics, active: true})
+Resource.create({name:'Camas' , kind: :physical, active: true})
+Resource.create({name:'Computadoras' , kind: :physical, active: true})
 
-User.create({ email: 'admin@admin.com', password: '12345qQ!', password_confirmation: '12345qQ!', role_id: r1.id })
+
+po= Organization.create({name: 'CMGRRD', description: 'Consejo Municipal de Gestión y Reducción de Riesgo de Desastres de Encarnación', allow_sub_organizations: true})
+u = User.create({ first_name:'admin', last_name:'admin', email: 'admin@admin.com', password: '12345qQ!', password_confirmation: '12345qQ!' })
+UserPermission.create({role: :super_admin, user_id:u.id, organization_id:po.id})
+
+#create sub organizations
+po1 = Organization.create({name: 'Cruz Roja', description: '', allow_sub_organizations: true, parent_organization_id: po.id})
+u = User.create({ first_name:'cruzroja', last_name:'admin', email: 'admin@cruzroja.com', password: '12345qQ!', password_confirmation: '12345qQ!' })
+UserPermission.create({role: :admin, user_id:u.id, organization_id:po1.id})
+u = User.create({ first_name:'cruzroja', last_name:'user', email: 'user@cruzroja.com', password: '12345qQ!', password_confirmation: '12345qQ!' })
+UserPermission.create({role: :user, user_id:u.id, organization_id:po1.id})
+
+# create sub organizations for po1
+Organization.create({name: 'Cruz Roja Encarnacion', description: '', allow_sub_organizations: false, parent_organization_id: po1.id})
+Organization.create({name: 'Cruz Roja Cap. Miranda', description: '', allow_sub_organizations: false, parent_organization_id: po1.id})
+
+po1 = Organization.create({name: 'Hospital Regional', description: '', allow_sub_organizations: true, parent_organization_id: po.id})
+u = User.create({ first_name:'hospital', last_name:'admin', email: 'admin@hospital.com', password: '12345qQ!', password_confirmation: '12345qQ!' })
+UserPermission.create({role: :admin, user_id:u.id, organization_id:po1.id})
+u = User.create({ first_name:'hospital', last_name:'user', email: 'user@hospital.com', password: '12345qQ!', password_confirmation: '12345qQ!' })
+UserPermission.create({role: :user, user_id:u.id, organization_id:po1.id})

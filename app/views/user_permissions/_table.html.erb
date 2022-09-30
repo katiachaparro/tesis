@@ -1,0 +1,20 @@
+<% @user_permissions.each do |up| %>
+  <tr>
+    <td class="text-start col-4">
+      <div class="d-flex flex-column">
+        <span><%= up.user.full_name %></span>
+        <span><%= "(#{up.user.email})" %></span>
+      </div>
+    </td>
+    <td class="text-start d-none d-md-table-cell"><%= up.role_text %></td>
+    <td class="text-start d-none d-md-table-cell"><%= up.organization.name %></td>
+    <td class="settings px-0">
+      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="up-settings<%=up.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
+      <ul class="dropdown-menu" aria-labelledby="up-settings<%=up.id%>">
+        <li><%= link_to 'Editar', edit_user_permission_path(up), class:'dropdown-item'%></li>
+        <li><button class="dropdown-item" type="button">Another action</button></li>
+        <li><button class="dropdown-item" type="button">Something else here</button></li>
+      </ul>
+    </td>
+  </tr>
+<% end %>
