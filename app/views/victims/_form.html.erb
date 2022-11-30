@@ -1,17 +1,22 @@
-<%= form_with(model: victim) do |form| %>
-  <% if victim.errors.any? %>
+<%= form_with( model: [@event, @victim]) do |form| %>
+  <% if @victim.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(victim.errors.count, "error") %> prohibited this victim from being saved:</h2>
-
       <ul>
-        <% victim.errors.each do |error| %>
+        <% @victim.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="form-floating mb-3 col-12 col-lg-9">
+      <%= form.text_field :name, class:'form-control', required:'true', placeholder:'Nombre' %>
+      <label for="name">Nombre</label>
+    </div>
+  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions text-end">
+    <%= form.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    <%= link_to 'Cancelar', event_path(@event), class: 'link-secondary ms-3'%>
   </div>
 <% end %>

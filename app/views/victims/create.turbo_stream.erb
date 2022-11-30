@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "victims", partial: "victims/victim", locals: { victim: @victim } %>
+<%= turbo_stream.update Victim.new, partial: "victims/new_action_button" %>

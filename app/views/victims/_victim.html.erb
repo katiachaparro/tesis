@@ -1,0 +1,15 @@
+<%= turbo_frame_tag victim do %>
+  <div class="row">
+    <div class="col"><%= victim.name %></div>
+    <div class="col-auto d-flex">
+      <%= button_to "Eliminar",
+                    [@event, victim],
+                    method: :delete,
+                    form: { data: { turbo_confirm: "Estas seguro de eliminar esta victima?" } },
+                    class: "btn btn--light" %>
+      <%= link_to "Editar",
+                  [:edit, @event, victim],
+                  class: "btn btn--light" %>
+    </div>
+  </div>
+<% end %>
