@@ -3,6 +3,10 @@ es:
     manage:
       all: "No tienes permisos para accedeer a esta página"
   enumerize:
+    defaults:
+      sex:
+        female: "Femenino"
+        male: "Masculino"
     event:
       kind:
         event: "Evento"
@@ -17,6 +21,16 @@ es:
         user: "Usuario"
         admin: "Administrador"
         super_admin: "Super Admin"
+    victim:
+      classification:
+        red: "Rojo"
+        yellow: "Amarillo"
+        green: "Verde"
+        black: "Negro"
+      place_of_registration:
+        acv: "ACV"
+        medical_unit: "Unidad Medica"
+        other: "Otro"
   activerecord:
     errors:
       messages:
@@ -31,11 +45,24 @@ es:
               taken: " de la organización ya fue utilizado"
     models:
       organization:
-        one: "Organización"
-        other: "Organización"
+        one: 'Organización'
+        other: 'Organización'
+      victim:
+        one: 'Víctima'
+        other: 'Víctimas'
     attributes:
       organization:
-        name: "Nombre"
+        name: 'Nombre'
+      victim:
+        name: 'Nombre'
+        sex: 'Sexo'
+        age: 'Edad'
+        classification: 'Clasificación'
+        treated_on_site: 'Atendido en el sitio'
+        place_of_transfer: 'Lugar de Traslado'
+        transferred_by: 'Trasladado por'
+        place_of_registration: 'Lugar de Registro'
+        date: 'Fecha'
   date:
     abbr_day_names:
       - dom

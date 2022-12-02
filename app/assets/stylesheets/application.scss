@@ -25,3 +25,13 @@
   height: 50px;
   animation: loading 1s ease infinite;
 }
+
+.form-check{
+  display: flex;
+}
+.form-check .form-check-input{
+  margin-right: .6em;
+}
+.form-floating abbr[title], .form-floating abbr[data-bs-original-title] {
+  text-decoration: none;
+}

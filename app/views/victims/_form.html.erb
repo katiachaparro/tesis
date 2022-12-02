@@ -1,22 +1,21 @@
-<%= form_with( model: [@event, @victim]) do |form| %>
-  <% if @victim.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @victim.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for [@event, @victim], wrapper: :floating_labels_form do |f| %>
   <div class="row">
-    <div class="form-floating mb-3 col-12 col-lg-9">
-      <%= form.text_field :name, class:'form-control', required:'true', placeholder:'Nombre' %>
-      <label for="name">Nombre</label>
-    </div>
+    <%= f.input :name, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
+    <%= f.input :age, :as => :integer, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
+  </div>
+  <div class="row">
+    <%= f.input :sex, :as => :radio_buttons, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
+    <%= f.input :classification, :as => :radio_buttons, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
+    <%= f.input :place_of_registration, :as => :radio_buttons, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
+    <%= f.input :treated_on_site, :as => :boolean, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
+  </div>
+  <div class="row">
+    <%= f.input :place_of_transfer, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
+    <%= f.input :transferred_by, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
   </div>
 
   <div class="actions text-end">
-    <%= form.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
     <%= link_to 'Cancelar', event_path(@event), class: 'link-secondary ms-3'%>
   </div>
 <% end %>
