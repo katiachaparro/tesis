@@ -44,7 +44,7 @@ class VictimsController < ApplicationController
 
   private
   def victim_params
-    params.require(:victim).permit(:name)
+    params.require(:victim).permit(:name, :sex, :age, :classification, :treated_on_site, :place_of_transfer, :transferred_by, :place_of_registration, :date)
   end
 
   def setup_event
