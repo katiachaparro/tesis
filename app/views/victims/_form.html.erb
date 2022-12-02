@@ -2,6 +2,20 @@
   <div class="row">
     <%= f.input :name, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
     <%= f.input :age, :as => :integer, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
+    <div class="form-floating mb-3 col-12 col-lg-3">
+      <%= f.input_field :date,
+                        as: :string,
+                        class: 'form-control',
+                        data: {
+                          controller: 'flatpickr',
+                          enable_time: 'true',
+                          flatpickr_date_format: 'd-m-Y H:i',
+                          flatpickr_alt_input: false,
+                          flatpickr_default_date: f.object.date
+                        } %>
+      <label>Fecha</label>
+    </div>
+
   </div>
   <div data-controller="visibility">
     <div class="row">

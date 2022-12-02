@@ -1,7 +1,16 @@
 <%= turbo_frame_tag victim do %>
-  <div class="row">
-    <div class="col"><%= victim.name %></div>
-    <div class="col-auto d-flex">
+  <div class="d-flex align-items-center">
+    <i class="fa-sharp fa-solid fa-circle color-<%= victim.classification %>"></i>
+    <div class="mx-3"><%= victim.date&.strftime('%d-%m-%Y %H:%M') %></div>
+    <div>
+      <div><b><%= victim.name %></b> - <%= victim.sex&.text %> - <%= victim.age %> a&ntilde;os</div>
+      <div class="text-muted">
+        <%= victim.place_of_registration&.text %>
+        - <%= victim.treated_on_site?? 'Atendido en el sitio' : [victim.place_of_transfer, victim.transferred_by].reject(&:blank?).join(' - ') %>
+      </div>
+    </div>
+
+    <div class="ms-auto d-flex">
       <%= button_to "Eliminar",
                     [@event, victim],
                     method: :delete,
