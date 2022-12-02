@@ -1,16 +1,19 @@
 <%= turbo_frame_tag event_action do %>
-  <div class="row">
-    <div class="col-2"><%= event_action.date.strftime('%d-%m-%Y %H:%M') %></div>
+  <div class="d-flex align-items-center border-bottom border-2 border-black py-1">
+    <div class="col-2 me-2"><%= event_action.date.strftime('%d-%m-%Y %H:%M') %></div>
     <div class="col"><%= event_action.description %></div>
-    <div class="col-auto d-flex">
-      <%= button_to "Eliminar",
-                    [@event, event_action],
+    <div class="ms-auto d-flex">
+      <%= button_to [@event, event_action],
                     method: :delete,
                     form: { data: { turbo_confirm: "Estas seguro de eliminar esta acción?" } },
-                    class: "btn btn--light" %>
-      <%= link_to "Editar",
-                  [:edit, @event, event_action],
-                  class: "btn btn--light" %>
+                    class: "btn btn-outline-danger me-1",
+                    title: "Eliminar" do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+      <%= link_to [:edit, @event, event_action],
+                  class: "btn btn-outline-info", title: "Editar" do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
     </div>
   </div>
 <% end %>

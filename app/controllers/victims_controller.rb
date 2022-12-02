@@ -14,8 +14,8 @@ class VictimsController < ApplicationController
 
     if @victim.save
       respond_to do |format|
-        format.html { redirect_to event_path(@event), notice: "La victima fue creada exitosamente." }
-        format.turbo_stream { flash.now[:notice] = "La victima fue creada exitosamente." }
+        format.html { redirect_to event_path(@event), notice: "La víctima fue creada exitosamente." }
+        format.turbo_stream { flash.now[:notice] = "La víctima fue creada exitosamente." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -25,8 +25,8 @@ class VictimsController < ApplicationController
   def update
     if @victim.update(victim_params)
       respond_to do |format|
-        format.html { redirect_to event_path(@event), notice: "La victima fue editada exitosamente." }
-        format.turbo_stream { flash.now[:notice] = "La victima fue editada exitosamente." }
+        format.html { redirect_to event_path(@event), notice: "La víctima fue editada exitosamente." }
+        format.turbo_stream { flash.now[:notice] = "La víctima fue editada exitosamente." }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -37,8 +37,8 @@ class VictimsController < ApplicationController
     @victim.destroy
 
     respond_to do |format|
-      format.html { redirect_to event_path(@event), notice: "La victima fue eliminada exitosamente." }
-      format.turbo_stream { flash.now[:notice] = "La victima fue eliminada exitosamente." }
+      format.html { redirect_to event_path(@event), notice: "La víctima fue eliminada exitosamente." }
+      format.turbo_stream { flash.now[:notice] = "La víctima fue eliminada exitosamente." }
     end
   end
 

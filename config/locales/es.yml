@@ -50,6 +50,9 @@ es:
       victim:
         one: 'Víctima'
         other: 'Víctimas'
+      event_action:
+        one: 'Acción'
+        other: 'Acciones'
     attributes:
       organization:
         name: 'Nombre'
@@ -63,6 +66,9 @@ es:
         transferred_by: 'Trasladado por'
         place_of_registration: 'Lugar de Registro'
         date: 'Fecha'
+      event_action:
+        date: 'Fecha'
+        description: 'Descripción'
   date:
     abbr_day_names:
       - dom

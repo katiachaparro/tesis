@@ -11,7 +11,7 @@
                           enable_time: 'true',
                           flatpickr_date_format: 'd-m-Y H:i',
                           flatpickr_alt_input: false,
-                          flatpickr_default_date: f.object.date
+                          flatpickr_default_date: (f.object&.date || Time.zone.now).strftime("%d-%m-%Y %H:%M")
                         } %>
       <label>Fecha</label>
     </div>
