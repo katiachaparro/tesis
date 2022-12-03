@@ -8,6 +8,11 @@ es:
     error_notification:
       default_message: 'Por favor corrige los siguientes problemas:'
     labels:
+      organization:
+        name: 'Nombre'
+        description: 'Descripción'
+        parent_organization: 'Organización responzable'
+        allow_sub_organizations: 'Permitir sub-organizaciones'
       victim:
         name: 'Nombre'
         sex: 'Sexo'
@@ -22,6 +27,11 @@ es:
         date: 'Fecha'
         description: 'Descripción'
     placeholders:
+      organization:
+        name: 'Nombre'
+        description: 'Descripción'
+        parent_organization: 'Organización responzable'
+        allow_sub_organizations: 'Permitir sub-organizaciones'
       victim:
         name: 'Nombre'
         sex: 'Sexo'
@@ -32,9 +42,10 @@ es:
         transferred_by: 'Trasladado por'
         place_of_registration: 'Lugar de Registro'
         date: 'Fecha'
-      vent_action:
+      event_action:
         date: 'Fecha'
         description: 'Descripción'
+
 
     # Examples
     # labels:

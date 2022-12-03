@@ -32,8 +32,11 @@
 .form-check .form-check-input{
   margin-right: .6em;
 }
-.form-floating abbr[title], .form-floating abbr[data-bs-original-title] {
+form abbr[title], form abbr[data-bs-original-title] {
   text-decoration: none;
+}
+.form-group {
+  margin-bottom: 1rem;
 }
 .color-red {
   color: red;

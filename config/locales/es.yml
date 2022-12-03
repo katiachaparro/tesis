@@ -46,7 +46,7 @@ es:
     models:
       organization:
         one: 'Organización'
-        other: 'Organización'
+        other: 'Organizaciones'
       victim:
         one: 'Víctima'
         other: 'Víctimas'
@@ -56,6 +56,9 @@ es:
     attributes:
       organization:
         name: 'Nombre'
+        description: 'Descripción'
+        parent_organization: 'Organización responzable'
+        allow_sub_organizations: 'Permitir sub-organizaciones'
       victim:
         name: 'Nombre'
         sex: 'Sexo'
