@@ -44,6 +44,9 @@ es:
             name:
               taken: " de la organización ya fue utilizado"
     models:
+      event:
+        one: 'Evento'
+        other: 'Eventos'
       organization:
         one: 'Organización'
         other: 'Organizaciones'
@@ -63,6 +66,28 @@ es:
         one: 'Usuario'
         other: 'Usuarios'
     attributes:
+      event:
+        name: 'Nombre del Incidente'
+        form_start: 'Fecha y hora de preparación'
+        event_start: 'Fecha y hora de inicio'
+        event_end: 'Fecha y hora de cierre'
+        location: 'Lugar del Incidente'
+        event_nature: 'Naturaleza del incidente'
+        threats: 'Amenazas'
+        affected_area: 'Áreas afectadas'
+        isolation: 'Aislamiento'
+        objectives: 'Objetivo(s) inicial(es)'
+        strategy: 'Estrategias'
+        tactics: 'Tácticas'
+        pc_location: 'Ubicación del PC'
+        e_location: 'Ubicación del E'
+        entry_route: 'Ruta Ingreso'
+        egress_route: 'Ruta Egreso'
+        security_message: 'Mensaje general de seguridad'
+        communication_channels: 'Distribución inicial de canales de comunicación'
+        commander: 'Comandante del Incidente'
+        kind: 'Tipo'
+        status: 'Estado'
       organization:
         name: 'Nombre'
         description: 'Descripción'
