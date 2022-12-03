@@ -1,38 +1,14 @@
-<%= form_with(model: @resource) do |f| %>
-  <% if @resource.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @resource.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="form-group mb-4">
-        <label for="email">Nombre</label>
-        <%= f.text_field :name, id: "name", autofocus: true, required: true, class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Descripci&oacute;n</label>
-        <%= f.text_field :description, id: "description", class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="type">Tipo</label>
-        <%= select_tag(:kind, options_for_select(Resource.kind.options, @resource.kind), class: 'form-select', name: 'resource[kind]', required:true, prompt: 'Selecciona un tipo') %>
-      </div>
+<%= simple_form_for @resource do |f| %>
+  <div class="col-lg-6">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :kind, prompt: 'Selecciona un tipo' %>
+    <%= f.input :active %>
 
-      <div class="form-check">
-        <%= f.check_box(:active, { class: 'form-check-input' }) %>
-        <label class="form-check-label" for="active">Activo</label>
-      </div>
+    <div class="actions text-start">
+      <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+      <%= link_to 'Cancelar', resources_path, class: 'link-secondary ms-3'%>
     </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
-    <%= link_to 'Cancelar', resources_path, class: 'link-secondary ms-3'%>
   </div>
 <% end %>
 

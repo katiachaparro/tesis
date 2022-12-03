@@ -1,12 +1,14 @@
 <%= simple_form_for @organization do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.association :parent_organization, collection: Organization.allow_sub_organizations, prompt: 'Selecciona una organización' %>
-  <%= f.input :allow_sub_organizations %>
+  <div class="col-lg-6">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.association :parent_organization, collection: Organization.allow_sub_organizations, prompt: 'Selecciona una organización' %>
+    <%= f.input :allow_sub_organizations %>
 
-  <div class="actions text-end">
-    <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
-    <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3'%>
+    <div class="actions text-start">
+      <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+      <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3'%>
+    </div>
   </div>
 <% end %>
 
