@@ -13,6 +13,14 @@ es:
         description: 'Descripción'
         parent_organization: 'Organización responzable'
         allow_sub_organizations: 'Permitir sub-organizaciones'
+      resource:
+        name: 'Nombre'
+        description: 'Descripción'
+        kind: 'Tipo'
+        active: 'Activo'
+      resource_per_organization:
+        resource: 'Recurso'
+        quantity: 'Cantidad'
       victim:
         name: 'Nombre'
         sex: 'Sexo'
@@ -32,6 +40,14 @@ es:
         description: 'Descripción'
         parent_organization: 'Organización responzable'
         allow_sub_organizations: 'Permitir sub-organizaciones'
+      resource:
+        name: 'Nombre'
+        description: 'Descripción'
+        kind: 'Tipo'
+        active: 'Activo'
+      resource_per_organization:
+        resource: 'Recurso'
+        quantity: 'Cantidad'
       victim:
         name: 'Nombre'
         sex: 'Sexo'

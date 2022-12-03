@@ -53,12 +53,26 @@ es:
       event_action:
         one: 'Acción'
         other: 'Acciones'
+      resource:
+        one: 'Recurso'
+        other: 'Recursos'
+      resource_per_organization:
+        one: 'Recurso'
+        other: 'Recursos'
     attributes:
       organization:
         name: 'Nombre'
         description: 'Descripción'
         parent_organization: 'Organización responzable'
         allow_sub_organizations: 'Permitir sub-organizaciones'
+      resource:
+        name: 'Nombre'
+        description: 'Descripción'
+        kind: 'Tipo'
+        active: 'Activo'
+      resource_per_organization:
+        resource: 'Recurso'
+        quantity: 'Cantidad'
       victim:
         name: 'Nombre'
         sex: 'Sexo'

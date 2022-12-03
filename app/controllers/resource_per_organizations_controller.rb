@@ -21,7 +21,7 @@ class ResourcePerOrganizationsController < ApplicationController
 
   # POST /resource_per_organizations or /resource_per_organizations.json
   def create
-    @rpo = ResourcePerOrganization.new(resource_per_organization_params)
+    @resource_per_organization = @organization.resource_per_organizations.new(resource_per_organization_params)
 
     respond_to do |format|
       if @resource_per_organization.save

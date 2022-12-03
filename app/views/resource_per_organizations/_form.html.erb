@@ -1,33 +1,10 @@
-<%= form_with(model: @resource_per_organization, url: [@organization, @resource_per_organization]) do |f| %>
-  <%= f.hidden_field 'organization_id', value: @organization.id %>
-  <% if @resource_per_organization.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @resource_per_organization.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= simple_form_for [@organization, @resource_per_organization] do |f| %>
+  <div class="col-lg-6">
+    <%= f.association :resource, collection: Resource.active_resources, prompt: 'Selecciona un recurso' %>
+    <%= f.input :quantity %>
+    <div class="actions text-start">
+      <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+      <%= link_to 'Cancelar', organization_resource_per_organizations_path(@organization), class: 'link-secondary ms-3'%>
     </div>
-  <% end %>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="form-group mb-4">
-        <label for="type">Recurso</label>
-        <%= select_tag(:resource_id, options_from_collection_for_select(Resource.active_resources, 'id', 'name', @resource_per_organization.resource_id), class: 'form-select', prompt: 'Selecciona un resurso', required: true, name:'resource_per_organization[resource_id]', disabled:true) if @resource_per_organization.persisted? %>
-        <%= select_tag(:resource_id, options_from_collection_for_select(Resource.active_resources, 'id', 'name', @resource_per_organization.resource_id), class: 'form-select', prompt: 'Selecciona un resurso', required: true, name:'resource_per_organization[resource_id]') unless @resource_per_organization.persisted? %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="type">Cantidad</label>
-        <%= f.number_field :quantity, id: "quantity", required: true, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
-    <%= link_to 'Cancelar', organization_resource_per_organizations_path(@organization), class: 'link-secondary ms-3'%>
   </div>
 <% end %>
-
-
-
