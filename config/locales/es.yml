@@ -59,6 +59,9 @@ es:
       resource_per_organization:
         one: 'Recurso'
         other: 'Recursos'
+      user:
+        one: 'Usuario'
+        other: 'Usuarios'
     attributes:
       organization:
         name: 'Nombre'
@@ -86,6 +89,16 @@ es:
       event_action:
         date: 'Fecha'
         description: 'Descripción'
+      user:
+        email: 'Email'
+        first_name: 'Nombre'
+        last_name: 'Apellido'
+        ci: 'CI'
+        address: 'Dirección'
+        address_two: 'Dirección complementaria'
+        city: 'Ciudad'
+        birthday: 'Fecha de nacimiento'
+        phone: 'Teléfono'
   date:
     abbr_day_names:
       - dom

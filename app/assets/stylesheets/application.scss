@@ -38,6 +38,9 @@ form abbr[title], form abbr[data-bs-original-title] {
 .form-group {
   margin-bottom: 1rem;
 }
+.form-control.flatpickr-input[readonly] {
+  background-color: initial;
+}
 .color-red {
   color: red;
 }
