@@ -1,6 +1,12 @@
 class Event < ApplicationRecord
   audited
   extend Enumerize
+  has_many_attached :sketchs do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
+  has_many_attached :organization_charts do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+  end
   has_many :event_actions
   has_many :victims
   accepts_nested_attributes_for :event_actions,

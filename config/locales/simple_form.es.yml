@@ -30,6 +30,8 @@ es:
         commander: 'Comandante del Incidente'
         kind: 'Tipo'
         status: 'Estado'
+        sketchs: 'Mapa Situacional o Croquis'
+        organization_charts: 'Organigrama Actual'
       organization:
         name: 'Nombre'
         description: 'Descripción'

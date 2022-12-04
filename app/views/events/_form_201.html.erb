@@ -25,6 +25,26 @@
   <div class="row">
     <%= f.input :commander, wrapper_html: { class: 'mb-3 col-12' } %>
   </div>
+  <div class="row">
+    <%= f.input :sketchs, wrapper_html: { class: 'mb-3 col-12' }, as: :file, :input_html => { :multiple => true }, name: 'events[sketchs][]' %>
+    <ul>
+      <% f.object.sketchs.each do |file| %>
+        <li>
+          <%= image_tag file.representation(resize_to_limit: [100, 100])  if file.representable? %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="row">
+    <%= f.input :organization_charts, wrapper_html: { class: 'mb-3 col-12' }, as: :file, :input_html => { :multiple => true }, name: 'events[organization_charts][]' %>
+    <ul>
+      <% f.object.organization_charts.each do |file| %>
+        <li>
+          <%= image_tag file.representation(resize_to_limit: [100, 100])  if file.representable? %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
   <div class="actions text-end">
     <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
     <%= link_to 'Cancelar', events_path, class: 'link-secondary ms-3'%>
