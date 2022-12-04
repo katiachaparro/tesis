@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  audited
   extend Enumerize
   has_many :event_actions
   has_many :victims
