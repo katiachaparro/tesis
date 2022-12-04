@@ -11,6 +11,9 @@ module Tesis
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # Fix audited bug
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
