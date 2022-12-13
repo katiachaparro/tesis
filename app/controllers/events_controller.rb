@@ -59,6 +59,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def export_201_pdf
+    @event = Event.find(params[:event_id])
+    respond_to do |format|
+      format.pdf do
+        pdf = Form201.new(@event, view_context)
+        send_data pdf.render, filename: "event_incidente_201_#{@event.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
