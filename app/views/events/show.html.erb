@@ -5,15 +5,15 @@
         <strong class="h5"><%= @event.name %></strong>
         <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %></div>
         <div>
-          <%= link_to event_export_201_pdf_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
+          <%= link_to event_export_201_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
             <span class= "fa fa-file-pdf me-2"></span>
             201
           <% end %>
-          <%= link_to event_export_207_pdf_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
+          <%= link_to event_export_207_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
             <span class= "fa fa-file-pdf me-2"></span>
             207
           <% end %>
-          <%= link_to event_export_211_pdf_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
+          <%= link_to event_export_211_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
             <span class= "fa fa-file-pdf me-2"></span>
             211
           <% end %>

@@ -59,12 +59,24 @@ class EventsController < ApplicationController
     end
   end
 
-  def export_201_pdf
+  def export_201
     @event = Event.find(params[:event_id])
     respond_to do |format|
       format.pdf do
         pdf = Form201.new(@event, view_context)
         send_data pdf.render, filename: "event_incidente_201_#{@event.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
+
+  def export_207
+    @event = Event.find(params[:event_id])
+    respond_to do |format|
+      format.pdf do
+        pdf = Form207.new(@event, view_context)
+        send_data pdf.render, filename: "event_incidente_207_#{@event.id}.pdf",
                   type: "application/pdf",
                   disposition: "inline"
       end

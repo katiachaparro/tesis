@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   resources :events do
     resources :victims, except: [:index, :show]
     resources :event_actions, except: [:index, :show]
-    get :export_201_pdf
-    get :export_207_pdf
-    get :export_211_pdf
+    get :export_201
+    get :export_207
+    get :export_211
   end
   resources :user_permissions, :except => [:destroy, :show]
   resources :resources, :except => [:destroy, :show]

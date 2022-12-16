@@ -1,6 +1,6 @@
 class Form201 < Prawn::Document
   def initialize(event, view)
-    super(top_margin: 70)
+    super(top_margin: 100)
     title_color = '000080'
 
     @event = event
@@ -18,7 +18,7 @@ class Form201 < Prawn::Document
       bottom = 0
       number_pages "Página <page> de <total>", at: [bounds.left, bottom], width: 100
       number_pages "Comandante del Incidente y firma: #{event.commander}", at: [100, bottom], width: 230
-      number_pages "Fecha y Hora de Preparación:", at: [bounds.right-200, bottom], width: 200, align: :right
+      number_pages "Fecha y Hora de Preparación\n#{event.created_at&.strftime('%d-%m-%Y %H:%M')}", at: [bounds.right-200, bottom], width: 200, align: :right
     end
   end
 
