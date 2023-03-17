@@ -3,7 +3,7 @@ class ResourceRequestsController < ApplicationController
   before_action :setup_event
 
   def new
-    @requests = []
+    @event.resource_requests.build
   end
 
   def edit; end
