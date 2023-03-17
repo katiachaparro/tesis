@@ -19,6 +19,7 @@
   <main class="content <%= 'm-0 p-0' unless user_signed_in? %>">
     <%= render 'layouts/header' if user_signed_in? %>
     <%= yield %>
+    <%= turbo_frame_tag 'remote_modal', target: "_top" %>
   </main>
   </body>
 </html>
