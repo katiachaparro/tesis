@@ -1,9 +1,15 @@
-import { Controller } from "@hotwired/stimulus"
-import TomSelect      from "tom-select"
+import { Controller } from "stimulus"
+import $ from "jquery"
+import "select2"
+import 'select2/dist/css/select2.css'
+import 'select2-bootstrap-theme/dist/select2-bootstrap.min.css'
 
-// Connects to data-controller="ts--select"
 export default class extends Controller {
   connect() {
-    new TomSelect(this.element)
+    let el = $(this.element)
+    el.select2({
+      dropdownParent: el.closest('.modal'),
+      theme: "bootstrap"
+    })
   }
 }
