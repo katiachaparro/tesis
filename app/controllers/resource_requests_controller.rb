@@ -3,50 +3,36 @@ class ResourceRequestsController < ApplicationController
   before_action :setup_event
 
   def new
-    @event.resource_requests.build
+    @resource_request = ResourceRequest.new
+    @resource_request.resource_request_items.build
   end
 
   def edit; end
 
   def create
-    @victim = @event.victims.build(victim_params)
+    @resource_request = ResourceRequest.new(resource_request_params)
+    @resource_request.event = @event
+    @resource_request.user = current_user
+    @resource_request.status = ResourceRequest.status.active
 
-    if @victim.save
+    if @resource_request.save
+      # TODO: notify all organizations
       respond_to do |format|
-        format.html { redirect_to event_path(@event), notice: "La víctima fue creada exitosamente." }
-        format.turbo_stream { flash.now[:notice] = "La víctima fue creada exitosamente." }
+        format.html { redirect_to event_path(@event), notice: "Los recursos fueron solicitados exitosamente." }
       end
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
-  def update
-    if @victim.update(victim_params)
-      respond_to do |format|
-        format.html { redirect_to event_path(@event), notice: "La víctima fue editada exitosamente." }
-        format.turbo_stream { flash.now[:notice] = "La víctima fue editada exitosamente." }
-      end
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @victim.destroy
-
-    respond_to do |format|
-      format.html { redirect_to event_path(@event), notice: "La víctima fue eliminada exitosamente." }
-      format.turbo_stream { flash.now[:notice] = "La víctima fue eliminada exitosamente." }
-    end
-  end
 
   private
-  def victim_params
-    params.require(:victim).permit(:name, :sex, :age, :classification, :treated_on_site, :place_of_transfer, :transferred_by, :place_of_registration, :date)
-  end
 
   def setup_event
     @event =  Event.find(params[:event_id])
+  end
+
+  def resource_request_params
+    params.require(:resource_request).permit(resource_request_items_attributes: [:resource_id, :quantity])
   end
 end

@@ -1,11 +1,11 @@
-<%= form_with model: @event, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+<%= simple_form_for [@event, @resource_request], data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
   <template data-nested-form-target="template">
-    <%= f.simple_fields_for :resource_requests, ResourceRequest.new, child_index: 'NEW_RECORD' do |resource_fields| %>
+    <%= f.simple_fields_for :resource_request_items, ResourceRequestItem.new, child_index: 'NEW_RECORD' do |resource_fields| %>
       <%= render 'resource_form', f: resource_fields %>
     <% end %>
   </template>
 
-  <%= f.simple_fields_for :resource_requests do |resource_fields| %>
+  <%= f.simple_fields_for :resource_request_items do |resource_fields| %>
     <%= render 'resource_form', f: resource_fields %>
   <% end %>
 
