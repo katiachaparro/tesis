@@ -34,13 +34,15 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
 gem 'cancancan'
-
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 # Enumerated attributes
 gem 'enumerize'
 
 # helper to create forms
 gem 'simple_form'
-
+gem 'faker'
+gem 'ransack'
 # log changes
 gem "audited", "~> 5.0"
 
