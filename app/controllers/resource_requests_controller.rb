@@ -19,6 +19,7 @@ class ResourceRequestsController < ApplicationController
       # TODO: notify all organizations
       respond_to do |format|
         format.html { redirect_to event_path(@event), notice: "Los recursos fueron solicitados exitosamente." }
+        format.turbo_stream { flash.now[:notice] = "Los recursos fueron solicitados exitosamente." }
       end
     else
       render :new

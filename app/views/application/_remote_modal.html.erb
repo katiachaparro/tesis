@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'remote_modal' do %>
-  <div class="modal fade" data-controller="remote-modal">
+  <div class="modal fade" data-controller="remote-modal" data-action="turbo:submit-end->turbo-modal#submitEnd">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

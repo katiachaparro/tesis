@@ -8,5 +8,9 @@ class ResourceRequest < ApplicationRecord
   accepts_nested_attributes_for :resource_request_items,
                                 reject_if: :all_blank, allow_destroy: true
 
-  enumerize :status, in: [:active, :canceled, :complete, :demobilized], scope: :shallow
+  enumerize :status, in: [:active, :canceled, :demobilized], scope: :shallow
+
+  def active?
+    status == ResourceRequest.status.active
+  end
 end
