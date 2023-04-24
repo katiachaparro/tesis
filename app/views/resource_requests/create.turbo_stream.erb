@@ -1,1 +1,2 @@
 <%= turbo_stream.prepend "resource_requests", partial: "resource_requests/resource_request", locals: { resource_request: @resource_request } %>
+<%= turbo_stream.update "toast_notice", partial: "layouts/toast", locals: {alert: alert, notice: notice } %>

@@ -1,1 +1,2 @@
 <%= turbo_stream.remove @victim %>
+<%= turbo_stream.update "toast_notice", partial: "layouts/toast", locals: {alert: alert, notice: notice } %>
