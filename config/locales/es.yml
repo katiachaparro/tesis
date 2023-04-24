@@ -3,6 +3,10 @@ es:
     manage:
       all: "No tienes permisos para accedeer a esta página"
   enumerize:
+    defaults:
+      sex:
+        female: "Femenino"
+        male: "Masculino"
     event:
       kind:
         event: "Evento"
@@ -17,6 +21,16 @@ es:
         user: "Usuario"
         admin: "Administrador"
         super_admin: "Super Admin"
+    victim:
+      classification:
+        red: "Rojo"
+        yellow: "Amarillo"
+        green: "Verde"
+        black: "Negro"
+      place_of_registration:
+        acv: "ACV"
+        medical_unit: "Unidad Medica"
+        other: "Otro"
   activerecord:
     errors:
       messages:
@@ -30,12 +44,88 @@ es:
             name:
               taken: " de la organización ya fue utilizado"
     models:
+      event:
+        one: 'Evento'
+        other: 'Eventos'
       organization:
-        one: "Organización"
-        other: "Organización"
+        one: 'Organización'
+        other: 'Organizaciones'
+      victim:
+        one: 'Víctima'
+        other: 'Víctimas'
+      event_action:
+        one: 'Acción'
+        other: 'Acciones'
+      resource:
+        one: 'Recurso'
+        other: 'Recursos'
+      resource_per_organization:
+        one: 'Recurso'
+        other: 'Recursos'
+      user:
+        one: 'Usuario'
+        other: 'Usuarios'
     attributes:
+      event:
+        name: 'Nombre del Incidente'
+        form_start: 'Fecha y hora de preparación'
+        event_start: 'Fecha y hora de inicio'
+        event_end: 'Fecha y hora de cierre'
+        location: 'Lugar del Incidente'
+        event_nature: 'Naturaleza del incidente'
+        threats: 'Amenazas'
+        affected_area: 'Áreas afectadas'
+        isolation: 'Aislamiento'
+        objectives: 'Objetivo(s) inicial(es)'
+        strategy: 'Estrategias'
+        tactics: 'Tácticas'
+        pc_location: 'Ubicación del PC'
+        e_location: 'Ubicación del E'
+        entry_route: 'Ruta Ingreso'
+        egress_route: 'Ruta Egreso'
+        security_message: 'Mensaje general de seguridad'
+        communication_channels: 'Distribución inicial de canales de comunicación'
+        commander: 'Comandante del Incidente'
+        kind: 'Tipo'
+        status: 'Estado'
+        sketchs: 'Mapa Situacional o Croquis'
+        organization_charts: 'Organigrama Actual'
       organization:
-        name: "Nombre"
+        name: 'Nombre'
+        description: 'Descripción'
+        parent_organization: 'Organización responzable'
+        allow_sub_organizations: 'Permitir sub-organizaciones'
+      resource:
+        name: 'Nombre'
+        description: 'Descripción'
+        kind: 'Tipo'
+        active: 'Activo'
+      resource_per_organization:
+        resource: 'Recurso'
+        quantity: 'Cantidad'
+      victim:
+        name: 'Nombre'
+        sex: 'Sexo'
+        age: 'Edad'
+        classification: 'Clasificación'
+        treated_on_site: 'Atendido en el sitio'
+        place_of_transfer: 'Lugar de Traslado'
+        transferred_by: 'Trasladado por'
+        place_of_registration: 'Lugar de Registro'
+        date: 'Fecha'
+      event_action:
+        date: 'Fecha'
+        description: 'Descripción'
+      user:
+        email: 'Email'
+        first_name: 'Nombre'
+        last_name: 'Apellido'
+        ci: 'CI'
+        address: 'Dirección'
+        address_two: 'Dirección complementaria'
+        city: 'Ciudad'
+        birthday: 'Fecha de nacimiento'
+        phone: 'Teléfono'
   date:
     abbr_day_names:
       - dom

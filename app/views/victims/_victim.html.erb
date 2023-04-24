@@ -1,0 +1,27 @@
+<%= turbo_frame_tag victim do %>
+  <div class="d-flex align-items-center border-bottom border-2 border-black py-1">
+    <i class="fa-sharp fa-solid fa-circle color-<%= victim.classification %>"></i>
+    <div class="mx-3 col-3"><%= victim.date&.strftime('%d-%m-%Y %H:%M') %></div>
+    <div>
+      <div><b><%= victim.name %></b> - <%= victim.sex&.text %> - <%= victim.age %> a&ntilde;os</div>
+      <div class="text-muted">
+        <%= victim.place_of_registration&.text %>
+        - <%= victim.treated_on_site?? 'Atendido en el sitio' : [victim.place_of_transfer, victim.transferred_by].reject(&:blank?).join(' - ') %>
+      </div>
+    </div>
+
+    <div class="ms-auto d-flex">
+      <%= button_to [@event, victim],
+                    method: :delete,
+                    form: { data: { turbo_confirm: "Estas seguro de eliminar esta víctima?" } },
+                    class: "btn btn-outline-danger me-1",
+                    title: "Eliminar" do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+      <%= link_to [:edit, @event, victim],
+                  class: "btn btn-outline-info", title: "Editar" do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

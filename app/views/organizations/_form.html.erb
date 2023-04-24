@@ -1,37 +1,14 @@
-<%= form_with(model: @organization) do |f| %>
-  <% if @organization.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @organization.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="form-group mb-4">
-        <label for="email">Nombre</label>
-        <%= f.text_field :name, id: "name", autofocus: true, required: true, class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Descripci&oacute;n</label>
-        <%= f.text_field :description, id: "description", class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="parent_organization_id">Organizaci&oacute;n responsable</label>
-        <%= select_tag(:parent_organization_id, options_from_collection_for_select(Organization.allow_sub_organizations, 'id', 'name', @organization.parent_organization_id), class: 'form-select', name: 'organization[parent_organization_id]', required:true, prompt: 'Selecciona una organización') %>
-      </div>
-      <div class="form-check">
-        <%= f.check_box(:allow_sub_organizations, { class: 'form-check-input' }) %>
-        <label class="form-check-label" for="allow_sub_organizations">Permitir sub-organizaciones</label>
-      </div>
-    </div>
-  </div>
+<%= simple_form_for @organization do |f| %>
+  <div class="col-lg-6">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.association :parent_organization, collection: Organization.allow_sub_organizations, prompt: 'Selecciona una organización' %>
+    <%= f.input :allow_sub_organizations %>
 
-  <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
-    <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3'%>
+    <div class="actions text-start">
+      <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+      <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3'%>
+    </div>
   </div>
 <% end %>
 

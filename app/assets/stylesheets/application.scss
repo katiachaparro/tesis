@@ -25,3 +25,31 @@
   height: 50px;
   animation: loading 1s ease infinite;
 }
+
+.form-check{
+  display: flex;
+}
+.form-check .form-check-input{
+  margin-right: .6em;
+}
+form abbr[title], form abbr[data-bs-original-title] {
+  text-decoration: none;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-control.flatpickr-input[readonly] {
+  background-color: initial;
+}
+.color-red {
+  color: red;
+}
+.color-yellow {
+  color: yellow;
+}
+.color-green {
+  color: green;
+}
+.color-black {
+  color: black;
+}

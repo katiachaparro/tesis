@@ -2,9 +2,22 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import { application } from "./application"
 
-const application = Application.start()
-const context = require.context(".", true, /\.js$/)
-application.load(definitionsFromContext(context))
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
+
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
+import RemoteModalController from "./remote_modal_controller"
+application.register("remote-modal", RemoteModalController)
+
+import Static__NestedFormController from "./static/nested_form_controller"
+application.register("nested-form", Static__NestedFormController)
+
+import Ts__SelectController from "./ts/select_controller"
+application.register("ts--select", Ts__SelectController)
+
+import VisibilityController from "./visibility_controller"
+application.register("visibility", VisibilityController)

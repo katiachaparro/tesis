@@ -1,68 +1,34 @@
-<%= form_with(model: @user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @user do |f| %>
   <div class="row">
     <div class="col-lg-6">
-      <div class="form-group mb-4">
-        <label for="email">Nombre</label>
-        <%= f.text_field :first_name, id: "first_name", autofocus: true, required: true, class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Apellido</label>
-        <%= f.text_field :last_name, id: "last_name", required: true, class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Email</label>
-        <%= f.email_field :email, id: "email", required: true, class: "form-control", placeholder: "example@company.com", readonly: true  %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">C&eacute;dula de Identidad</label>
-        <%= f.text_field :ci, id: "ci", required: true, class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Fecha de nacimiento</label>
-        <div class="input-group">
-      <span class="input-group-text">
-          <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-      </span>
-          <%= f.text_field :birthday, id: "birthday", required: true, class: "form-control", placeholder:"dd/mm/yyyy",
-                           data: {
-                             controller: "flatpickr",
-                             flatpickr_date_format: "d-m-Y",
-                             flatpickr_default_date: @user.birthday.strftime("%d-%m-%Y"),
-                             flatpickr_max_date: Time.zone.now
-                           }%>
-        </div>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :email %>
+      <%= f.input :ci %>
+      <div class="form-group">
+        <label>Fecha de nacimiento</label>
+        <%= f.input_field :birthday,
+                          as: :string,
+                          class: 'form-control',
+                          data: {
+                            controller: 'flatpickr',
+                            enable_time: 'true',
+                            flatpickr_date_format: 'd-m-Y',
+                            flatpickr_alt_input: false,
+                            flatpickr_default_date: f.object&.birthday
+                          } %>
+
       </div>
     </div>
     <div class="col-lg-6">
-      <div class="form-group mb-4">
-        <label for="email">Tel&eacute;fono</label>
-        <%= f.text_field :phone, id: "phone", class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Direcci&oacute;n</label>
-        <%= f.text_field :address, id: "address", required: true, class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Direcci&oacute;n complementaria</label>
-        <%= f.text_field :address_two, id: "address_two", class: "form-control" %>
-      </div>
-      <div class="form-group mb-4">
-        <label for="email">Ciudad</label>
-        <%= f.text_field :city, id: "city", required: true, class: "form-control" %>
-      </div>
+      <%= f.input :phone %>
+      <%= f.input :address %>
+      <%= f.input :address_two %>
+      <%= f.input :city %>
     </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+  <div class="actions text-start">
+    <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
   </div>
 <% end %>
+
