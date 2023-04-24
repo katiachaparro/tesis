@@ -9,7 +9,8 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
     @event_actions = @event.event_actions.order(date: :desc)
-    @victims = @event.victims
+    @victims = @event.victims.order(created_at: :desc)
+    @resource_requests = @event.resource_requests.order(created_at: :desc)
   end
 
   # GET /events/new

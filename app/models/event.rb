@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   end
   has_many :event_actions
   has_many :victims
+  has_many :resource_requests
   accepts_nested_attributes_for :event_actions,
                                 reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :victims,

@@ -1,1 +1,2 @@
 <%= turbo_stream.replace @event_action, partial: "event_actions/event_action", locals: { event_action: @event_action } %>
+<%= turbo_stream.update "toast_notice", partial: "layouts/toast", locals: {alert: alert, notice: notice } %>

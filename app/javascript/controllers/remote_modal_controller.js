@@ -3,12 +3,15 @@ import { Modal } from "bootstrap"
 
 export default class extends Controller {
   connect() {
-    console.log("Putttoooo")
     this.modal = new Modal(this.element)
     this.modal.show()
+    this.element.addEventListener('turbo:submit-end', (event) => {
+      if (event.detail.success) {
+        this.modal.hide()
+      }
+    })
   }
   hideBeforeRender(event) {
-    console.log("Putttoooo 2")
     if (this.isOpen()) {
       event.preventDefault()
       this.element.addEventListener('hidden.bs.modal', event.detail.resume)
@@ -16,7 +19,6 @@ export default class extends Controller {
     }
   }
   isOpen() {
-    console.log("Putttoooo 3")
     return this.element.classList.contains('show')
   }
 }
