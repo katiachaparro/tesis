@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   resources :events do
     resources :victims, except: [:index, :show]
     resources :event_actions, except: [:index, :show]
-    resources :resource_requests, :except => [:destroy, :show]
-    get :export_201
-    get :export_207
-    get :export_211
   end
   resources :user_permissions, :except => [:destroy, :show]
   resources :resources, :except => [:destroy, :show]

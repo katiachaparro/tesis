@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_profile_path, notice: "Tu perfil fue actualizado exitosamente." }
+        format.html { redirect_to users_profile_path, notice: "Profile was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :show, status: :unprocessable_user }

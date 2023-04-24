@@ -4,7 +4,8 @@ class Organization < ApplicationRecord
   has_many :resource_per_organizations
 
   #validations
-  validates :name, presence: true, uniqueness: true
+  validates :name, uniqueness: true
+  validates :name, presence: true
 
   #scopes
   scope :allow_sub_organizations, -> { where(allow_sub_organizations: true) }

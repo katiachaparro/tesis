@@ -27,7 +27,7 @@ gem "net-imap"
 gem "net-pop"
 gem "net-smtp"
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+# gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -37,16 +37,6 @@ gem 'cancancan'
 
 # Enumerated attributes
 gem 'enumerize'
-
-# helper to create forms
-gem 'simple_form'
-
-# log changes
-gem "audited", "~> 5.0"
-
-# generate pdf
-gem 'prawn', '~> 2.1'
-gem 'prawn-table', '~> 0.2.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

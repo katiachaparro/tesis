@@ -8,7 +8,6 @@ class CreateVictims < ActiveRecord::Migration[6.1]
       t.boolean :treated_on_site
       t.string :place_of_transfer
       t.string :transferred_by
-      t.string :place_of_registration
       t.datetime :date
       t.references :event, null: false, foreign_key: true
 

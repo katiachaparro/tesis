@@ -1,23 +1,35 @@
-<%= simple_form_for @event, wrapper: :floating_labels_form do |f| %>
-  <div class="row">
-    <%= f.input :name,  wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
-    <div class="form-floating mb-3 col-12 col-lg-6">
-      <%= f.input_field :event_start,
-                        as: :string,
-                        class: 'form-control',
-                        data: {
-                          controller: 'flatpickr',
-                          enable_time: 'true',
-                          flatpickr_date_format: 'd-m-Y H:i',
-                          flatpickr_alt_input: false,
-                          flatpickr_default_date: (f.object&.event_start || Time.zone.now).strftime("%d-%m-%Y %H:%M")
-                        } %>
-      <label>Fecha y hora del Incidente</label>
+<%= form_with(model: @event) do |form| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
     </div>
-    <%= f.input :location,  wrapper_html: { class: 'mb-3 col-12' } %>
+  <% end %>
+  <div class="row">
+    <div class="form-floating mb-3 col-12 col-lg-6">
+      <%= form.text_field :name, class:'form-control', required:'true', placeholder:'Nombre del Incidente' %>
+      <label for="name">Nombre del Incidente</label>
+    </div>
+    <div class="form-floating mb-3 col-12 col-lg-6">
+      <%= form.text_field :event_start, class:'form-control', placeholder:'Fecha y hora del Incidente', data: {
+        controller: "flatpickr",
+        enable_time: "true",
+        flatpickr_date_format: "d-m-Y H:i",
+        flatpickr_default_date: (form.object&.event_start || Time.zone.now).strftime("%d-%m-%Y %H:%M"),
+      } %>
+      <label for="event_start">Fecha y hora del Incidente</label>
+    </div>
+    <div class="form-floating mb-4 col-12">
+      <%= form.text_field :location, class:'form-control', required:'true', placeholder:'Locación' %>
+      <label for="location">Locaci&oacute;n</label>
+    </div>
   </div>
-  <div class="actions text-end">
-    <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+
+  <div class="actions">
+    <%= form.submit "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
     <%= link_to 'Cancelar', events_path, class: 'link-secondary ms-3'%>
   </div>
 <% end %>

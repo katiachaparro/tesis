@@ -1,3 +1,2 @@
 <%= turbo_stream.prepend "events", @event %>
 <%= turbo_stream.update Event.new, "" %>
-<%= turbo_stream.update "toast_notice", partial: "layouts/toast", locals: {alert: alert, notice: notice } %>

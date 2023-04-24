@@ -1,36 +1,17 @@
-<%= simple_form_for [@event, @victim], wrapper: :floating_labels_form do |f| %>
-  <div class="row">
-    <%= f.input :name, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
-    <%= f.input :age, :as => :integer, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
-    <div class="form-floating mb-3 col-12 col-lg-3">
-      <%= f.input_field :date,
-                        as: :string,
-                        class: 'form-control',
-                        data: {
-                          controller: 'flatpickr',
-                          enable_time: 'true',
-                          flatpickr_date_format: 'd-m-Y H:i',
-                          flatpickr_alt_input: false,
-                          flatpickr_default_date: (f.object&.date || Time.zone.now).strftime("%d-%m-%Y %H:%M")
-                        } %>
-      <label>Fecha</label>
-    </div>
+<%= form_with(model: victim) do |form| %>
+  <% if victim.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(victim.errors.count, "error") %> prohibited this victim from being saved:</h2>
 
-  </div>
-  <div data-controller="visibility">
-    <div class="row">
-      <%= f.input :sex, :as => :radio_buttons, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
-      <%= f.input :classification, :as => :radio_buttons, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
-      <%= f.input :place_of_registration, :as => :radio_buttons, wrapper_html: { class: 'mb-3 col-12 col-lg-3' } %>
-      <%= f.input :treated_on_site, :as => :boolean, wrapper_html: { class: 'mb-3 col-12 col-lg-3' }, input_html: { 'data-action': 'visibility#toggleTargets' } %>
+      <ul>
+        <% victim.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="row" data-visibility-target="hideable" <%= 'hidden' if f.object.treated_on_site %>>
-      <%= f.input :place_of_transfer, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
-      <%= f.input :transferred_by, wrapper_html: { class: 'mb-3 col-12 col-lg-6' } %>
-    </div>
-  </div>
-  <div class="actions text-end">
-    <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
-    <%= link_to 'Cancelar', event_path(@event), class: 'link-secondary ms-3'%>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
   </div>
 <% end %>

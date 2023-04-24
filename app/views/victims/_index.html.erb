@@ -1,7 +1,1 @@
-<%= turbo_frame_tag Victim.new do  %>
-  <%= render 'victims/new_action_button' %>
-<% end %>
-
-<%= turbo_frame_tag "victims" do  %>
-  <%= render @victims %>
-<% end %>
+<%= link_to "Registrar Victima", [:new, @event, :victim], class: 'btn btn-gray-800 mt-2 animate-up-2', data: { turbo_frame: dom_id(Victim.new) } %>

@@ -6,9 +6,10 @@
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
+require("channels")
 
 import { Turbo } from "@hotwired/turbo-rails"
-import "bootstrap"
+import "bootstrap";
 import "@fortawesome/fontawesome-free/css/all.css"
 
 import "controllers"
