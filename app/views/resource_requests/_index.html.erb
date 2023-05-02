@@ -1,7 +1,7 @@
 <%= render 'resource_requests/new_action_button' %>
 
-<div class="accordion accordion-flush" id="resourceRequestAccordion">
+<div class="accordion accordion-flush mt-2" id="resourceRequestAccordion">
 <%= turbo_frame_tag "resource_requests" do  %>
-  <%= render @resource_requests %>
+  <%= render @resource_requests, dashboard: false %>
 <% end %>
 </div>

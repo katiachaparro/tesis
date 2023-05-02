@@ -1,0 +1,15 @@
+<div class="d-flex w-100">
+  <%- if dashboard %>
+    <span class="d-flex flex-column">
+      <b>#<%= resource_request.created_at.strftime('%s') %></b>
+      <span>I: <%= resource_request.event.name %></span>
+    </span>
+    <small class="ms-auto me-2"><%= resource_request.created_at.strftime('%d-%m-%Y %H:%M') %></small>
+  <%- else %>
+    <span>
+      <b>Solicitud #<%= resource_request.created_at.strftime('%s') %></b>
+      <span class="mx-2 my-0 badge rounded-pill bg-white <%= resource_request_status_class(resource_request) %>"><%= resource_request.status.text %></span>
+    </span>
+    <small class="ms-auto me-2">Fecha: <%= resource_request.created_at.strftime('%d-%m-%Y %H:%M') %></small>
+  <%- end %>
+</div>
