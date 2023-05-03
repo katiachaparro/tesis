@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :parent_organization, collection: Organization.allow_sub_organizations, prompt: 'Selecciona una organización' %>
+    <%= f.hidden_field :parent_organization_id, value: @parent_id %>
     <%= f.input :allow_sub_organizations %>
 
     <div class="actions text-start">
