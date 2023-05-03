@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   def index
     @q = Resource.resource_with_total.ransack(params[:q] || {})
     @resources = @q.result.page(params[:page]).per(5)
-    puts "hola2 #{@ransack}"
+    # puts "hola2 #{@ransack}"
     #@resources = Resource.resource_with_total
   end
 

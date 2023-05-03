@@ -14,6 +14,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
+    @parent_id = params[:parent_id]
+    @organization.parent_organization = Organization.find_by_id(@parent_id) if @parent_id.present?
   end
 
   # GET /organizations/1/edit
