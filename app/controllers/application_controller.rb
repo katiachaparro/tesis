@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :current_organization
+  before_action  :set_breadcrumbs
   @per_page = 5
-
 
   private
   def current_organization
@@ -18,4 +18,16 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to root_path, alert: exception.message }
     end
   end
+
+  def add_breadcrumbs(label, path = nil)
+    @breadcrumbs << {
+      label: label,
+      path: path,
+    }
+  end
+  def set_breadcrumbs
+    @breadcrumbs = []
+  end
+
+
 end
