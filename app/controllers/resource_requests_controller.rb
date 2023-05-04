@@ -1,13 +1,19 @@
 class ResourceRequestsController < ApplicationController
   load_and_authorize_resource
   before_action :setup_event
+  before_action :set_resource_request, only: [:cancel, :assist_modal]
 
   def new
     @resource_request = ResourceRequest.new
     @resource_request.resource_request_items.build
   end
 
-  def edit; end
+  def cancel
+    @resource_request.update(status: ResourceRequest.status.canceled)
+    redirect_to event_path(@event), turbo_stream: true, notice: "La solicitud fue cancelada."
+  end
+
+  def assist_modal; end
 
   def create
     @resource_request = ResourceRequest.new(resource_request_params)
@@ -31,6 +37,10 @@ class ResourceRequestsController < ApplicationController
 
   def setup_event
     @event =  Event.find(params[:event_id])
+  end
+
+  def set_resource_request
+    @resource_request = ResourceRequest.find_by_id(params['resource_request_id'])
   end
 
   def resource_request_params

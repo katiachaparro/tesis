@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  resource_request_item: one
+  organization: one
+  quantity: 9.99
+  arrived: false
+  arrival_date: 2023-05-02 20:01:10
+  demobilization_date: 2023-05-02 20:01:10
+  demobilized: false
+
+two:
+  resource_request_item: two
+  organization: two
+  quantity: 9.99
+  arrived: false
+  arrival_date: 2023-05-02 20:01:10
+  demobilization_date: 2023-05-02 20:01:10
+  demobilized: false
