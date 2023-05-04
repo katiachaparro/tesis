@@ -1,0 +1,7 @@
+<%- cant = assist_request_item.quantity - assist_request_item.remaining_quantity %>
+<%- if cant > 0 %>
+  <div class="row g-0">
+    <div class="col-3"><%= assist_request_item.resource&.name %></div>
+    <div class="col-2">Cant: <%= cant.to_i  %></div>
+  </div>
+<% end %>

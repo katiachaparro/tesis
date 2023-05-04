@@ -4,6 +4,7 @@ class ResourceRequest < ApplicationRecord
   belongs_to :event
   belongs_to :organization, optional: true
   has_many :resource_request_items
+  has_many :assist_requests, through: :resource_request_items
 
   accepts_nested_attributes_for :resource_request_items,
                                 reject_if: :all_blank, allow_destroy: true
@@ -12,5 +13,9 @@ class ResourceRequest < ApplicationRecord
 
   def active?
     status == ResourceRequest.status.active
+  end
+
+  def cancelable?
+    active? # TODO &&
   end
 end

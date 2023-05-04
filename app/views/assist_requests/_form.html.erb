@@ -1,0 +1,8 @@
+<%= simple_form_for [@resource_request], data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+  <%= render partial: 'assist_request_item', collection: @resource_request.resource_request_items, locals: { f: f } %>
+
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-outline-danger mt-2">Rechazar</button>
+    <%= f.submit 'Asistir', class: "btn btn-gray-800 mt-2 animate-up-2" %>
+  </div>
+<% end %>
