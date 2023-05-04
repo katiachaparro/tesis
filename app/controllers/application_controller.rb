@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :current_organization
+  @per_page = 5
+
 
   private
   def current_organization

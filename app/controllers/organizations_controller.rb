@@ -4,7 +4,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations or /organizations.json
   def index
     # TODO: get descendents with recursive SQL
-    @organizations = current_user.organizations.includes(:child_organizations)
+    @q = Organization.where(parent_organization_id: current_user.organization_ids).includes(:child_organizations).ransack( params[:q]|| {})
+    @organizations = @q.result.page(params[:page]).per(@per_page)
   end
 
   # GET /organizations/1 or /organizations/1.json

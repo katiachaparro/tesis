@@ -1,15 +1,14 @@
 <% organizations.each do |organization| %>
   <tr>
-    <td class="collapse-icon px-0 <%= organization.child_organizations.any?? '':'disabled' %>" type="button" data-bs-toggle="collapse" data-bs-target="#organization-collapse<%= organization.id %>" aria-expanded="true" aria-controls="#organization-collapse<%= organization.id %>"><i class="fa-solid fa-chevron-down"></i></td>
+    <td class="collapse-icon px-0 <%= organization.child_organizations.any?? '':'disabled' %>" type="button" data-bs-toggle="collapse" data-bs-target="#organization-collapse<%= organization.id %>" aria-expanded="false" aria-controls="#organization-collapse<%= organization.id %>"><i class="fa-solid fa-chevron-down"></i></td>
     <td class="text-start col-5"><%= organization.name %></td>
     <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= organization.description %></td>
     <td class="settings px-0">
       <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="organization-settings<%=organization.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
       <ul class="dropdown-menu" aria-labelledby="organization-settings<%=organization.id%>">
         <li><%= link_to 'Editar', edit_organization_path(organization), class:'dropdown-item' if can? :edit, organization %></li>
-        <li><%= link_to 'Recursos', organization_resource_per_organizations_path(organization), class:'dropdown-item'%></li>
+        <li><%= link_to 'Ver recursos', organization_resource_per_organizations_path(organization), class:'dropdown-item'%></li>
         <li><%= link_to 'Agregar sub-organizacion', new_organization_path(parent_id:organization.id), class:'dropdown-item'%></li>
-        <li><button class="dropdown-item" type="button">Something else here</button></li>
       </ul>
     </td>
   </tr>

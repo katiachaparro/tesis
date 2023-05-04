@@ -11,6 +11,12 @@ class Organization < ApplicationRecord
   # @return [Integer]
   before_save :is_main_organizer
 
+  ActionController::Parameters.permit_all_parameters = true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+
   @private
   def is_main_organizer
     if !self.parent_organization_id?
