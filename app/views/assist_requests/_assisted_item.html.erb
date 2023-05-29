@@ -1,16 +1,22 @@
 <div class="row g-0 mb-4">
-  <div class="col-3">
-    <div class="fw-bold">Cod: <%= assisted_item.code %></div>
+  <div class="col-lg-3">
+    <div class="fw-bold">Cod: <%= assisted_item.code %><%= " - Mat: #{assisted_item.vehicle_registration}" if assisted_item.vehicle_registration.present? %></div>
     <div><%= assisted_item.resource&.name %></div>
-  </div>
-  <div class="col-3">
     <div>Org: <%= assisted_item.organization&.name %></div>
-    <div class="<%= 'd-none' unless assisted_item.arrived %>">
+  </div>
+  <div class="col-lg-3 <%= 'd-none' unless assisted_item.arrived %>">
+    <div>Arribo: <%= assisted_item.arrival_date&.strftime('%d-%m-%Y %H:%M') %></div>
+    <div class="<%= 'd-none' if assisted_item.demobilized %>">
       <i class="fa-sharp fa-solid fa-circle assist-<%= assisted_item.status %>"></i>
       <%= show_assist_status(assisted_item) %>
     </div>
   </div>
-  <div class="col d-flex justify-content-end">
+  <div class="col-lg-4 <%= 'd-none' unless assisted_item.demobilized %>">
+    <div>Desmovilizado</div>
+    <div>Por: <%= assisted_item.demobilizing_person %></div>
+    <div>Fecha: <%= assisted_item.demobilization_date&.strftime('%d-%m-%Y %H:%M') %></div>
+  </div>
+  <div class="col d-flex justify-content-end ms-auto">
     <%= button_to 'Arribo', assist_request_arrive_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },
@@ -18,7 +24,7 @@
     <%= button_to 'Cambiar estado', assist_request_state_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },
-                  class: 'btn btn-info my-0 me-2' if assisted_item.arrived && !assisted_item.demobilized %>
+                  class: 'btn btn-outline-info my-0 me-2' if assisted_item.arrived && !assisted_item.demobilized %>
     <%= button_to 'Desmovilizar', assist_request_demobilize_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },

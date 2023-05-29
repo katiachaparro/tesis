@@ -5,15 +5,15 @@
     <div class="row g-0">
       <div class="col-lg-6 d-flex flex-wrap">
         <div class="form-check me-3">
-          <input class="form-check-input radio_buttons optional" type="radio" value="available" name="assist_request[status]" id="assist_request_status_available" data-visibility-target="radioButton">
+          <input class="form-check-input radio_buttons optional" type="radio" value="available" name="assist_request[status]" id="assist_request_status_available" data-visibility-target="radioButton" <%= 'checked' if f.object.status == AssistRequest.status.available %>>
           <label class="form-check-label collection_radio_buttons" for="assist_request_status_available">Disponible</label>
         </div>
         <div class="form-check me-3">
-          <input class="form-check-input radio_buttons optional" type="radio" value="not_available" name="assist_request[status]" id="assist_request_status_not_available" data-visibility-target="radioButton">
+          <input class="form-check-input radio_buttons optional" type="radio" value="not_available" name="assist_request[status]" id="assist_request_status_not_available" data-visibility-target="radioButton" <%= 'checked' if f.object.status == AssistRequest.status.not_available %>>
           <label class="form-check-label collection_radio_buttons" for="assist_request_status_not_available">No disponible</label>
         </div>
         <div class="form-check me-3">
-          <input class="form-check-input radio_buttons optional" type="radio" value="assigned_to" name="assist_request[status]" id="assist_request_status_assigned_to" data-visibility-target="radioButton">
+          <input class="form-check-input radio_buttons optional" type="radio" value="assigned_to" name="assist_request[status]" id="assist_request_status_assigned_to" data-visibility-target="radioButton" <%= 'checked' if f.object.assigned_to? %>>
           <label class="form-check-label collection_radio_buttons" for="assist_request_status_assigned_to">Asignado a</label>
         </div>
       </div>
@@ -25,5 +25,5 @@
 </div>
 
 <div class="row g-0 mb-3">
-  <%= f.input :comments, as: :text %>
+  <%= f.input :comments, as: :text, input_html: { value: '' } %>
 </div>

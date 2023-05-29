@@ -1,6 +1,6 @@
 <%= turbo_frame_tag event_action do %>
   <div class="d-flex align-items-center border-bottom border-2 border-black py-1">
-    <div class="col-2 me-2"><%= event_action.date.strftime('%d-%m-%Y %H:%M') %></div>
+    <div class="col-lg-2 me-2"><%= event_action.date.strftime('%d-%m-%Y %H:%M') %></div>
     <div class="col"><%= event_action.description %></div>
     <div class="ms-auto d-flex">
       <%= button_to [@event, event_action],

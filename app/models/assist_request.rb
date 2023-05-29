@@ -55,4 +55,17 @@ class AssistRequest < ApplicationRecord
       )
     end
   end
+
+  def demobilize(params)
+    ActiveRecord::Base.transaction do
+      params['demobilized'] = true
+      update(params)
+      ResourcePerOrganization.find_by(resource: resource, organization: organization)&.decrement!(:quantity_used)
+      EventAction.create(
+        description: "El recurso #{code} fue desmovilizado por #{demobilizing_person}.",
+        date: demobilization_date,
+        event: resource_request&.event
+      )
+    end
+  end
 end

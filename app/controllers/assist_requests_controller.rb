@@ -7,16 +7,19 @@ class AssistRequestsController < ApplicationController
 
   def arrive_modal; end
 
-
-
   def state_modal; end
+
+  def demobilize_modal; end
 
   def arrive
     @assist_request.register_arrive(arrive_params)
     redirect_to request.referrer, notice: "Se registró el arribo del recurso #{@assist_request.code}."
   end
 
-  def demobilize; end
+  def demobilize
+    @assist_request.demobilize(demobilized_params)
+    redirect_to request.referrer, notice: "Se desmovilizó el recurso #{@assist_request.code}."
+  end
 
   def change_state
     @assist_request.change_state(state_params)
@@ -50,5 +53,9 @@ class AssistRequestsController < ApplicationController
 
   def state_params
     params.require(:assist_request).permit(:status, :assigned_to, :comments)
+  end
+
+  def demobilized_params
+    params.require(:assist_request).permit(:demobilizing_person, :demobilization_date, :comments)
   end
 end
