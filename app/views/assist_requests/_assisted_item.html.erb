@@ -1,0 +1,19 @@
+<div class="row g-0 mb-4">
+  <div class="col-3">
+    <div class="fw-bold">Cod: <%= assisted_item.code %></div>
+    <div><%= assisted_item.resource&.name %></div>
+  </div>
+  <div class="col-3">
+    <div>Org: <%= assisted_item.organization&.name %></div>
+  </div>
+  <div class="col d-flex justify-content-end">
+    <%= button_to 'Arribo', assist_request_arrive_modal_path(assisted_item),
+                  method: :get,
+                  data: { turbo_frame: 'remote_modal' },
+                  class: 'btn btn-primary my-0' unless assisted_item.arrived %>
+    <%= button_to 'Desmovilizar', assist_request_demobilize_modal_path(assisted_item),
+                  method: :get,
+                  data: { turbo_frame: 'remote_modal' },
+                  class: 'btn btn-primary my-0' if assisted_item.arrived && assisted_item.demobilized %>
+  </div>
+</div>

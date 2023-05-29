@@ -8,6 +8,11 @@ class ResourceRequestsController < ApplicationController
     @resource_request.resource_request_items.build
   end
 
+  def update
+    puts params
+    byebug
+  end
+
   def cancel
     @resource_request.update(status: ResourceRequest.status.canceled)
     redirect_to event_path(@event), turbo_stream: true, notice: "La solicitud fue cancelada."
@@ -20,6 +25,7 @@ class ResourceRequestsController < ApplicationController
     @resource_request.event = @event
     @resource_request.user = current_user
     @resource_request.status = ResourceRequest.status.active
+    @resource_request.code = "#{@event.name[0..2]}-#{@event.resource_request_ids.count + 1}"
 
     if @resource_request.save
       # TODO: notify all organizations

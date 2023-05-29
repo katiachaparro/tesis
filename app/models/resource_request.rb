@@ -16,6 +16,6 @@ class ResourceRequest < ApplicationRecord
   end
 
   def cancelable?
-    active? # TODO &&
+    active? && assist_request_ids.empty?
   end
 end

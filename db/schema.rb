@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_04_193913) do
+ActiveRecord::Schema.define(version: 2023_05_03_000110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 2022_12_04_193913) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "assist_requests", force: :cascade do |t|
+    t.bigint "resource_request_item_id", null: false
+    t.bigint "organization_id", null: false
+    t.string "code"
+    t.boolean "arrived"
+    t.datetime "arrival_date"
+    t.string "vehicle_registration"
+    t.integer "number_of_people"
+    t.string "status"
+    t.string "assigned_to"
+    t.datetime "demobilization_date"
+    t.boolean "demobilized"
+    t.string "demobilizing_person"
+    t.string "comments"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_assist_requests_on_organization_id"
+    t.index ["resource_request_item_id"], name: "index_assist_requests_on_resource_request_item_id"
   end
 
   create_table "audits", force: :cascade do |t|
@@ -113,12 +133,36 @@ ActiveRecord::Schema.define(version: 2022_12_04_193913) do
   create_table "resource_per_organizations", force: :cascade do |t|
     t.bigint "resource_id", null: false
     t.bigint "organization_id", null: false
-    t.decimal "quantity"
-    t.decimal "quantity_available"
+    t.integer "quantity", default: 0
+    t.integer "quantity_used", default: 0
     t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["resource_id", "organization_id"], name: "user_permission_index", unique: true
+  end
+
+  create_table "resource_request_items", force: :cascade do |t|
+    t.bigint "resource_request_id", null: false
+    t.bigint "resource_id", null: false
+    t.integer "quantity", default: 0
+    t.integer "quantity_used", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_resource_request_items_on_resource_id"
+    t.index ["resource_request_id"], name: "index_resource_request_items_on_resource_request_id"
+  end
+
+  create_table "resource_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "organization_id"
+    t.string "status"
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_resource_requests_on_event_id"
+    t.index ["organization_id"], name: "index_resource_requests_on_organization_id"
+    t.index ["user_id"], name: "index_resource_requests_on_user_id"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -180,10 +224,17 @@ ActiveRecord::Schema.define(version: 2022_12_04_193913) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assist_requests", "organizations"
+  add_foreign_key "assist_requests", "resource_request_items"
   add_foreign_key "event_actions", "events"
   add_foreign_key "organizations", "organizations", column: "parent_organization_id"
   add_foreign_key "resource_per_organizations", "organizations"
   add_foreign_key "resource_per_organizations", "resources"
+  add_foreign_key "resource_request_items", "resource_requests"
+  add_foreign_key "resource_request_items", "resources"
+  add_foreign_key "resource_requests", "events"
+  add_foreign_key "resource_requests", "organizations"
+  add_foreign_key "resource_requests", "users"
   add_foreign_key "user_permissions", "organizations"
   add_foreign_key "user_permissions", "users"
   add_foreign_key "victims", "events"

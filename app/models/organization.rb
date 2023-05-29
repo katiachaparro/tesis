@@ -19,11 +19,9 @@ class Organization < ApplicationRecord
 
   @private
   def is_main_organizer
-    if !self.parent_organization_id?
-      self.parent_organization_id = Organization.first.id
+    unless self.parent_organization_id?
+      self.parent_organization_id = Organization.first&.id
       self.allow_sub_organizations = true
-    else
-
     end
   end
 end

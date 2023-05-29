@@ -1,0 +1,15 @@
+<%- if assisted_request.assist_request_ids.present? %>
+  <%- expanded = true %>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="assisted-heading-<%= assisted_request.id %>">
+      <button class="accordion-button <%= 'collapsed' unless expanded %>" type="button" data-bs-toggle="collapse" data-bs-target="#assisted-collapse-<%= assisted_request.id %>" aria-expanded="<%= expanded %>" aria-controls="collapseOne">
+        <b>Solicitud #<%= assisted_request.code %></b>
+      </button>
+    </h2>
+    <div id="assisted-collapse-<%= assisted_request.id %>" class="accordion-collapse collapse <%= 'show' if expanded %>" aria-labelledby="assisted-heading-<%= assisted_request.id %>" data-bs-parent="#assistRequestAccordion">
+      <div class="accordion-body">
+        <%= render partial: 'assist_requests/assisted_item', collection: assisted_request.assist_requests %>
+      </div>
+    </div>
+  </div>
+<%- end %>

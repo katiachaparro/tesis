@@ -1,5 +1,6 @@
-<div class="d-flex">
-  <span class="me-2"><%= resource_request_item.quantity.to_i %></span>
-  <%= resource_request_item.resource.name %>
+<div class="row g-0">
+  <span class="col-6"><%= resource_request_item.resource.name %></span>
+  <div class="col-3">Solicitado: <%= resource_request_item.quantity %></div>
+  <div class="col-3">Asistido: <%= resource_request_item.quantity_used %></div>
 </div>
 

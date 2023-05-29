@@ -1,7 +1,10 @@
-<%- cant = assist_request_item.quantity - assist_request_item.remaining_quantity %>
+<%- cant = assist_request_item.quantity - assist_request_item.quantity_used %>
 <%- if cant > 0 %>
   <div class="row g-0">
     <div class="col-3"><%= assist_request_item.resource&.name %></div>
     <div class="col-2">Cant: <%= cant.to_i  %></div>
+    <div class="col-2">
+      <input class="form-control integer" type="number"  value="0" name="[assist_request_items_attributes][<%= assist_request_item.id %>][quantity]" id="assist_request[assist_request_items_attributes][<%= assist_request_item.id %>][quantity]">
+    </div>
   </div>
 <% end %>

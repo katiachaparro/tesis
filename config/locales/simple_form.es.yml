@@ -68,6 +68,16 @@ es:
         city: 'Ciudad'
         birthday: 'Fecha de nacimiento'
         phone: 'Teléfono'
+      assist_request:
+        code: 'Código'
+        arrival_date: 'Fecha de arribo'
+        vehicle_registration: 'Matrícula'
+        number_of_people: 'Número de personas'
+        status: 'Estado'
+        assigned_to: 'Asignado a'
+        demobilization_date: 'Fecha de desmovilización'
+        demobilizing_person: 'Desmovilizado por'
+        comments: 'Observaciones'
     placeholders:
       event:
         name: 'Nombre del Incidente'
