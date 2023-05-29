@@ -1,0 +1,9 @@
+<%= render 'remote_modal', title: "Cambiar estado del recurso #{@assist_request.code}" do %>
+  <%= simple_form_for @assist_request, url: [@assist_request, :change_state], method: :put, wrapper: :floating_labels_form do |f| %>
+    <%= render 'status_form', f: f %>
+
+    <div class="actions text-start">
+      <%= f.button :submit, "Cambiar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    </div>
+  <% end %>
+<% end %>

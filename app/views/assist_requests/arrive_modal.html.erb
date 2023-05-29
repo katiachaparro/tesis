@@ -23,35 +23,7 @@
       </div>
     </div>
 
-    <div class="row g-0" data-controller="visibility" data-visibility-option-value="<%= AssistRequest.status.assigned_to %>">
-      <fieldset class="form-group radio_buttons optional assist_request_status form-group-valid mb-3 col-12">
-        <legend class="col-form-label pt-0 float-none">Estado del recurso</legend>
-        <input type="hidden" name="assist_request[status]" value="" autocomplete="off">
-        <div class="row g-0">
-          <div class="col-lg-6 d-flex flex-wrap">
-            <div class="form-check me-3">
-              <input class="form-check-input radio_buttons optional" type="radio" value="available" checked="checked" name="assist_request[status]" id="assist_request_status_available" data-visibility-target="radioButton">
-              <label class="form-check-label collection_radio_buttons" for="assist_request_status_available">Disponible</label>
-            </div>
-            <div class="form-check me-3">
-              <input class="form-check-input radio_buttons optional" type="radio" value="not_available" name="assist_request[status]" id="assist_request_status_not_available" data-visibility-target="radioButton">
-              <label class="form-check-label collection_radio_buttons" for="assist_request_status_not_available">No disponible</label>
-            </div>
-            <div class="form-check me-3">
-              <input class="form-check-input radio_buttons optional" type="radio" value="assigned_to" name="assist_request[status]" id="assist_request_status_assigned_to" data-visibility-target="radioButton">
-              <label class="form-check-label collection_radio_buttons" for="assist_request_status_assigned_to">Asignado a</label>
-            </div>
-          </div>
-          <div class="col-lg-6 ps-1" data-visibility-target="hideable" <%= 'hidden' unless f.object.assigned_to? %>>
-            <%= f.input :assigned_to %>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="row g-0 mb-3">
-      <%= f.input :comments, as: :text %>
-    </div>
+    <%= render 'status_form', f: f %>
 
     <div class="actions text-start">
       <%= f.button :submit, "Registrar", class: "btn btn-gray-800 mt-2 animate-up-2" %>

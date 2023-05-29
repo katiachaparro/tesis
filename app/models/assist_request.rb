@@ -42,4 +42,17 @@ class AssistRequest < ApplicationRecord
       )
     end
   end
+
+  def change_state(params)
+    ActiveRecord::Base.transaction do
+      params['assigned_to'] = '' unless assigned_to?
+      update(params)
+      assigned_text = assigned_to? ? ": #{assigned_to}" : ''
+      EventAction.create(
+        description: "El recurso #{code} ha cambiado de estado a \"#{status.text}#{assigned_text}\".",
+        date: arrival_date,
+        event: resource_request&.event
+      )
+    end
+  end
 end

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     put :arrive
     get :demobilize_modal
     put :demobilize
+    get :state_modal
+    put :change_state
   end
   resources :user_permissions, :except => [:destroy, :show]
   resources :resources, :except => [:destroy, :show]
