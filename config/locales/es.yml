@@ -36,6 +36,11 @@ es:
         active: "Activo"
         canceled: "Cancelado"
         demobilized: "Desmovilizado"
+    assist_request:
+      status:
+        available: "Disponible"
+        not_available: "No disponible"
+        assigned_to: "Asignado a"
   activerecord:
     errors:
       messages:

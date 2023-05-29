@@ -5,15 +5,23 @@
   </div>
   <div class="col-3">
     <div>Org: <%= assisted_item.organization&.name %></div>
+    <div class="<%= 'd-none' unless assisted_item.arrived %>">
+      <i class="fa-sharp fa-solid fa-circle assist-<%= assisted_item.status %>"></i>
+      <%= show_assist_status(assisted_item) %>
+    </div>
   </div>
   <div class="col d-flex justify-content-end">
     <%= button_to 'Arribo', assist_request_arrive_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },
                   class: 'btn btn-primary my-0' unless assisted_item.arrived %>
+    <%= button_to 'Cambiar estado', assist_request_state_modal_path(assisted_item),
+                  method: :get,
+                  data: { turbo_frame: 'remote_modal' },
+                  class: 'btn btn-info my-0 me-2' if assisted_item.arrived && !assisted_item.demobilized %>
     <%= button_to 'Desmovilizar', assist_request_demobilize_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },
-                  class: 'btn btn-primary my-0' if assisted_item.arrived && assisted_item.demobilized %>
+                  class: 'btn btn-primary my-0' if assisted_item.arrived && !assisted_item.demobilized %>
   </div>
 </div>

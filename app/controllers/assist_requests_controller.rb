@@ -9,7 +9,10 @@ class AssistRequestsController < ApplicationController
 
   def demobilize_modal; end
 
-  def arrive; end
+  def arrive
+    @assist_request.register_arrive(arrive_params)
+    redirect_to request.referrer, notice: "Se registro el arribo de #{@assist_request.code}."
+  end
 
   def demobilize; end
 
@@ -32,5 +35,9 @@ class AssistRequestsController < ApplicationController
 
   def assist_request_params
     params.require(:resource_request).permit(resource_request_items_attributes: [:resource_id, :quantity])
+  end
+
+  def arrive_params
+    params.require(:assist_request).permit(:code, :arrival_date, :vehicle_registration, :number_of_people, :status, :assigned_to, :comments)
   end
 end

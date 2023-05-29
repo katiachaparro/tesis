@@ -1,10 +1,16 @@
 class AssistRequest < ApplicationRecord
+  audited
   extend Enumerize
   belongs_to :resource_request_item
   belongs_to :organization
   delegate :resource, :to => :resource_request_item, :allow_nil => true
+  delegate :resource_request, :to => :resource_request_item, :allow_nil => true
 
   enumerize :status, in: [:available, :not_available, :assigned_to], scope: :shallow
+
+  def assigned_to?
+    status == AssistRequest.status.assigned_to
+  end
 
   def self.create_assist_items(request_item_id, quantity, current_user)
     ActiveRecord::Base.transaction do
@@ -21,6 +27,19 @@ class AssistRequest < ApplicationRecord
 
       request_item.increment!(:quantity_used, by = quantity)
       ResourcePerOrganization.find_by(resource: resource, organization_id: org_id)&.increment!(:quantity_used, by = quantity)
+    end
+  end
+
+  def register_arrive(params)
+    ActiveRecord::Base.transaction do
+      params['arrived'] = true
+      params['assigned_to'] = '' unless assigned_to?
+      update(params)
+      EventAction.create(
+        description: "El recurso #{code} ha registrado su arribo a la escena.",
+        date: arrival_date,
+        event: resource_request&.event
+      )
     end
   end
 end
