@@ -30,6 +30,8 @@ class AssistRequestsController < ApplicationController
     params['assist_request_items_attributes'].each do |request_item_id, value|
       AssistRequest.create_assist_items(request_item_id, value['quantity'].to_i, current_user)
     end
+    ResourceRequest.find_by_id(params['resource_request_id'])&.check_request_complete
+    redirect_to request.referrer, notice: 'Se creó la solicitud de recursos.'
   end
 
 

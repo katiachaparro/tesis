@@ -36,6 +36,7 @@ es:
         active: "Activo"
         canceled: "Cancelado"
         demobilized: "Desmovilizado"
+        completed: "Completado"
     assist_request:
       status:
         available: "Disponible"
