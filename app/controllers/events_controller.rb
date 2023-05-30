@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to events_path, notice: "El evento fue creado exitosamente." }
+        format.html { redirect_to event_path(@event), notice: "El evento fue creado exitosamente." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.pdf do
         pdf = Form201.new(@event, view_context)
-        send_data pdf.render, filename: "event_incidente_201_#{@event.id}.pdf",
+        send_data pdf.render, filename: "evento_incidente_201_#{@event.id}.pdf",
                   type: "application/pdf",
                   disposition: "inline"
       end
@@ -75,7 +75,19 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.pdf do
         pdf = Form207.new(@event, view_context)
-        send_data pdf.render, filename: "event_incidente_207_#{@event.id}.pdf",
+        send_data pdf.render, filename: "evento_incidente_207_#{@event.id}.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
+
+  def export_211
+    @event = Event.find(params[:event_id])
+    respond_to do |format|
+      format.pdf do
+        pdf = Form211.new(@event, view_context)
+        send_data pdf.render, filename: "evento_incidente_211_#{@event.id}.pdf",
                   type: "application/pdf",
                   disposition: "inline"
       end

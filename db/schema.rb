@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
   create_table "assist_requests", force: :cascade do |t|
     t.bigint "resource_request_item_id", null: false
     t.bigint "organization_id", null: false
+    t.bigint "event_id", null: false
     t.string "code"
     t.boolean "arrived"
     t.datetime "arrival_date"
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
     t.string "comments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_assist_requests_on_event_id"
     t.index ["organization_id"], name: "index_assist_requests_on_organization_id"
     t.index ["resource_request_item_id"], name: "index_assist_requests_on_resource_request_item_id"
   end
@@ -224,6 +226,7 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assist_requests", "events"
   add_foreign_key "assist_requests", "organizations"
   add_foreign_key "assist_requests", "resource_request_items"
   add_foreign_key "event_actions", "events"

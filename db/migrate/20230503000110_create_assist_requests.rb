@@ -3,6 +3,7 @@ class CreateAssistRequests < ActiveRecord::Migration[6.1]
     create_table :assist_requests do |t|
       t.references :resource_request_item, null: false, foreign_key: true
       t.references :organization, null: false, foreign_key: true
+      t.references :event, null: false, foreign_key: true
       t.string :code
       t.boolean :arrived
       t.datetime :arrival_date

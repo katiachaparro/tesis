@@ -3,6 +3,7 @@ class AssistRequest < ApplicationRecord
   extend Enumerize
   belongs_to :resource_request_item
   belongs_to :organization
+  belongs_to :event
   delegate :resource, :to => :resource_request_item, :allow_nil => true
   delegate :resource_request, :to => :resource_request_item, :allow_nil => true
 
@@ -21,8 +22,9 @@ class AssistRequest < ApplicationRecord
       # return if resource doesn't exits
       return if org_id.nil? || resource.nil?
 
+      code_count = AssistRequest.where(event: request_item.event).count - 1
       (1..quantity).each { |i|
-        AssistRequest.create(resource_request_item: request_item, organization_id: org_id, status: AssistRequest.status.available, code: "#{resource.name[0..2].upcase}#{i}")
+        AssistRequest.create(resource_request_item: request_item, event: request_item.event, organization_id: org_id, status: AssistRequest.status.available, code: "#{resource.name[0..2].upcase}#{code_count + i}")
       }
 
       request_item.increment!(:quantity_used, by = quantity)
@@ -33,7 +35,7 @@ class AssistRequest < ApplicationRecord
   def register_arrive(params)
     ActiveRecord::Base.transaction do
       params['arrived'] = true
-      params['assigned_to'] = '' unless assigned_to?
+      params['assigned_to'] = '' if params['status'] != AssistRequest.status.assigned_to
       update(params)
       EventAction.create(
         description: "El recurso #{code} ha registrado su arribo a la escena.",
@@ -45,7 +47,7 @@ class AssistRequest < ApplicationRecord
 
   def change_state(params)
     ActiveRecord::Base.transaction do
-      params['assigned_to'] = '' unless assigned_to?
+      params['assigned_to'] = '' if params['status'] != AssistRequest.status.assigned_to
       update(params)
       assigned_text = assigned_to? ? ": #{assigned_to}" : ''
       EventAction.create(
