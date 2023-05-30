@@ -24,7 +24,7 @@ class AssistRequest < ApplicationRecord
 
       code_count = AssistRequest.where(event: request_item.event).count - 1
       (1..quantity).each { |i|
-        AssistRequest.create(resource_request_item: request_item, event: request_item.event, organization_id: org_id, status: AssistRequest.status.available, code: "#{resource.name[0..2].upcase}#{code_count + i}")
+        AssistRequest.create(resource_request_item: request_item, event: request_item.event, organization_id: org_id, code: "#{resource.name[0..2].upcase}#{code_count + i}")
       }
 
       request_item.increment!(:quantity_used, by = quantity)
