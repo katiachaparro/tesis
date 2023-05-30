@@ -14,11 +14,11 @@
           <%= button_to 'Cancelar', [resource_request.event, resource_request, :cancel],
                         method: :get,
                         form: { data: { turbo_confirm: "Estas seguro de cancelar esta solicitud?" } },
-                        class: 'btn btn-outline-danger' if resource_request.cancelable? %>
+                        class: 'btn btn-outline-danger' if resource_request.cancelable?(current_user) %>
           <%= button_to 'Asistir', [:new, resource_request, :assist_request],
                         method: :get,
                         data: { turbo_frame: 'remote_modal' },
-                        class: 'btn btn-primary ms-2' if resource_request.active? %>
+                        class: 'btn btn-primary ms-2' if resource_request.active? && resource_request.user_can_assist?(current_user) %>
         </div>
       </div>
     </div>

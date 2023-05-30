@@ -22,6 +22,10 @@ class User < ApplicationRecord
     user_permissions.user.any?
   end
 
+  def organization_id
+    organization_ids.first
+  end
+
   def user_permission
     user_permissions.first
   end

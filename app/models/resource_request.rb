@@ -15,8 +15,14 @@ class ResourceRequest < ApplicationRecord
     status == ResourceRequest.status.active
   end
 
-  def cancelable?
-    active? && assist_request_ids.empty?
+  def cancelable?(current_user)
+    org_id = current_user.organization_id
+    active? && assist_request_ids.empty? && user.organization_id == org_id
+  end
+
+  def user_can_assist? (user)
+    org_id = user.organization_id
+    organization.nil? || organization_id == org_id
   end
 
   def check_request_complete

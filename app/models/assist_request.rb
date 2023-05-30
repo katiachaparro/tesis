@@ -16,7 +16,7 @@ class AssistRequest < ApplicationRecord
   def self.create_assist_items(request_item_id, quantity, current_user)
     ActiveRecord::Base.transaction do
       request_item = ResourceRequestItem.find_by_id(request_item_id)
-      org_id = current_user.organization_ids.first
+      org_id = current_user.organization_id
       resource = request_item&.resource
 
       # return if resource doesn't exits

@@ -12,6 +12,16 @@
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>
 
+  <small class="d-block mt-3 mb-1">Solo se notificar&aacute; a la Organizaci&oacute;n seleccionada, caso contrario se notificar&aacute; a todas.</small>
+  <%= f.association :organization, collection: Organization.all, prompt: 'Todas las organizaciones',
+                    include_blank: false,
+                    label_method: :name, value_method: :id, label: false,
+                    wrapper_html: { class: 'col-7' },
+                    input_html: {
+                      data: { controller: 'ts--select' }
+                    }
+  %>
+
   <div class="d-flex justify-content-between">
     <button type="button" data-action="nested-form#add" class="btn btn-secondary mt-2 animate-up-2">
       <i class="fas fa-plus"></i>
