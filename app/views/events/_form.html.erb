@@ -14,8 +14,15 @@
                         } %>
       <label>Fecha y hora del Incidente</label>
     </div>
-    <%= f.input :location,  wrapper_html: { class: 'mb-3 col-12' } %>
+    <%= f.input :location, wrapper_html: { class: 'mb-3 col-12' } %>
   </div>
+
+  <div data-controller="map">
+    <%= f.hidden_field :longitude, 'data-map-target': 'lngInput' %>
+    <%= f.hidden_field :latitude, 'data-map-target': 'latInput' %>
+    <div data-map-target="map" style="height: 500px;"></div>
+  </div>
+
   <div class="actions text-end">
     <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
     <%= link_to 'Cancelar', :back, class: 'link-secondary ms-3'%>

@@ -23,6 +23,9 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :kind
       t.string :status
 
+      t.decimal :longitude
+      t.decimal :latitude
+
       t.timestamps
     end
   end

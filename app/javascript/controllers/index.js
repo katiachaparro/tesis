@@ -21,3 +21,6 @@ application.register("ts--select", Ts__SelectController)
 
 import VisibilityController from "./visibility_controller"
 application.register("visibility", VisibilityController)
+
+import MapController from "./map_controller"
+application.register("map", MapController)
