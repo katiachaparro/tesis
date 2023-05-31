@@ -1,23 +1,29 @@
 <div class="col-12 mb-4" xmlns="http://www.w3.org/1999/html">
   <div class="card border-0 shadow components-section">
     <div class="card-header bg-white border-0 pb-0">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center flex-wrap">
+        <%= link_to event_export_201_path(@event, format: "pdf"), :class => 'btn btn-outline-primary d-inline-flex align-items-center me-1 my-0', title: '201', target: :_blank do %>
+          <span class= "fa fa-file-pdf me-2"></span>
+          201
+        <% end %>
+        <%= link_to event_export_207_path(@event, format: "pdf"), :class => 'btn btn-outline-primary d-inline-flex align-items-center me-1 my-0', title: '201', target: :_blank do %>
+          <span class= "fa fa-file-pdf me-2"></span>
+          207
+        <% end %>
+        <%= link_to event_export_211_path(@event, format: "pdf"), :class => 'btn btn-outline-primary d-inline-flex align-items-center me-auto my-0', title: '201', target: :_blank do %>
+          <span class= "fa fa-file-pdf me-2"></span>
+          211
+        <% end %>
+
+        <%= link_to edit_event_path(@event), :class => 'btn btn-outline-info me-1 my-0', title: 'Editar' do %>
+          <span class= "fa fa-pen-to-square"></span>
+        <% end %>
+        <%= button_to 'Cerrar Incidente', root_path, class: "btn btn-danger" %>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-3">
         <strong class="h5"><%= @event.name %></strong>
         <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %></div>
-        <div>
-          <%= link_to event_export_201_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
-            <span class= "fa fa-file-pdf me-2"></span>
-            201
-          <% end %>
-          <%= link_to event_export_207_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
-            <span class= "fa fa-file-pdf me-2"></span>
-            207
-          <% end %>
-          <%= link_to event_export_211_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
-            <span class= "fa fa-file-pdf me-2"></span>
-            211
-          <% end %>
-        </div>
       </div>
       <%= @event.location %>
     </div>
