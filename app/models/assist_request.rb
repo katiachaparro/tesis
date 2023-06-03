@@ -9,6 +9,8 @@ class AssistRequest < ApplicationRecord
 
   enumerize :status, in: [:available, :not_available, :assigned_to], scope: :shallow
 
+  scope :resources_to_demobilize, -> (event_id) { where(event_id: event_id, arrived: true, demobilized: [nil, false]) }
+
   def assigned_to?
     status == AssistRequest.status.assigned_to
   end
@@ -48,6 +50,7 @@ class AssistRequest < ApplicationRecord
   def change_state(params)
     ActiveRecord::Base.transaction do
       params['assigned_to'] = '' if params['status'] != AssistRequest.status.assigned_to
+      params['comments'] += "(#{Time.zone.now.strftime("%d-%m-%Y %H:%M")})"
       update(params)
       assigned_text = assigned_to? ? ": #{assigned_to}" : ''
       EventAction.create(
@@ -58,7 +61,7 @@ class AssistRequest < ApplicationRecord
     end
   end
 
-  def demobilize(params)
+  def demobilize(params, create_action = true)
     ActiveRecord::Base.transaction do
       params['demobilized'] = true
       update(params)
@@ -67,7 +70,7 @@ class AssistRequest < ApplicationRecord
         description: "El recurso #{code} fue desmovilizado por #{demobilizing_person}.",
         date: demobilization_date,
         event: resource_request&.event
-      )
+      ) if create_action
     end
   end
 end

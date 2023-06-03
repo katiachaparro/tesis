@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :events do
+  resources :events, except: [:destroy] do
     resources :victims, except: [:index, :show]
     resources :event_actions, except: [:index, :show]
-    resources :resource_requests, :except => [:destroy, :show, :edit, :update] do
+    resources :resource_requests, except: [:destroy, :show, :edit, :update] do
       get :cancel
     end
     get :export_201
@@ -11,11 +11,11 @@ Rails.application.routes.draw do
     get :close_event_modal
     post :close_event
   end
-  resources :resource_requests do#, only: [:index] do
-    resources :assist_requests, :only => [:new, :create]
+  resources :resource_requests, only: [:index, :new, :create] do
+    resources :assist_requests, only: [:new, :create]
   end
   post 'assist_requests/create_assist'
-  resources :assist_requests, :only => [] do
+  resources :assist_requests, only: [] do
     get :arrive_modal
     put :arrive
     get :demobilize_modal

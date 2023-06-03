@@ -20,7 +20,7 @@
     <%= button_to 'Arribo', assist_request_arrive_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },
-                  class: 'btn btn-primary my-0' unless assisted_item.arrived %>
+                  class: 'btn btn-primary my-0' unless assisted_item.arrived || assisted_item.event.closed %>
     <%= button_to 'Cambiar estado', assist_request_state_modal_path(assisted_item),
                   method: :get,
                   data: { turbo_frame: 'remote_modal' },

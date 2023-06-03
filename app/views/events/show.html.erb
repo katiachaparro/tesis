@@ -17,17 +17,17 @@
 
         <%= link_to edit_event_path(@event), :class => 'btn btn-outline-info me-1 my-0', title: 'Editar' do %>
           <span class= "fa fa-pen-to-square"></span>
-        <% end %>
+        <% end unless @event.closed %>
 
         <%= button_to 'Cerrar Incidente', event_close_event_modal_path(@event),
                       method: :get,
                       data: { turbo_frame: 'remote_modal' },
-                      class: 'btn btn-danger' %>
+                      class: 'btn btn-danger' unless @event.closed %>
       </div>
 
       <div class="d-flex justify-content-between align-items-center mt-3">
         <strong class="h5"><%= @event.name %></strong>
-        <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %></div>
+        <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %> <%= " - #{@event.event_end.strftime('%d-%m-%Y %H:%M')}" if @event.closed %></div>
       </div>
       <%= @event.location %>
     </div>
@@ -46,7 +46,8 @@
           </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-event" role="tabpanel" aria-labelledby="nav-201-tab">
-              <%= render 'form_201' %>
+              <%= render 'form_201' unless @event.closed %>
+              <%= render 'form_201_readonly' if @event.closed %>
             </div>
             <div class="tab-pane fade" id="nav-actions" role="tabpanel" aria-labelledby="nav-201-actions-tab">
               <%= render 'event_actions/index' %>

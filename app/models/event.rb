@@ -19,4 +19,25 @@ class Event < ApplicationRecord
   validates :name, presence: true
 
   attr_accessor :demobilization_date, :demobilizing_person, :comments
+
+  def close_and_demobilize(params)
+    ActiveRecord::Base.transaction do
+      # cancel requests
+      ResourceRequest.requests_to_demobilize(id).update_all(status: ResourceRequest.status.demobilized)
+
+      # demobilize all resources
+      resources_to_demobilize = AssistRequest.resources_to_demobilize(id)
+      resources_to_demobilize.each{ |assist| assist.demobilize(params, false)}
+
+      # create event action
+      description = "El incidente fue CERRADO por #{params['demobilizing_person']}."
+      description += " Fueron desmovilizados automáticamente los recursos: #{resources_to_demobilize.pluck(:code).join(', ')}" if resources_to_demobilize.any?
+      EventAction.create(
+        description: description,
+        date: params['demobilization_date'],
+        event: self
+      )
+      update(closed: true, event_end: params['demobilization_date'])
+    end
+  end
 end

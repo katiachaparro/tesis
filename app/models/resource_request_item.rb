@@ -9,5 +9,6 @@ class ResourceRequestItem < ApplicationRecord
   attribute :quantity, :integer, default: 0
   attribute :quantity_used, :integer, default: 0
 
+  validates :resource, :quantity, presence: true
   validates :quantity, numericality: { other_than: 0 }
 end

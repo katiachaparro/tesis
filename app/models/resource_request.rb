@@ -5,9 +5,12 @@ class ResourceRequest < ApplicationRecord
   belongs_to :organization, optional: true
   has_many :resource_request_items
   has_many :assist_requests, through: :resource_request_items
+  after_create :create_event_action
 
   accepts_nested_attributes_for :resource_request_items,
                                 reject_if: :all_blank, allow_destroy: true
+
+  scope :requests_to_demobilize, -> (event_id) { where(event_id: event_id, status: ResourceRequest.status.active) }
 
   enumerize :status, in: [:active, :canceled, :completed, :demobilized], scope: :shallow
 
@@ -17,7 +20,7 @@ class ResourceRequest < ApplicationRecord
 
   def cancelable?(current_user)
     org_id = current_user.organization_id
-    active? && assist_request_ids.empty? && user.organization_id == org_id
+    active? && user.organization_id == org_id
   end
 
   def user_can_assist? (user)
@@ -30,5 +33,17 @@ class ResourceRequest < ApplicationRecord
     return if incomplete
 
     update(status: ResourceRequest.status.completed)
+  end
+
+  private
+
+  def create_event_action
+    description = "El usuario #{user.full_name} creó la solicitud de recursos #{code}"
+    description += " para la Organización: #{organization.name}" if organization.present?
+    EventAction.create(
+      description: description,
+      date: Time.zone.now,
+      event: event
+    )
   end
 end

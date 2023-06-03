@@ -48,22 +48,14 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1 or /events/1.json
-  def destroy
-    @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   def close_event_modal
     @event = Event.find(params[:event_id])
   end
 
   def close_event
     @event = Event.find(params[:event_id])
+    @event.close_and_demobilize(demobilized_params)
+    redirect_to event_path(@event), notice: 'Se cerró el incidente.'
   end
 
   def export_201
@@ -116,5 +108,9 @@ class EventsController < ApplicationController
                                     :security_message, :communication_channels, :commander,
                                     sketchs: [], organization_charts: [],
                                     event_actions_attributes: [:id, :description, :date, :_destroy])
+    end
+
+    def demobilized_params
+      params.require(:event).permit(:demobilizing_person, :demobilization_date, :comments)
     end
 end

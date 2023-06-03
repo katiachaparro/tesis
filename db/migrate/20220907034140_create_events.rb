@@ -21,7 +21,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.text :communication_channels
       t.string :commander
       t.string :kind
-      t.string :status
+      t.boolean :closed
 
       t.decimal :longitude
       t.decimal :latitude

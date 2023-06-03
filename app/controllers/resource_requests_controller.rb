@@ -8,11 +8,6 @@ class ResourceRequestsController < ApplicationController
     @resource_request.resource_request_items.build
   end
 
-  def update
-    puts params
-    byebug
-  end
-
   def cancel
     @resource_request.update(status: ResourceRequest.status.canceled)
     redirect_to event_path(@event), turbo_stream: true, notice: "La solicitud fue cancelada."

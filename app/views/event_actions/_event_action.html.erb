@@ -9,11 +9,11 @@
                     class: "btn btn-outline-danger me-1",
                     title: "Eliminar" do %>
         <i class="fa fa-trash"></i>
-      <% end %>
+      <% end unless @event.closed %>
       <%= link_to [:edit, @event, event_action],
                   class: "btn btn-outline-info", title: "Editar" do %>
         <i class="fa fa-edit"></i>
-      <% end %>
+      <% end unless @event.closed %>
     </div>
   </div>
 <% end %>
