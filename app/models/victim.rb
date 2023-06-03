@@ -2,7 +2,7 @@ class Victim < ApplicationRecord
   extend Enumerize
   belongs_to :event
 
-  validates :name, presence: true
+  validates :name, :sex, :classification, :place_of_registration, presence: true
 
   enumerize :sex, in: [:male, :female], scope: :shallow
   enumerize :classification, in: [:red, :yellow, :green, :black], scope: :shallow

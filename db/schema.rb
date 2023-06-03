@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
     t.string "commander"
     t.string "kind"
     t.string "status"
+    t.decimal "longitude"
+    t.decimal "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
