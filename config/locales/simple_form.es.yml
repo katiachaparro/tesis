@@ -32,6 +32,9 @@ es:
         status: 'Estado'
         sketchs: 'Mapa Situacional o Croquis'
         organization_charts: 'Organigrama Actual'
+        demobilization_date: 'Fecha de desmovilización'
+        demobilizing_person: 'Desmovilizado por'
+        comments: 'Observaciones'
       organization:
         name: 'Nombre'
         description: 'Descripción'
@@ -101,6 +104,9 @@ es:
         commander: 'Comandante del Incidente'
         kind: 'Tipo'
         status: 'Estado'
+        demobilization_date: 'Fecha de desmovilización'
+        demobilizing_person: 'Desmovilizado por'
+        comments: 'Observaciones'
       organization:
         name: 'Nombre'
         description: 'Descripción'

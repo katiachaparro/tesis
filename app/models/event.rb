@@ -17,4 +17,6 @@ class Event < ApplicationRecord
   enumerize :kind, in: [:event, :incident], scope: :shallow
 
   validates :name, presence: true
+
+  attr_accessor :demobilization_date, :demobilizing_person, :comments
 end

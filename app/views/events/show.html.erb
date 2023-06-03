@@ -18,7 +18,11 @@
         <%= link_to edit_event_path(@event), :class => 'btn btn-outline-info me-1 my-0', title: 'Editar' do %>
           <span class= "fa fa-pen-to-square"></span>
         <% end %>
-        <%= button_to 'Cerrar Incidente', root_path, class: "btn btn-danger" %>
+
+        <%= button_to 'Cerrar Incidente', event_close_event_modal_path(@event),
+                      method: :get,
+                      data: { turbo_frame: 'remote_modal' },
+                      class: 'btn btn-danger' %>
       </div>
 
       <div class="d-flex justify-content-between align-items-center mt-3">
@@ -33,9 +37,9 @@
           <!-- Tab -->
           <nav>
             <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201-1 <span class="d-none d-md-inline">- Resumen del Incidente</span></a>
-              <a class="nav-item nav-link" id="nav-201-actions-tab" data-bs-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-actions" aria-selected="false">201-2 <span class="d-none d-md-inline">- Resumen de las Acciones</span></a>
-              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-victims" role="tab" aria-controls="nav-victims" aria-selected="false">207 <span class="d-none d-md-inline">- Registro de Víctimas</span></a>
+              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201-1 <span class="d-none d-md-inline">- Incidente</span></a>
+              <a class="nav-item nav-link" id="nav-201-actions-tab" data-bs-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-actions" aria-selected="false">201-2 <span class="d-none d-md-inline">- Acciones</span></a>
+              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-victims" role="tab" aria-controls="nav-victims" aria-selected="false">207 <span class="d-none d-md-inline">- Víctimas</span></a>
               <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-resources" role="tab" aria-controls="nav-resources" aria-selected="false">211-1 <span class="d-none d-md-inline">- Solicitud de Recursos</span></a>
               <a class="nav-item nav-link" id="nav-211-control-tab" data-bs-toggle="tab" href="#nav-resources-control" role="tab" aria-controls="nav-resources-control" aria-selected="false">211-2 <span class="d-none d-md-inline">- Control de Recursos</span></a>
             </div>

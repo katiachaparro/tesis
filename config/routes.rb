@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get :export_201
     get :export_207
     get :export_211
+    get :close_event_modal
+    post :close_event
   end
   resources :resource_requests do#, only: [:index] do
     resources :assist_requests, :only => [:new, :create]

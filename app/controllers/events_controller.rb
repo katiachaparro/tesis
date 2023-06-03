@@ -58,6 +58,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def close_event_modal
+    @event = Event.find(params[:event_id])
+  end
+
+  def close_event
+    @event = Event.find(params[:event_id])
+  end
+
   def export_201
     @event = Event.find(params[:event_id])
     respond_to do |format|
