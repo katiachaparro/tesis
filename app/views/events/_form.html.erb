@@ -17,7 +17,7 @@
     <%= f.input :location, wrapper_html: { class: 'mb-3 col-12' } %>
   </div>
 
-  <div data-controller="map">
+  <div data-controller="map" data-input-marker="true">
     <%= f.hidden_field :longitude, 'data-map-target': 'lngInput' %>
     <%= f.hidden_field :latitude, 'data-map-target': 'latInput' %>
     <div data-map-target="map" style="height: 500px;"></div>

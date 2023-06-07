@@ -1,10 +1,11 @@
-<div class="row">
+<div class="row" data-controller="map">
   <div class="col-12 col-xl-4">
     <%= render 'resource_requests' %>
   </div>
   <div class="col-12 col-xl-8">
-    <div data-controller="map">
-      <div data-map-target="map" class="height-90vh"></div>
-    </div>
+    <%- @events.each do |event| %>
+      <div data-map-target="marker" data-id="<%= event.id %>" data-lat="<%= event.latitude %>" data-lng="<%= event.longitude %>" data-title="<%= event.name %>"></div>
+    <% end %>
+    <div data-map-target="map" class="height-90vh"></div>
   </div>
 </div>

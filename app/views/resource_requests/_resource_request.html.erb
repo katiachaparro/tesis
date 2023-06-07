@@ -1,7 +1,7 @@
 <%= turbo_frame_tag resource_request do %>
   <%- dashboard = current_page?(root_path) %>
   <%- expanded =  resource_request.active? && !dashboard %>
-  <div class="accordion-item">
+  <div class="accordion-item center-marker" data-action="<%= 'click->map#centerMarker' if dashboard %>" data-id="<%= resource_request.event_id %>" >
     <h2 class="accordion-header" id="request-heading-<%= resource_request.id %>">
       <button class="accordion-button <%= 'collapsed' unless expanded %>" type="button" data-bs-toggle="collapse" data-bs-target="#request-collapse-<%= resource_request.id %>" aria-expanded="<%= expanded %>" aria-controls="collapseOne">
         <%= render 'resource_requests/resource_request_header', dashboard: dashboard, resource_request: resource_request %>

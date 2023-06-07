@@ -18,6 +18,9 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :active_events, -> { where(closed: [nil, false]) }
+  scope :mappable_events, -> { active_events.where.not(longitude: nil) }
+
   attr_accessor :demobilization_date, :demobilizing_person, :comments
 
   def close_and_demobilize(params)
