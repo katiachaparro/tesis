@@ -13,9 +13,9 @@ es:
         incident: "Incidente"
     resource:
       kind:
-        logistics: "Logísticos"
-        human_talent: "Talento humano"
-        physical: "Físicos"
+        one: "Tipo I"
+        two: "Tipo II"
+        three: "Tipo III"
     user_permission:
       role:
         user: "Usuario"

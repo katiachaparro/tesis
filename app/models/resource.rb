@@ -1,7 +1,7 @@
 class Resource < ApplicationRecord
   extend Enumerize
   has_many :resource_per_organizations
-  enumerize :kind, in: [:logistics, :human_talent, :physical], scope: :shallow
+  enumerize :kind, in: [:one, :two, :three], scope: :shallow
 
   #validations
   validates :name, uniqueness: true

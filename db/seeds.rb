@@ -1,9 +1,10 @@
-Resource.create({name:'Enfermeros' , kind: :human_talent, active: true})
-Resource.create({name:'Bomberos' , kind: :human_talent, active: true})
-Resource.create({name:'Camion bomba' , kind: :logistics, active: true})
-Resource.create({name:'Ambulancia' , kind: :logistics, active: true})
-Resource.create({name:'Camas' , kind: :physical, active: true})
-Resource.create({name:'Computadoras' , kind: :physical, active: true})
+Resource.create({name:'Enfermeros' , kind: :one, active: true})
+Resource.create({name:'Bomberos' , kind: :one, active: true})
+Resource.create({name:'Camion bomba I' , kind: :one, active: true})
+Resource.create({name:'Camion bomba II' , kind: :two, active: true})
+Resource.create({name:'Ambulancia' , kind: :one, active: true})
+Resource.create({name:'Camas' , kind: :one, active: true})
+Resource.create({name:'Computadoras' , kind: :one, active: true})
 
 
 po= Organization.create({name: 'CMGRRD', description: 'Consejo Municipal de Gestión y Reducción de Riesgo de Desastres de Encarnación', allow_sub_organizations: true})

@@ -21,7 +21,7 @@
     <div class="col-lg-6">
       <div class="form-group mb-4">
         <label for="type">Rol</label>
-        <%= select_tag(:role, options_for_select(UserPermission.role.options, @user_permission.role), class: 'form-select', name: 'user_permission[role]', required:true, prompt: 'Selecciona un rol') %>
+        <%= select_tag(:role, options_for_select(role_options, @user_permission.role), class: 'form-select', name: 'user_permission[role]', required:true, prompt: 'Selecciona un rol') %>
       </div>
     </div>
   </div>
