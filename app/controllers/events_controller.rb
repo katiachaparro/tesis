@@ -25,6 +25,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+    @event.organization_id = current_user.organization_id
 
     respond_to do |format|
       if @event.save
@@ -102,7 +103,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :kind, :form_start, :event_start, :location, :event_nature, :longitude, :latitude,
+      params.require(:event).permit(:name, :kind, :form_start, :event_start, :event_end, :location, :event_nature, :longitude, :latitude,
                                     :threats, :affected_area, :isolation, :objectives, :strategy,
                                     :tactics, :pc_location, :e_location, :entry_route, :egress_route,
                                     :security_message, :communication_channels, :commander,

@@ -1,6 +1,7 @@
 class CreateEvents < ActiveRecord::Migration[6.1]
   def change
     create_table :events do |t|
+      t.references :organization, null: false, foreign_key: true, index: false
       t.string :name
       t.datetime :form_start
       t.datetime :event_start

@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.bigint "organization_id", null: false
     t.string "name"
     t.datetime "form_start"
     t.datetime "event_start"
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
     t.string "commander"
     t.string "kind"
     t.boolean "closed"
+    t.boolean "initialized"
     t.decimal "longitude"
     t.decimal "latitude"
     t.datetime "created_at", precision: 6, null: false
@@ -232,6 +234,7 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
   add_foreign_key "assist_requests", "organizations"
   add_foreign_key "assist_requests", "resource_request_items"
   add_foreign_key "event_actions", "events"
+  add_foreign_key "events", "organizations"
   add_foreign_key "organizations", "organizations", column: "parent_organization_id"
   add_foreign_key "resource_per_organizations", "organizations"
   add_foreign_key "resource_per_organizations", "resources"

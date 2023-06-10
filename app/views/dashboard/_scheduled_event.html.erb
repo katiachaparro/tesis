@@ -1,0 +1,15 @@
+<div class="accordion-item center-marker" data-action="click->map#centerMarker" data-id="<%= scheduled_event.id %>" >
+  <h2 class="accordion-header" id="event-heading-<%= scheduled_event.id %>">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#event-collapse-<%= scheduled_event.id %>" aria-expanded="false" aria-controls="collapseOne">
+      <%= scheduled_event.name %>
+    </button>
+  </h2>
+  <div id="event-collapse-<%= scheduled_event.id %>" class="accordion-collapse collapse" aria-labelledby="event-heading-<%= scheduled_event.id %>" data-bs-parent="#scheduledEventsAccordion">
+    <div class="accordion-body">
+      <div class="mb-1"><b>Inicio:</b> <%= scheduled_event.event_start&.strftime("%d-%m-%Y %H:%M") %></div>
+      <div class="mb-1"><b>Cierre aproximado:</b> <%= scheduled_event.event_end&.strftime("%d-%m-%Y %H:%M") %></div>
+      <div class="mb-1"><b>Direcci&oacute;n:</b> <%= scheduled_event.location %></div>
+      <%= link_to 'Ver', event_path(scheduled_event), class: 'btn btn-sm btn-primary' %>
+    </div>
+  </div>
+</div>
