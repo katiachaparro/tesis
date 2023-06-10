@@ -30,6 +30,10 @@ class Event < ApplicationRecord
     kind == Event.kind.incident
   end
 
+  def organizer?(user)
+    organization_id == user.organization_id
+  end
+
   def close_and_demobilize(params)
     ActiveRecord::Base.transaction do
       # cancel requests

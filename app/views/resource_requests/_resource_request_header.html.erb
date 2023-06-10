@@ -6,9 +6,14 @@
       <span>I: <%= resource_request.event.name %></span>
     </span>
     <small class="ms-auto me-2 text-end">
-      <%- if resource_request.organization_id.present? %>
-        <span class="d-block my-1 badge rounded-pill bg-warning text-primary">Solicitud Directa</span>
-      <% end %>
+      <div class="d-flex justify-content-end">
+        <%- unless resource_request.event.incident? %>
+          <span class="d-block my-1 badge rounded-pill bg-success text-white">Evento</span>
+        <% end %>
+        <%- if resource_request.organization_id.present? %>
+          <span class="d-block my-1 badge rounded-pill bg-warning text-primary">Solicitud Directa</span>
+        <% end %>
+      </div>
       <%= resource_request.created_at.strftime('%d-%m-%Y %H:%M') %>
     </small>
   <%- else %>
