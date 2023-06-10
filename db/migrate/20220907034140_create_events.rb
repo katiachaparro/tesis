@@ -22,6 +22,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :commander
       t.string :kind
       t.boolean :closed
+      t.boolean :initialized
 
       t.decimal :longitude
       t.decimal :latitude

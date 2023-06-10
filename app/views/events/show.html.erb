@@ -19,7 +19,7 @@
           <span class= "fa fa-pen-to-square"></span>
         <% end unless @event.closed %>
 
-        <%= button_to 'Cerrar Incidente', event_close_event_modal_path(@event),
+        <%= button_to "Cerrar #{@event.kind.text}", event_close_event_modal_path(@event),
                       method: :get,
                       data: { turbo_frame: 'remote_modal' },
                       class: 'btn btn-danger' unless @event.closed %>
@@ -37,7 +37,7 @@
           <!-- Tab -->
           <nav>
             <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201-1 <span class="d-none d-md-inline">- Incidente</span></a>
+              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201-1 <span class="d-none d-md-inline">- <%= @event.kind.text %></span></a>
               <a class="nav-item nav-link" id="nav-201-actions-tab" data-bs-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-actions" aria-selected="false">201-2 <span class="d-none d-md-inline">- Acciones</span></a>
               <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-victims" role="tab" aria-controls="nav-victims" aria-selected="false">207 <span class="d-none d-md-inline">- Víctimas</span></a>
               <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-resources" role="tab" aria-controls="nav-resources" aria-selected="false">211-1 <span class="d-none d-md-inline">- Solicitud de Recursos</span></a>

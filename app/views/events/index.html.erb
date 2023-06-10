@@ -3,7 +3,7 @@
     <div class="card-header bg-white border-0 pb-0">
       <div class="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
         <h2 class="h4 m-0 me-auto">Eventos e Incidentes</h2>
-        <%= link_to "Programar Evento", new_event_path, class: 'btn btn-outline-primary mt-2 mx-2 animate-up-2' %>
+        <%= link_to "Programar Evento", new_event_path(kind: Event.kind.event), class: 'btn btn-outline-primary mt-2 mx-2 animate-up-2' %>
         <%= link_to "Crear Incidente", new_event_path, class: 'btn btn-gray-800 mt-2 animate-up-2' %>
       </div>
     </div>
