@@ -5,13 +5,10 @@ class ResourcesController < ApplicationController
   def index
     @q = Resource.resource_with_total.ransack(params[:q] || {})
     @resources = @q.result.page(params[:page]).per(@per_page)
-    # puts "hola2 #{@ransack}"
-    #@resources = Resource.resource_with_total
   end
 
   # GET /resources/1 or /resources/1.json
-  def show
-  end
+  def show; end
 
   # GET /resources/new
   def new
@@ -19,8 +16,7 @@ class ResourcesController < ApplicationController
   end
 
   # GET /resources/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /resources or /resources.json
   def create

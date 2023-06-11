@@ -1,0 +1,28 @@
+<%= search_form_for @q do |f| %>
+  <div class="col-12 mb-4" xmlns="http://www.w3.org/1999/html">
+    <div class="card border-0 components-section">
+      <div class="card-header bg-white border-0 pb-0">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center row g-0">
+          <div class="col-lg-3 form-floating me-1">
+            <%= f.select :kind_eq, Event.kind.options.unshift(['Eventos/Incidentes', nil]), {}, { class: 'form-select' } %>
+            <%= f.label :kind, for: 'kind_eq' %>
+          </div>
+          <div class="col-lg-3 form-floating me-1">
+            <%= f.search_field :name_i_cont_any, class: 'form-control ', placeholder: 'Nombre' %>
+            <%= f.label :name, 'Nombre', for: 'name_i_cont_any' %>
+          </div>
+          <div class="col-lg-4 form-floating me-1">
+            <div class="form-check form-switch">
+              <%= f.check_box :closed_null, { class: 'form-check-input', checked: @q.closed_null }, 1, nil %>
+              <label class="form-check-label" for="q_closed_null">Solo activos</label>
+            </div>
+          </div>
+
+          <%= f.button nil, class: "col-lg-1 btn btn-secondary ms-auto" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

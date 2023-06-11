@@ -26,6 +26,10 @@ class Event < ApplicationRecord
 
   attr_accessor :demobilization_date, :demobilizing_person, :comments
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name organization_id kind closed event_start event_end location commander]
+  end
+
   def incident?
     kind == Event.kind.incident
   end

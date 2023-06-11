@@ -13,6 +13,6 @@ class Resource < ApplicationRecord
   scope :ts_select, -> { active_resources.map { |r| { name: r.name, id: r.id } }}
 
   def self.ransackable_attributes(auth_object = nil)
-    ["active", "created_at", "description", "id", "kind", "name", "updated_at"]
+    %w[active created_at description id kind name updated_at]
   end
 end

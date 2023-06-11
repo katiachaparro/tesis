@@ -7,17 +7,18 @@
         <%= link_to "Crear Incidente", new_event_path, class: 'btn btn-gray-800 mt-2 animate-up-2' %>
       </div>
     </div>
+    <%= render 'search_form', q: @q %>
     <div class="card-body pt-0 pb-4">
       <div class="table-responsive">
         <table class="table table-centered table-nowrap mb-0 rounded">
           <thead class="thead-light">
           <tr>
-            <th class="border-0 rounded-start">Nombre</th>
-            <th class="border-0 d-none d-md-table-cell">Comandante</th>
-            <th class="border-0 d-none d-md-table-cell">Lugar</th>
-            <th class="border-0 d-none d-md-table-cell">Inicio</th>
-            <th class="border-0 d-none d-md-table-cell">Fin</th>
-            <th class="border-0 rounded-end">Fin</th>
+            <th class="border-0 rounded-start"><%= sort_link(@q, :name, 'Nombre') %></th>
+            <th class="border-0 d-none d-md-table-cell"><%= sort_link(@q, :commander, 'Comandante') %></th>
+            <th class="border-0 d-none d-md-table-cell"><%= sort_link(@q, :location, 'Lugar') %></th>
+            <th class="border-0 d-none d-md-table-cell"><%= sort_link(@q, :event_start, 'Inicio', default_order: :desc) %></th>
+            <th class="border-0 d-none d-md-table-cell"><%= sort_link(@q, :event_end, 'Fin') %></th>
+            <th class="border-0 rounded-end"></th>
           </tr>
           </thead>
           <tbody>

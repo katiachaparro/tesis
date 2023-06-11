@@ -3,7 +3,11 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.active_events.order(event_start: :desc)
+    @q = Event.ransack(params[:q] || {})
+    @q.closed_null = true if params[:q].nil?
+    @q.sorts = ['event_start desc'] if @q.sorts.empty?
+
+    @events = @q.result.page(params[:page]).per(@per_page)
   end
 
   # GET /events/1 or /events/1.json
@@ -19,8 +23,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events or /events.json
   def create
