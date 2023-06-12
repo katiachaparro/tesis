@@ -1,13 +1,16 @@
 class VictimsController < ApplicationController
-  load_and_authorize_resource
-  before_action :setup_event
+  load_and_authorize_resource except: [:report]
+  before_action :setup_event, except: [:report]
 
   def new
     @victim = Victim.new
   end
 
-  def edit
+  def report
+    authorize! :report, :victims
   end
+
+  def edit; end
 
   def create
     @victim = @event.victims.build(victim_params)
