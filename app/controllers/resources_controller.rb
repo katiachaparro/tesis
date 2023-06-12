@@ -9,6 +9,7 @@ class ResourcesController < ApplicationController
 
   def search_resources
     @q = ResourcePerOrganization.includes(:organization, :resource).ransack(params[:q] || {})
+    @q.quantity_gt_quantity_used = true if params[:q].nil?
     @resources_per_organization = @q.result.page(params[:page]).per(@per_page) unless params[:q].nil?
   end
 

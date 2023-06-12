@@ -8,6 +8,7 @@ class ResourcePerOrganization < ApplicationRecord
 
   #scopes
   scope :by_organization, -> (organization){ where(organization_id: organization&.id) }
+  scope :quantity_gt_quantity_used, -> (val=nil){ where('quantity > quantity_used') } # for ransack filter
 
   def self.ransackable_attributes(auth_object = nil)
     %w[resource]
@@ -15,5 +16,9 @@ class ResourcePerOrganization < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[organization resource]
+  end
+
+  def self.ransackable_scopes(auth_object = nil)
+    %i(quantity_gt_quantity_used)
   end
 end
