@@ -7,9 +7,9 @@
             <%= f.search_field :name_i_cont_any , class: 'form-control', placeholder: 'Nombre'%>
             <%= f.label :name, for:'name_i_cont_any' %>
           </div>
-          <div class="col-lg-4 form-floating me-1">
-            <%= f.search_field :kind_i_cont , class: 'form-control', placeholder: 'Tipo' %>
-            <%= f.label :kind , for:'kind_i_cont'%>
+          <div class="col-lg-3 form-floating me-1">
+            <%= f.select :kind_eq, Resource.kind.options.unshift(['Todos', nil]), {}, { class: 'form-select' } %>
+            <%= f.label :kind, for: 'kind_eq' %>
           </div>
           <%= f.button nil, class: "btn btn-secondary col-lg-1 ms-auto" do %>
             <i class="fas fa-search"></i>

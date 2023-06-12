@@ -1,10 +1,26 @@
 <%= simple_form_for @organization do |f| %>
-  <div class="col-lg-6">
+  <div class="row">
+    <div class="col-lg-6">
       <%= f.input :name %>
       <%= f.input :description %>
-    <div class="actions text-start">
-      <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
-      <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3'%>
+    </div>
+    <div class="col-lg-6">
+      <%= f.input :phone %>
+      <%= f.input :address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div data-controller="map" data-input-marker="true">
+        <%= f.hidden_field :longitude, 'data-map-target': 'lngInput' %>
+        <%= f.hidden_field :latitude, 'data-map-target': 'latInput' %>
+        <div data-map-target="map" style="height: 500px;"></div>
+      </div>
+
+      <div class="actions text-start">
+        <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+        <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3' %>
+      </div>
     </div>
   </div>
 <% end %>

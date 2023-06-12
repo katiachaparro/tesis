@@ -38,6 +38,8 @@ es:
       organization:
         name: 'Nombre'
         description: 'Descripción'
+        address: 'Dirección'
+        phone: 'Teléfono'
         parent_organization: 'Organización responzable'
         allow_sub_organizations: 'Permitir sub-organizaciones'
       resource:
@@ -110,6 +112,8 @@ es:
       organization:
         name: 'Nombre'
         description: 'Descripción'
+        address: 'Dirección'
+        phone: 'Teléfono'
         parent_organization: 'Organización responzable'
         allow_sub_organizations: 'Permitir sub-organizaciones'
       resource:

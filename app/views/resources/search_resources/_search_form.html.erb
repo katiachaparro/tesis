@@ -1,0 +1,21 @@
+<%= search_form_for(@q, url: resources_search_resources_path, method: :get) do |f| %>
+  <div class="row mb-1 g-1">
+    <div class="col-lg-6 form-floating">
+      <%= f.search_field :resource_name_i_cont_any , class: 'form-control', placeholder: 'Recurso'%>
+      <label for="resource_name_i_cont_any">Recurso</label>
+    </div>
+    <div class="col-lg-6 form-floating">
+      <%= f.select :resource_kind_eq, Resource.kind.options.unshift(['Todos', nil]), {}, { class: 'form-select' } %>
+      <%= f.label :kind, 'Tipo', for: 'kind_eq' %>
+    </div>
+  </div>
+  <div class="row g-1">
+    <div class="col-lg-6 form-floating">
+      <%= f.search_field :organization_name_i_cont_any , class: 'form-control', placeholder: 'Organización'%>
+      <label for="organization_name_i_cont_any">Organización</label>
+    </div>
+    <%= f.button nil, class: "btn btn-secondary col-lg-12 ms-auto" do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  </div>
+<% end %>

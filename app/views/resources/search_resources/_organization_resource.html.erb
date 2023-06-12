@@ -1,0 +1,22 @@
+<%- available_quantity = organization_resource.quantity - organization_resource.quantity_used %>
+<div class="center-marker" data-action="click->map#centerMarker" data-id="<%= organization_resource.organization_id %>" >
+  <h2 class="accordion-header" id="rpo-heading-<%= organization_resource.id %>">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rpo-collapse-<%= organization_resource.id %>" aria-expanded="false" aria-controls="collapseOne">
+      <div class="d-flex flex-column flex-grow-1">
+        <div class="d-flex">
+          <b><%= organization_resource.resource.name %> - <%= organization_resource.resource.kind&.text %></b>
+          <%- if available_quantity > 0 %>
+            <span class="d-block ms-2 my-1 badge rounded-pill bg-success text-white"><%= available_quantity %> Disponible(s)</span>
+          <% end %>
+        </div>
+        <div class="flex-item-100"><%= organization_resource.organization.name %></div>
+      </div>
+    </button>
+  </h2>
+  <div id="rpo-collapse-<%= organization_resource.id %>" class="accordion-collapse collapse" aria-labelledby="rpo-heading-<%= organization_resource.id %>" data-bs-parent="#rpoAccordion">
+    <div class="accordion-body">
+      <div class="mb-1"><b>Tel&eacute;fono:</b> <%= organization_resource.organization.phone %></div>
+      <div class="mb-1"><b>Direcci&oacute;n:</b> <%= organization_resource.organization.address %></div>
+    </div>
+  </div>
+</div>

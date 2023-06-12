@@ -131,6 +131,10 @@ ActiveRecord::Schema.define(version: 2023_05_03_000110) do
     t.string "description"
     t.bigint "parent_organization_id"
     t.boolean "allow_sub_organizations"
+    t.string "address"
+    t.string "phone"
+    t.decimal "longitude"
+    t.decimal "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["parent_organization_id"], name: "index_organizations_on_parent_organization_id"

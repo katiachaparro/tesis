@@ -1,0 +1,12 @@
+<div class="row" data-controller="map">
+  <div class="col-12 col-xl-4 d-flex flex-column height-90vh">
+    <%= render 'resources/search_resources/card' %>
+  </div>
+  <div class="col-12 col-xl-8">
+    <%- @resources_per_organization&.pluck(:organization_id)&.uniq&.each do |org_id| %>
+      <%- org = Organization.find_by_id org_id %>
+      <div data-map-target="marker" data-id="<%= org.id %>" data-lat="<%= org.latitude %>" data-lng="<%= org.longitude %>" data-title="<%= org.name %>"></div>
+    <% end %>
+    <div data-map-target="map" class="height-90vh"></div>
+  </div>
+</div>

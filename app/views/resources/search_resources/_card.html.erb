@@ -1,0 +1,10 @@
+<div class="card border-0 shadow flex-grow-1">
+  <div class="card-header border-bottom">
+    <%= render 'resources/search_resources/search_form' %>
+  </div>
+  <div class="card-body overflow-y-auto p-0">
+    <div class="accordion accordion-flush mt-2" id="rpoAccordion">
+      <%= render partial: 'resources/search_resources/organization_resource', collection: @resources_per_organization %>
+    </div>
+  </div>
+</div>

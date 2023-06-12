@@ -7,6 +7,11 @@ class ResourcesController < ApplicationController
     @resources = @q.result.page(params[:page]).per(@per_page)
   end
 
+  def search_resources
+    @q = ResourcePerOrganization.includes(:organization, :resource).ransack(params[:q] || {})
+    @resources_per_organization = @q.result.page(params[:page]).per(@per_page) unless params[:q].nil?
+  end
+
   # GET /resources/1 or /resources/1.json
   def show; end
 

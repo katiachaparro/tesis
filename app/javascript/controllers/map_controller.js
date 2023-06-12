@@ -47,10 +47,12 @@ export default class extends Controller {
             const lng = marker.dataset.lng
             const title = marker.dataset.title
 
-            let leafletMarker = L.marker([lat, lng]).addTo(this.map)
-            leafletMarker.on("click", () => this.onMarkerClick(leafletMarker))
-            leafletMarker.bindPopup(title)
-            this.markers[id] = leafletMarker
+            if (lat !== '' && lng !== ''){
+                let leafletMarker = L.marker([lat, lng]).addTo(this.map)
+                leafletMarker.on("click", () => this.onMarkerClick(leafletMarker))
+                leafletMarker.bindPopup(title)
+                this.markers[id] = leafletMarker
+            }
         })
     }
 
