@@ -1,0 +1,7 @@
+<tr>
+  <td class="text-start"><%= victim.name %></td>
+  <td class="text-start"><%= victim.sex&.text %></td>
+  <td class="text-start"><%= victim.classification&.text %></td>
+  <td class="text-start"><%= victim.created_at&.strftime('%d-%m-%Y %H:%M') %></td>
+  <td class="text-start"><%= victim.event&.name %></td>
+</tr>

@@ -1,0 +1,62 @@
+<%= search_form_for(@q, url: reports_report_path, method: :get)do |f| %>
+  <div class="col-12 mb-4" xmlns="http://www.w3.org/1999/html">
+    <div class="card border-0 components-section">
+      <div class="card-header bg-white border-0 pb-0">
+        <div class="row g-0 mb-2">
+          <div class="col-lg-3 form-floating me-1">
+            <%= f.search_field :name_i_cont_any, class: 'form-control ', placeholder: 'Nombre de la víctima' %>
+            <%= f.label :name, 'Nombre de la víctima', for: 'name_i_cont_any' %>
+          </div>
+          <div class="col-lg-2 form-floating me-1">
+            <%= f.select :sex_eq, Victim.sex.options.unshift(['Todos', nil]), {}, { class: 'form-select' } %>
+            <%= f.label :sex, for: 'sex_eq' %>
+          </div>
+          <div class="col-lg-2 form-floating me-1">
+            <%= f.select :classification_eq, Victim.classification.options.unshift(['Todos', nil]), {}, { class: 'form-select' } %>
+            <%= f.label :classification, for: 'classification_eq' %>
+          </div>
+          <div class="col-lg-2 form-floating me-1">
+            <%= f.select :place_of_registration_eq, Victim.place_of_registration.options.unshift(['Todos', nil]), {}, { class: 'form-select' } %>
+            <%= f.label :place_of_registration, for: 'place_of_registration_eq' %>
+          </div>
+        </div>
+        <div class="row g-0 mb-2">
+          <div class="col-lg-3 form-floating me-1">
+            <%= f.search_field :event_name_i_cont_any, class: 'form-control ', placeholder: 'Nombre del event' %>
+            <%= f.label :event_name, 'Nombre del evento/incidente', for: 'event_name_i_cont_any' %>
+          </div>
+          <div class="col-lg-2 form-floating me-1">
+            <%= f.search_field :created_at_gteq,
+                               as: :string,
+                               class: 'form-control',
+                               data: {
+                                 controller: 'flatpickr',
+                                 enable_time: 'false',
+                                 flatpickr_date_format: 'd-m-Y',
+                                 flatpickr_alt_input: false,
+                                 flatpickr_default_date: @q.created_at_gteq&.strftime('%d-%m-%Y')
+                               } %>
+            <label>Desde</label>
+          </div>
+          <div class="col-lg-2 form-floating me-1">
+            <%= f.search_field :created_at_lteq,
+                               as: :string,
+                               class: 'form-control',
+                               data: {
+                                 controller: 'flatpickr',
+                                 enable_time: 'false',
+                                 flatpickr_date_format: 'd-m-Y',
+                                 flatpickr_alt_input: false,
+                                 flatpickr_default_date: @q.created_at_lteq&.strftime('%d-%m-%Y')
+                               } %>
+            <label>Hasta</label>
+          </div>
+
+          <%= f.button nil, class: "col-lg-1 btn btn-secondary ms-auto" do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
