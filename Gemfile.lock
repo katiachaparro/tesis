@@ -68,6 +68,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     bullet (7.0.3)
       activesupport (>= 3.0.0)
@@ -93,17 +96,31 @@ GEM
       responders
       warden (~> 1.2.3)
     digest (3.1.0)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     enumerize (2.5.0)
       activesupport (>= 3.2)
     erubi (1.12.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
-    ffi (1.15.5-x64-mingw-ucrt)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     globalid (1.0.0)
       activesupport (>= 5.0)
     hotwire-rails (0.1.3)
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
+    http (5.1.1)
+      addressable (~> 2.8)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.4.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -112,9 +129,24 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    llhttp-ffi (0.4.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -146,10 +178,12 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
+    noticed (1.6.3)
+      http (>= 4.0.0)
+      rails (>= 5.2.0)
     orm_adapter (0.5.0)
     pdf-core (0.9.0)
     pg (1.4.3)
-    pg (1.4.3-x64-mingw-ucrt)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
@@ -193,6 +227,10 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
     rake (13.0.6)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -247,6 +285,9 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.3)
       tzinfo (>= 1.0.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.2)
     uniform_notifier (1.16.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -279,25 +320,30 @@ PLATFORMS
 DEPENDENCIES
   audited (~> 5.0)
   bootsnap (>= 1.4.4)
+  bootstrap5-kaminari-views (~> 0.0.1)
   bullet
   byebug
   cancancan
   capybara (>= 3.26)
   devise
   enumerize
+  faker
   hotwire-rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.3)
   net-imap
   net-pop
   net-smtp
+  noticed (~> 1.6)
   pg (~> 1.1)
   prawn (~> 2.1)
   prawn-table (~> 0.2.2)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.6)
+  ransack
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
@@ -306,7 +352,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers
-  webpacker (~> 5.0)
+  webpacker (= 5.4.4)
 
 RUBY VERSION
    ruby 3.1.2p20
