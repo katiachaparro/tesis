@@ -1,10 +1,11 @@
 class UserPermissionsController < ApplicationController
   load_and_authorize_resource
-
+  before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
   # GET /user_permissions or /user_permissions.json
   def index
     # TODO get users by permission
     @user_permissions = UserPermission.all.includes(:organization, :user)
+    add_breadcrumbs("Usuarios")
   end
 
 
@@ -12,10 +13,13 @@ class UserPermissionsController < ApplicationController
   def new
     @user_permission = UserPermission.new
     @user_permission.build_user
+    add_breadcrumbs("Nuevo")
   end
 
   # GET /user_permissions/1/edit
   def edit
+    add_breadcrumbs(@user_permission.role, user_permission_path(@user_permission))
+    add_breadcrumbs("Editar")
   end
 
   # POST /user_permissions or /user_permissions.json
@@ -54,5 +58,9 @@ class UserPermissionsController < ApplicationController
       params.require(:user_permission)
             .permit(:organization_id, :role,
               user_attributes: [:id, :first_name, :last_name, :ci, :address, :address_two, :city, :birthday, :phone, :email])
+    end
+
+    def add_index_breadcrumbs
+      add_breadcrumbs("Usuario",user_permissions_path)
     end
 end

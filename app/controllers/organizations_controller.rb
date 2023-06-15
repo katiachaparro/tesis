@@ -7,8 +7,7 @@ class OrganizationsController < ApplicationController
     # TODO: get descendents with recursive SQL
     @q = Organization.where(parent_organization_id: current_user.organization_ids).includes(:child_organizations).ransack( params[:q]|| {})
     @organizations = @q.result.page(params[:page]).per(@per_page)
-
-    add_breadcrumbs("Organizacion")
+    add_breadcrumbs("Organizaciones")
   end
 
   # GET /organizations/1 or /organizations/1.json

@@ -1,13 +1,14 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
 
   # GET /events or /events.json
   def index
     @q = Event.ransack(params[:q] || {})
     @q.closed_null = true if params[:q].nil?
     @q.sorts = ['event_start desc'] if @q.sorts.empty?
-
     @events = @q.result.page(params[:page]).per(@per_page)
+    add_breadcrumbs("Eventos e Incidentes")
   end
 
   # GET /events/1 or /events/1.json
@@ -15,15 +16,20 @@ class EventsController < ApplicationController
     @event_actions = @event.event_actions.order(date: :desc)
     @victims = @event.victims.order(created_at: :desc)
     @resource_requests = @event.resource_requests.includes(:resource_request_items).order(:status, created_at: :desc)
+    add_breadcrumbs(@event.name)
   end
 
   # GET /events/new
   def new
     @event = Event.new(event_actions: [EventAction.new], kind: params[:kind] || Event.kind.incident)
+    add_breadcrumbs("Nuevo")
   end
 
   # GET /events/1/edit
-  def edit; end
+  def edit
+    add_breadcrumbs(@event.name, event_path(@event))
+    add_breadcrumbs("Editar")
+  end
 
   # POST /events or /events.json
   def create
@@ -117,4 +123,9 @@ class EventsController < ApplicationController
     def demobilized_params
       params.require(:event).permit(:demobilizing_person, :demobilization_date, :comments)
     end
+
+  def add_index_breadcrumbs
+
+    add_breadcrumbs("Evento e Incidente",events_path)
+  end
 end

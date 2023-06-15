@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   require 'csv'
-
+  before_action :add_index_breadcrumbs
   def report
     authorize! :report, :victims
 
@@ -30,5 +30,9 @@ class ReportsController < ApplicationController
         csv << [v.name, v.sex&.text, v.age, v.classification&.text, v.treated_on_site ? 'Si' : 'No', v.place_of_transfer, v.transferred_by, v.created_at&.strftime('%d-%m-%Y %H:%M'), v.event&.name, Victim.place_of_registration&.text]
       end
     end
+  end
+
+  def add_index_breadcrumbs
+    add_breadcrumbs("Reportes")
   end
 end
