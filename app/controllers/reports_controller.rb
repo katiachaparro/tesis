@@ -27,7 +27,7 @@ class ReportsController < ApplicationController
 
       # Add data rows
       data.each do |v|
-        csv << [v.name, v.sex&.text, v.age, v.classification&.text, v.treated_on_site ? 'Si' : 'No', v.place_of_transfer, v.transferred_by, v.created_at&.strftime('%d-%m-%Y %H:%M'), v.event&.name, Victim.place_of_registration&.text]
+        csv << [v.name, v.sex&.text, v.age, v.classification&.text, v.treated_on_site ? 'Si' : 'No', v.place_of_transfer, v.transferred_by, v.created_at&.strftime('%d-%m-%Y %H:%M'), v.event&.name, v.place_of_registration&.text]
       end
     end
   end
