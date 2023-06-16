@@ -1,6 +1,6 @@
 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-center mt-2 py-0" data-bs-popper="none">
   <div class="list-group list-group-flush">
-    <%= link_to 'Notifications', notifications_path, class: 'text-center text-primary fw-bold border-bottom border-light py-3' %>
+    <%= link_to 'Notificaciones', notifications_path, class: 'text-center text-primary fw-bold border-bottom border-light py-3' %>
 
     <%- if current_user.notifications.unread.exists? %>
       <%= render current_user.notifications.unread %>
