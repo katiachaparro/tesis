@@ -1,0 +1,12 @@
+<div class="dropdown-menu dropdown-menu-lg dropdown-menu-center mt-2 py-0" data-bs-popper="none">
+  <div class="list-group list-group-flush">
+    <%= link_to 'Notifications', notifications_path, class: 'text-center text-primary fw-bold border-bottom border-light py-3' %>
+
+    <%- if current_user.notifications.unread.exists? %>
+      <%= render current_user.notifications.unread %>
+      <%= link_to 'Marcar todos como leídos', mark_as_read_notifications_path, class: 'dropdown-item text-center fw-bold rounded-bottom py-3' %>
+    <% else %>
+      <div class="text-center my-2">No tienes notificaciones nuevas</div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  <style>
+    <%= File.read(Rails.root.join('app', 'assets', 'stylesheets', 'mailer_styles.css')) %>
+  </style>
+</head>
+<body>
+  <div class="container card">
+    <div class="card-header">
+      <h1>Bienvenido <%= @user.full_name %></h1>
+    </div>
+    <div class="card-body">
+      <p>La organizaci&oacute;n <b><%= @organization.name %></b> te a&ntilde;adido a sus usuarios</p>
+      <p class="ms-3"><b>Usuario:</b> <%= @user.email %></p>
+      <p class="ms-3"><b>Contrase&ntilde;a:</b> <%= @pw %></p>
+      <p class="text-danger">Favor cambiar la contrase&ntilde;a al ingresar</p>
+
+      <div class="text-center">
+        <%= link_to 'Ingresa Aquí', root_url, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

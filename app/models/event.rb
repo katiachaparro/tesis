@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   audited
   extend Enumerize
+  belongs_to :organization
   has_many_attached :sketchs do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
   end

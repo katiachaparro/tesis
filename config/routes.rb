@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   resources :resource_requests, only: [:index, :new, :create] do
     resources :assist_requests, only: [:new, :create]
   end
-  post 'assist_requests/create_assist'
+
   resources :assist_requests, only: [] do
+    collection do
+      post :create_assist
+    end
     get :arrive_modal
     put :arrive
     get :demobilize_modal
@@ -24,8 +27,12 @@ Rails.application.routes.draw do
     put :change_state
   end
   resources :user_permissions, :except => [:destroy, :show]
-  resources :resources, :except => [:destroy, :show]
-  get 'resources/search_resources'
+  resources :resources, :except => [:destroy, :show] do
+    collection do
+      get :search_resources
+    end
+  end
+
   resources :organizations, :except => [:destroy, :show] do
     resources :resource_per_organizations, :except => [:destroy, :show]
   end
@@ -35,6 +42,11 @@ Rails.application.routes.draw do
   as :user do
     get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
     put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
+  resources :notifications, only: [:index, :show] do
+    collection do
+      get :mark_as_read
+    end
   end
   get 'reports/report'
   root to: 'dashboard#index'

@@ -1,4 +1,4 @@
-<%= search_form_for(@q, url: resources_search_resources_path, method: :get) do |f| %>
+<%= search_form_for(@q, url: search_resources_resources_path, method: :get) do |f| %>
   <div class="row mb-1 g-1">
     <div class="col-lg-6 form-floating">
       <%= f.search_field :resource_name_i_cont_any , class: 'form-control', placeholder: 'Recurso'%>

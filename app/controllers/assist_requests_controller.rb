@@ -1,5 +1,6 @@
 class AssistRequestsController < ApplicationController
   load_and_authorize_resource
+  include NotificationsHelper
   before_action :setup_header, only: [:new]
   before_action :setup_assist_request, except: [:new, :create_assist]
 
@@ -13,16 +14,19 @@ class AssistRequestsController < ApplicationController
 
   def arrive
     @assist_request.register_arrive(arrive_params)
+    notify_resource_arrived(@assist_request)
     redirect_to request.referrer, notice: "Se registró el arribo del recurso #{@assist_request.code}."
   end
 
   def demobilize
     @assist_request.demobilize(demobilized_params)
+    notify_resource_demobilize(@assist_request)
     redirect_to request.referrer, notice: "Se desmovilizó el recurso #{@assist_request.code}."
   end
 
   def change_state
     @assist_request.change_state(state_params)
+    notify_resource_state_change(@assist_request)
     redirect_to request.referrer, notice: "Se actualizó el estado del recurso #{@assist_request.code}."
   end
 
@@ -30,8 +34,11 @@ class AssistRequestsController < ApplicationController
     params['assist_request_items_attributes'].each do |request_item_id, value|
       AssistRequest.create_assist_items(request_item_id, value['quantity'].to_i, current_user)
     end
-    ResourceRequest.find_by_id(params['resource_request_id'])&.check_request_complete
-    redirect_to request.referrer, notice: 'Se creó la solicitud de recursos.'
+    rq = ResourceRequest.find_by_id(params['resource_request_id'])
+    rq&.check_request_complete
+
+    notify_assist_request(rq, current_user)
+    redirect_to request.referrer, notice: 'Se asistió la solicitud de recursos.'
   end
 
 

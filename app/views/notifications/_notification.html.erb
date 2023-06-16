@@ -1,0 +1,9 @@
+<%= link_to notification_path(notification), class: 'list-group-item list-group-item-action border-bottom' do %>
+  <div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div><h4 class="h6 mb-0 text-small"><%= notification.event.name %><i class="<%= 'fa-solid fa-check text-success ms-2' if notification.read? %>"></i></h4></div>
+      <div class="text-end"><%= time_ago_in_words(notification.created_at) %></div>
+    </div>
+    <p class="font-small mt-1 mb-0"><%= notification.message %></p>
+  </div>
+<% end %>

@@ -1,4 +1,7 @@
 es:
+  mailer:
+    user_mailer:
+      subject: "Bienvenido al sistema del CMGRRD"
   unauthorized:
     manage:
       all: "No tienes permisos para accedeer a esta página"
@@ -192,6 +195,19 @@ es:
       - :year
   datetime:
     distance_in_words:
+      ago_less_than_a_minute: hace menos de 1 minuto
+      ago_x_minutes:
+        one: hace 1 minuto
+        other: hace %{count} minutos
+      ago_x_hours:
+        one: hace 1 hora
+        other: hace %{count} horas
+      ago_x_months:
+        one: hace 1 mes
+        other: hace %{count} meses
+      ago_x_years:
+        one: hace 1 año
+        other: hace %{count} años
       about_x_hours:
         one: alrededor de 1 hora
         other: alrededor de %{count} horas

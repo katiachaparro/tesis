@@ -1,4 +1,4 @@
-<%= form_with url: assist_requests_create_assist_path,  method: :post do |f| %>
+<%= form_with url: create_assist_assist_requests_path,  method: :post do |f| %>
   <%= render partial: 'assist_request_item', collection: @resource_request.resource_request_items, locals: { f: f } %>
   <%= f.hidden_field :resource_request_id, value: @resource_request.id %>
   <div class="d-flex justify-content-between">

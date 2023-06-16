@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :user_permissions
   has_many :organizations, through: :user_permissions
+  has_many :notifications, as: :recipient, dependent: :destroy
+
+  scope :exclude_organization, -> (org_id) { includes(:user_permissions).where.not(user_permissions: {organization_id: org_id}) }
+  scope :include_organization, -> (org_id) { includes(:user_permissions).where(user_permissions: {organization_id: org_id}) }
 
   def full_name
     "#{first_name} #{last_name}"

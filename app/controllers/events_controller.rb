@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource
+  include NotificationsHelper
   before_action :set_event, only: %i[ show edit update destroy ]
   before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
 
@@ -65,6 +67,7 @@ class EventsController < ApplicationController
   def close_event
     @event = Event.find(params[:event_id])
     @event.close_and_demobilize(demobilized_params)
+    notify_close_event(@event)
     redirect_to event_path(@event), notice: 'Se cerró el incidente.'
   end
 

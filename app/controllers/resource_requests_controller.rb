@@ -1,5 +1,6 @@
 class ResourceRequestsController < ApplicationController
   load_and_authorize_resource
+  include NotificationsHelper
   before_action :setup_event
   before_action :set_resource_request, only: [:cancel, :assist_modal]
 
@@ -23,10 +24,10 @@ class ResourceRequestsController < ApplicationController
     @resource_request.code = "#{@event.name[0..2]}-#{@event.resource_request_ids.count + 1}"
 
     if @resource_request.save
-      # TODO: notify all organizations
+      notify_new_resource_request(@event, @resource_request)
       respond_to do |format|
-        format.html { redirect_to event_path(@event), notice: "Los recursos fueron solicitados exitosamente." }
-        format.turbo_stream { flash.now[:notice] = "Los recursos fueron solicitados exitosamente." }
+        format.html { redirect_to event_path(@event), notice: 'Los recursos fueron solicitados exitosamente.' }
+        format.turbo_stream { flash.now[:notice] = 'Los recursos fueron solicitados exitosamente.' }
       end
     else
       render :new

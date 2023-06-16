@@ -30,6 +30,7 @@ class UserPermissionsController < ApplicationController
 
     respond_to do |format|
       if @user_permission.save
+        UserMailer.with(user: @user_permission.user, pw: friendly_token).welcome_user.deliver_later
         format.html { redirect_to user_permissions_url, notice: "El usuario fue creado exitosamente. Password=#{friendly_token}" }
         format.json { render :show, status: :created, location: @user_permission }
       else

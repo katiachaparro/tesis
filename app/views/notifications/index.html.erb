@@ -1,0 +1,15 @@
+<div class="col-12 mb-4">
+  <div class="card border-0 shadow components-section">
+    <div class="card-header bg-white border-0 pb-0">
+      <div class="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
+        <h2 class="h4 m-0 me-auto">Notificaciones</h2>
+        <%= link_to "Marcar todos como leídos", mark_as_read_notifications_path, class: 'btn btn-gray-800 mt-2 animate-up-2' %>
+      </div>
+    </div>
+    <div class="card-body pt-0 pb-4">
+      <%= render @notifications %>
+    </div>
+    <%= paginate @notifications , theme: 'bootstrap-5',
+                 pagination_class: "pagination-sm flex-wrap justify-content-center"%>
+  </div>
+</div>

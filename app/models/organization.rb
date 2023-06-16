@@ -3,6 +3,7 @@ class Organization < ApplicationRecord
   has_many :child_organizations, foreign_key: :parent_organization_id, class_name: 'Organization'
   has_many :resource_per_organizations
   has_many :user_permissions
+  has_many :users, through: :user_permissions
 
   #validations
   validates :name, presence: true, uniqueness: true
