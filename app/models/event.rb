@@ -22,7 +22,7 @@ class Event < ApplicationRecord
   scope :active_events, -> { where(closed: [nil, false]) }
   scope :mappable_events, -> { active_events.where.not(longitude: nil) }
   scope :uninitialized_events, -> { active_events.where(kind: Event.kind.event, initialized: [nil, false]) }
-  scope :scheduled_events, -> (org_id) { uninitialized_events.includes(:assist_requests).where(organization_id: org_id).or(where(assist_requests: {organization_id: org_id})) }
+  scope :by_organization, -> (org_id) { includes(:assist_requests).where(organization_id: org_id).or(where(assist_requests: {organization_id: org_id})) }
 
   attr_accessor :demobilization_date, :demobilizing_person, :comments
 
