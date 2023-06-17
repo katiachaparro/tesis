@@ -11,14 +11,7 @@ export default class extends Controller {
       }
     })
   }
-  hideBeforeRender(event) {
-    if (this.isOpen()) {
-      event.preventDefault()
-      this.element.addEventListener('hidden.bs.modal', event.detail.resume)
-      this.modal.hide()
-    }
-  }
-  isOpen() {
-    return this.element.classList.contains('show')
+  disconnect(){
+    this.modal._element.remove()
   }
 }
