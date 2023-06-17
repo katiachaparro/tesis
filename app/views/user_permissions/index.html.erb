@@ -6,14 +6,15 @@
         <%= link_to "Crear Usuario", new_user_permission_path, class: 'btn btn-gray-800 mt-2 animate-up-2'%>
       </div>
     </div>
+    <%= render 'search_form', q: @q %>
     <div class="card-body pt-0 pb-4">
       <div class="table-responsive">
         <table class="table table-centered table-nowrap mb-0 rounded">
           <thead class="thead-light">
           <tr>
-            <th class="border-0 rounded-start">Usuario</th>
-            <th class="border-0 d-none d-md-table-cell">Rol</th>
-            <th class="border-0 d-none d-md-table-cell">Organizaci&oacute;n</th>
+            <th class="border-0 rounded-start"><%= sort_link(@q, :user_first_name, 'Usuario', default_order: :desc) %></th>
+            <th class="border-0 d-none d-md-table-cell"><%= sort_link(@q, :role, 'Rol', default_order: :desc) %></th>
+            <th class="border-0 d-none d-md-table-cell"><%= sort_link(@q, :organization_name, 'Organización', default_order: :desc) %></th>
             <th class="border-0 rounded-end"></th>
           </tr>
           </thead>
@@ -23,5 +24,7 @@
         </table>
       </div>
     </div>
+    <%= paginate @user_permissions , theme: 'bootstrap-5',
+                 pagination_class: "pagination-sm flex-wrap justify-content-center"%>
   </div>
 </div>

@@ -29,5 +29,7 @@
         <div class="text-center">No se encontraron datos</div>
       <% end %>
     </div>
+    <%= paginate @victims , theme: 'bootstrap-5',
+                 pagination_class: "pagination-sm flex-wrap justify-content-center" if @victims.present?%>
   </div>
 </div>

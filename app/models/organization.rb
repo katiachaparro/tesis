@@ -17,6 +17,18 @@ class Organization < ApplicationRecord
 
   ActionController::Parameters.permit_all_parameters = true
 
+  def self.descendants(org_id)
+    Organization.find_by_id(org_id)&.descendants
+  end
+
+  def descendants
+    descendants = [self] # Include the current model as the first element
+    child_organizations.each do |child|
+      descendants += child.descendants
+    end
+    descendants
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end

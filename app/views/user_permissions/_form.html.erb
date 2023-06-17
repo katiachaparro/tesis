@@ -16,7 +16,7 @@
         <label for="organization">Organizaci&oacute;n</label>
         <%= f.text_field :organization_id, class: "form-control", readonly:true, value: f.object.organization.name if @user_permission.persisted? %>
         <%= select_tag(:organization_id,
-                       options_from_collection_for_select(current_user.super_admin? ? Organization.all.order(:name) : Organization.organization_and_children(current_user.organization_id), 'id', 'name', @user_permission.organization_id),
+                       options_from_collection_for_select(current_user.super_admin? ? Organization.all.order(:name) : Organization.descendants(current_user.organization_id), 'id', 'name', @user_permission.organization_id),
                        class: 'form-select',
                        prompt: 'Selecciona una organización',
                        required: true,

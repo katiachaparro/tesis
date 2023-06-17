@@ -10,6 +10,14 @@ class User < ApplicationRecord
   scope :exclude_organization, -> (org_id) { includes(:user_permissions).where.not(user_permissions: {organization_id: org_id}) }
   scope :include_organization, -> (org_id) { includes(:user_permissions).where(user_permissions: {organization_id: org_id}) }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[ci email first_name last_name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[organizations user_permissions]
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

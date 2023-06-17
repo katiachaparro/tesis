@@ -11,4 +11,12 @@ class UserPermission < ApplicationRecord
 
   # scopes
   scope :by_organization, -> (organization){ where(organization_id: organization&.id) }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[organization_id role user_id]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[organization user]
+  end
 end

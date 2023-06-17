@@ -3,8 +3,12 @@ class UserPermissionsController < ApplicationController
   before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
   # GET /user_permissions or /user_permissions.json
   def index
-    # TODO get users by permission
-    @user_permissions = UserPermission.all.includes(:organization, :user)
+    # filter by organization
+    users = UserPermission
+    users = users.where(organization_id: Organization.descendants(current_user.organization_id).pluck(:id)) unless current_user.super_admin?
+
+    @q = users.ransack(params[:q] || {})
+    @user_permissions = @q.result.page(params[:page]).per(@per_page)
     add_breadcrumbs('Usuarios')
   end
 
