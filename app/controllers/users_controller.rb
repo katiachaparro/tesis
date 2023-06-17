@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
   before_action :set_user, only: %i[ update ]
   def profile
     @user = current_user

@@ -7,15 +7,16 @@
           <h2 class="h4 m-0">Organizaciones</h2>
         </div>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <%= link_to "Crear Organización", new_organization_path, class: 'btn btn-gray-800 mt-2 animate-up-2'  if can? :create, Organization do %>
+          <%= link_to "Crear Organización", new_organization_path, class: 'btn btn-gray-800 mt-2 animate-up-2' if can? :create_main_organization, Organization do %>
             <i class="fas fa-search"></i>
-        <% end %>
+          <% end %>
 
         </div>
       </div>
     </div>
     <div class="card-header bg-white border-0 pb-0 pt-0">
-      <p class="mb-0 ">Se listan todas las organizaciones pertenecinetes al Consejo Municipal de la Ciudad de Encarnacion.</p>
+      <p class="mb-0 ">Se listan todas las organizaciones pertenecinetes al Consejo Municipal de la Ciudad de
+        Encarnacion.</p>
     </div>
     <%= render 'organizations/search_form', q: @q %>
     <div class="card-body pt-0 pb-4">
@@ -30,12 +31,12 @@
           </tr>
           </thead>
           <tbody>
-            <%= render 'table', organizations: @organizations %>
+          <%= render 'table', organizations: @organizations %>
           </tbody>
         </table>
       </div>
     </div>
-    <%= paginate @organizations , theme: 'bootstrap-5',
-                 pagination_class: "pagination-sm flex-wrap justify-content-center"%>
+    <%= paginate @organizations, theme: 'bootstrap-5',
+                 pagination_class: "pagination-sm flex-wrap justify-content-center" %>
   </div>
 </div>

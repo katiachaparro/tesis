@@ -54,12 +54,18 @@
         <%= link_to organizations_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-sitemap"></i>
           <span class="sidebar-text">Organizaciones</span>
-        <% end %>
+        <% end if can? :update, Organization %>
       </li>
       <li class="nav-item">
         <%= link_to resources_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-warehouse"></i>
           <span class="sidebar-text">Recursos</span>
+        <% end if can? :read, Resource %>
+      </li>
+      <li class="nav-item">
+        <%= link_to organization_resource_per_organizations_path(current_user.organization_id), class:'nav-link' do %>
+          <i class="sidebar-icon fa-sharp fa-solid fa-boxes-stacked"></i>
+          <span class="sidebar-text">Mis Recursos</span>
         <% end %>
       </li>
       <li class="nav-item">

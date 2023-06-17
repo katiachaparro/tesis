@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
-  load_and_authorize_resource
-   before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
+  load_and_authorize_resource except: [:search_resources]
+  before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
   # GET /resources or /resources.json
   def index
     @q = Resource.resource_with_total.ransack(params[:q] || {})

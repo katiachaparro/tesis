@@ -6,13 +6,21 @@ class Ability
   def initialize(user, organization)
     return unless user.present?
     can :read, :all
-    cannot :read, UserPermission
+    can :manage, Event
+    can :manage, EventAction
+    can :manage, Victim
+    can :manage, ResourceRequest
+    can :manage, AssistRequest
+
+    cannot :manage, UserPermission
+    cannot :manage, Resource
+    cannot :manage, Organization
     cannot :report, Victim
 
     return unless user.super_admin? || user.admin?
     can :manage, :all
 
     return unless user.admin?
-    cannot :create, Organization
+    cannot :create_main_organization, Organization
   end
 end
