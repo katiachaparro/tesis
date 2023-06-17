@@ -28,7 +28,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources/1/edit
   def edit
-    add_breadcrumbs(@resource.name, resources_path(@resource))
+    add_breadcrumbs(@resource.name, resources_path)
     add_breadcrumbs("Editar")
   end
 
@@ -67,6 +67,6 @@ class ResourcesController < ApplicationController
       params.require(:resource).permit(:name, :description, :active, :kind)
     end
   def add_index_breadcrumbs
-    add_breadcrumbs("Recurso",resources_path)
+    add_breadcrumbs("Recurso", resources_path)
   end
 end
