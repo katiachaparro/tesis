@@ -14,8 +14,14 @@
     <div class="col-lg-6">
       <div class="form-group mb-4">
         <label for="organization">Organizaci&oacute;n</label>
-        <%= select_tag(:organization_id, options_from_collection_for_select(Organization.all, 'id', 'name', @user_permission.organization_id), class: 'form-select', prompt: 'Selecciona una organización', required: true, name:'user_permission[organization_id]', disabled: true) if @user_permission.persisted? %>
-        <%= select_tag(:organization_id, options_from_collection_for_select(Organization.all, 'id', 'name', @user_permission.organization_id), class: 'form-select', prompt: 'Selecciona una organización', required: true, name:'user_permission[organization_id]') unless @user_permission.persisted? %>
+        <%= f.text_field :organization_id, class: "form-control", readonly:true, value: f.object.organization.name if @user_permission.persisted? %>
+        <%= select_tag(:organization_id,
+                       options_from_collection_for_select(current_user.super_admin? ? Organization.all.order(:name) : Organization.organization_and_children(current_user.organization_id), 'id', 'name', @user_permission.organization_id),
+                       class: 'form-select',
+                       prompt: 'Selecciona una organización',
+                       required: true,
+                       name:'user_permission[organization_id]') unless @user_permission.persisted? %>
+
       </div>
     </div>
     <div class="col-lg-6">

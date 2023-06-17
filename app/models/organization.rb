@@ -10,6 +10,8 @@ class Organization < ApplicationRecord
 
   #scopes
   scope :allow_sub_organizations, -> { where(allow_sub_organizations: true) }
+  scope :organization_and_children, -> (org_id) { where(id: org_id).or(where(parent_organization_id: org_id)).order(:name) }
+
   # @return [Integer]
   before_save :is_main_organizer
 
