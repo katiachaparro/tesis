@@ -8,11 +8,10 @@
     </td>
     <td class="text-start d-none d-md-table-cell"><%= up.role_text %></td>
     <td class="text-start d-none d-md-table-cell"><%= up.organization.name %></td>
-    <td class="settings px-0">
-      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="up-settings<%=up.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
-      <ul class="dropdown-menu" aria-labelledby="up-settings<%=up.id%>">
-        <li><%= link_to 'Editar', edit_user_permission_path(up), class:'dropdown-item'%></li>
-      </ul>
+    <td class="text-end">
+      <%= link_to edit_user_permission_path(up), class: 'text-info me-1 my-0 fs-5', title: 'Editar' do %>
+        <span class= "fa fa-pen-to-square"></span>
+      <% end if can? :edit, up %>
     </td>
   </tr>
 <% end %>

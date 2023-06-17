@@ -1,16 +1,12 @@
 <% resources.each do |rpo| %>
   <tr>
-    <td class="collapsed collapse-icon px-0"></td>
     <td class="text-start col-4"><%= rpo.resource.name %></td>
     <td class="text-start"><%= rpo.quantity %></td>
     <td class="text-start"><%= rpo.quantity_used %></td>
-    <td class="settings px-0">
-      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="resource-settings<%=rpo.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
-      <ul class="dropdown-menu" aria-labelledby="resource-settings<%=rpo.id%>">
-        <li><%= link_to 'Editar cantidad', edit_organization_resource_per_organization_path(@organization, rpo), class:'dropdown-item' if can? :edit, rpo %></li>
-        <li><button class="dropdown-item" type="button">Another action</button></li>
-        <li><button class="dropdown-item" type="button">Something else here</button></li>
-      </ul>
+    <td class="text-end">
+      <%= link_to edit_organization_resource_per_organization_path(@organization, rpo), class: 'text-info me-1 my-0 fs-5', title: 'Editar' do %>
+        <span class= "fa fa-pen-to-square"></span>
+      <% end if can? :edit, rpo %>
     </td>
   </tr>
 <% end %>

@@ -8,5 +8,13 @@
   <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= event.location %></td>
   <td class="text-start d-none d-md-table-cell"><%= event.event_start.strftime('%d-%m-%Y %H:%M') %></td>
   <td class="text-start d-none d-md-table-cell"><%= event.event_start.strftime('%d-%m-%Y %H:%M') %></td>
-  <td class="text-end"><%= link_to "Ver", event_path(event), class: "btn btn-info" %></td>
+  <td class="text-end">
+    <%= link_to event_path(event), class: 'text-info me-1 my-0 fs-5', title: 'Editar' do %>
+      <span class= "fa fa-pen-to-square"></span>
+    <% end unless event.closed %>
+
+    <%= link_to event_path(event), class: 'text-primary me-1 my-0 fs-5', title: 'Ver' do %>
+      <span class= "fa fa-eye"></span>
+    <% end if event.closed %>
+  </td>
 </tr>

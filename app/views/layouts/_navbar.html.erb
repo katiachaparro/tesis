@@ -58,13 +58,13 @@
       </li>
       <li class="nav-item">
         <%= link_to resources_path, class:'nav-link' do %>
-          <i class="sidebar-icon fa-solid fa-warehouse"></i>
+          <i class="sidebar-icon fa-solid fa-boxes-stacked"></i>
           <span class="sidebar-text">Recursos</span>
         <% end if can? :read, Resource %>
       </li>
       <li class="nav-item">
         <%= link_to organization_resource_per_organizations_path(current_user.organization_id), class:'nav-link' do %>
-          <i class="sidebar-icon fa-sharp fa-solid fa-boxes-stacked"></i>
+          <i class="sidebar-icon fa-sharp fa-solid fa-warehouse"></i>
           <span class="sidebar-text">Mis Recursos</span>
         <% end %>
       </li>
