@@ -107,7 +107,7 @@ ResourcePerOrganization.create({resource: auto_logistica_2, organization: po1, q
 
 # Destacamento Esperanza
 po2 = create_organization('Destacamento Esperanza', '', -27.3152131,-55.8483043, po1.id)
-create_admin(po2, 'destacamento_esperanzae@gmail.com', 'esperanza', 'bomberos')
+create_admin(po2, 'destacamento_esperanza@gmail.com', 'esperanza', 'bomberos')
 
 ResourcePerOrganization.create({resource: auto_rescate_3, organization: po2, quantity: 1, quantity_used: 0})
 
