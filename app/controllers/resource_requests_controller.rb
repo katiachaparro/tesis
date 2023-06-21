@@ -46,6 +46,6 @@ class ResourceRequestsController < ApplicationController
   end
 
   def resource_request_params
-    params.require(:resource_request).permit(:organization_id, resource_request_items_attributes: [:resource_id, :quantity])
+    params.require(:resource_request).permit(:organization_id, :sender, resource_request_items_attributes: [:resource_id, :quantity])
   end
 end

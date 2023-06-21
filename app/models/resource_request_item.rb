@@ -3,8 +3,7 @@ class ResourceRequestItem < ApplicationRecord
   belongs_to :resource
   has_many :assist_requests
 
-  delegate :event, :to => :resource_request, :allow_nil => true
-  delegate :user, :to => :resource_request, :allow_nil => true
+  delegate :event, :user, :sender, :to => :resource_request, :allow_nil => true
 
   attribute :quantity, :integer, default: 0
   attribute :quantity_used, :integer, default: 0

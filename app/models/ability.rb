@@ -22,5 +22,6 @@ class Ability
 
     return unless user.admin?
     cannot :create_main_organization, Organization
+    cannot :manage, Resource
   end
 end

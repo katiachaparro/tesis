@@ -59,7 +59,7 @@ class Form211 < Prawn::Document
     request = assist.resource_request
     resource = assist.resource
 
-    request_row = make_inner_table([[request.user.full_name, request.created_at&.strftime(@date_format), resource&.name, resource&.kind&.text, assist.code]], 180, cell_style_row)
+    request_row = make_inner_table([[request.sender, request.created_at&.strftime(@date_format), resource&.name, resource&.kind&.text, assist.code]], 180, cell_style_row)
     arrive_row = assist.arrival_date&.strftime(@date_format)
     organization_row = make_inner_table([[assist.organization&.name, assist.vehicle_registration, assist.number_of_people]], 135, cell_style_row, [40])
 
