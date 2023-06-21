@@ -38,7 +38,7 @@ doctor = Resource.create({name:'Doctor/a' , kind: :one, active: true})
 psicologo = Resource.create({name:'Psicólogo/a' , kind: :one, active: true})
 
 
-def self.create_organization(name, description, latitude, longitude, allow_sub_organizations = true, parent_organization_id = nil)
+def self.create_organization(name, description, latitude, longitude, parent_organization_id = nil, allow_sub_organizations = true)
   Organization.create({
                         name: name,
                         description: description,
@@ -75,7 +75,7 @@ ResourcePerOrganization.create({resource: ambulancia_2, organization: po1, quant
 
 # Cuerpo de Bomberos Voluntarios de la Ciudad de Encarnación 2da Compañia.
 po2 = create_organization('Cuerpo de Bomberos Voluntarios de Encarnación 2da Compañia', '', -27.3324445, -55.8721153, po1.id)
-create_admin(po1, 'bomberos_2comp@gmail.com', 'segunda', 'bomberos')
+create_admin(po2, 'bomberos_2comp@gmail.com', 'segunda', 'bomberos')
 
 ResourcePerOrganization.create({resource: auto_escala_2, organization: po2, quantity: 1, quantity_used: 0})
 ResourcePerOrganization.create({resource: auto_bomba_2, organization: po2, quantity: 2, quantity_used: 0})
@@ -86,7 +86,7 @@ ResourcePerOrganization.create({resource: ambulancia_2, organization: po2, quant
 
 # Cuerpo de Bomberos Voluntarios de la Ciudad de Encarnación 3ra Compañia.
 po2 = create_organization('Cuerpo de Bomberos Voluntarios de Encarnación 3ra Compañia', '', -27.3755209, -55.8321547, po1.id)
-create_admin(po1, 'bomberos_3comp@gmail.com', 'tercera', 'bomberos')
+create_admin(po2, 'bomberos_3comp@gmail.com', 'tercera', 'bomberos')
 
 ResourcePerOrganization.create({resource: auto_bomba_2, organization: po2, quantity: 2, quantity_used: 0})
 ResourcePerOrganization.create({resource: auto_forestal_3, organization: po2, quantity: 1, quantity_used: 0})
@@ -107,7 +107,7 @@ ResourcePerOrganization.create({resource: auto_logistica_2, organization: po1, q
 
 # Destacamento Esperanza
 po2 = create_organization('Destacamento Esperanza', '', -27.3152131,-55.8483043, po1.id)
-create_admin(po1, 'destacamento_esperanzae@gmail.com', 'esperanza', 'bomberos')
+create_admin(po2, 'destacamento_esperanzae@gmail.com', 'esperanza', 'bomberos')
 
 ResourcePerOrganization.create({resource: auto_rescate_3, organization: po2, quantity: 1, quantity_used: 0})
 
