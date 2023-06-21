@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 2023_06_13_182139) do
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.bigint "organization_id"
+    t.string "sender"
     t.string "status"
     t.string "code"
     t.datetime "created_at", precision: 6, null: false

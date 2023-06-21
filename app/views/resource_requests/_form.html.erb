@@ -16,11 +16,14 @@
   <%= f.association :organization, collection: Organization.all, prompt: 'Todas las organizaciones',
                     include_blank: false,
                     label_method: :name, value_method: :id, label: false,
-                    wrapper_html: { class: 'col-7' },
+                    wrapper_html: { class: 'col-lg-7' },
                     input_html: {
                       data: { controller: 'ts--select' }
                     }
   %>
+
+  <small class="d-block mt-3 mb-1">Sender</small>
+  <%= f.input :sender, wrapper_html: { class: 'col-lg-7' }, input_html: {value: 'CI/CU'}, label: false %>
 
   <div class="d-flex justify-content-between">
     <button type="button" data-action="nested-form#add" class="btn btn-secondary mt-2 animate-up-2">
