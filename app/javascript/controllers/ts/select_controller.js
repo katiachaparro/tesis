@@ -7,9 +7,12 @@ import 'select2-bootstrap-theme/dist/select2-bootstrap.min.css'
 export default class extends Controller {
   connect() {
     let el = $(this.element)
-    el.select2({
-      dropdownParent: el.closest('.modal'),
-      theme: "bootstrap"
-    })
+    let parent = el.closest('.modal')
+
+    if (parent.length > 0) {
+      el.select2({ dropdownParent: parent, theme: "bootstrap" })
+    } else {
+      el.select2({ theme: "bootstrap" })
+    }
   }
 }

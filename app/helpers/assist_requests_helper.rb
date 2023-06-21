@@ -3,6 +3,6 @@ module AssistRequestsHelper
     return unless assisted_item.arrived
 
     assigned_text = assisted_item.assigned_to? ? ": #{assisted_item.assigned_to}" : ''
-    "#{assisted_item.status.text} #{assigned_text}"
+    "#{assisted_item.status&.text} #{assigned_text}"
   end
 end

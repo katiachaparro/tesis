@@ -20,6 +20,7 @@
                        class: 'form-select',
                        prompt: 'Selecciona una organización',
                        required: true,
+                       data: { controller: 'ts--select' },
                        name:'user_permission[organization_id]') unless @user_permission.persisted? %>
 
       </div>

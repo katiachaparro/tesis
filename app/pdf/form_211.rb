@@ -63,30 +63,22 @@ class Form211 < Prawn::Document
     arrive_row = assist.arrival_date&.strftime(@date_format)
     organization_row = make_inner_table([[assist.organization&.name, assist.vehicle_registration, assist.number_of_people]], 135, cell_style_row, [40])
 
-    if assist.arrived
-      assist.audits.where(action:'update').each do |v|
-        resource_row, demobilize_row, comment_row = assist_row(assist, v)
-        result << [request_row, arrive_row, organization_row, resource_row, demobilize_row, comment_row]
-      end
-    else
-      resource_row, demobilize_row, comment_row = assist_row(assist)
-      result << [request_row, arrive_row, organization_row, resource_row, demobilize_row, comment_row]
-    end
-
+    resource_row, demobilize_row, comment_row = assist_row(assist)
+    result << [request_row, arrive_row, organization_row, resource_row, demobilize_row, comment_row]
 
     result
   end
 
-  def assist_row(assist, v = nil)
+  def assist_row(assist)
     resource_row = [['', '', '']]
     demobilize_row = [['', '']]
     comment_row = 'Sin arribo a la escena'
 
-    if v.present?
-      status = version_attr(v, 'status')
-      resource_row = [[status == AssistRequest.status.available ? 'x' : '', status == AssistRequest.status.not_available ? 'x' : '', status == AssistRequest.status.assigned_to ? version_attr(v, 'assigned_to') : '']]
-      demobilize_row = [[version_attr(v, 'demobilizing_person'), version_attr(v, 'demobilization_date', nil)&.strftime(@date_format)]]
-      comment_row = version_attr(v, 'comments')
+    if assist.arrived
+      status = assist.status
+      resource_row = [[status == AssistRequest.status.available ? 'x' : '', status == AssistRequest.status.not_available ? 'x' : '', status == AssistRequest.status.assigned_to ? assist.assigned_to : '']]
+      demobilize_row = [[assist.demobilizing_person, assist.demobilization_date&.strftime(@date_format)]]
+      comment_row = assist.full_version_by_attribute('comments', '8')
     end
 
     [make_inner_table(resource_row, 160, cell_style_row, [40]), make_inner_table(demobilize_row, 90, cell_style_row, [40]), comment_row]

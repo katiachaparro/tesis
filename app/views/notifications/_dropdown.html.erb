@@ -3,7 +3,7 @@
     <%= link_to 'Notificaciones', notifications_path, class: 'text-center text-primary fw-bold border-bottom border-light py-3' %>
 
     <%- if current_user.notifications.unread.exists? %>
-      <%= render partial: 'notifications/notification', collection: current_user.notifications.unread %>
+      <%= render partial: 'notifications/notification', collection: current_user.notifications.unread.order(created_at: :desc) %>
       <%= link_to 'Marcar todos como leídos', mark_as_read_notifications_path, class: 'dropdown-item text-center fw-bold rounded-bottom py-3' %>
     <% else %>
       <div class="text-center my-2">No tienes notificaciones nuevas</div>

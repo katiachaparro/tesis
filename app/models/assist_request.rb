@@ -1,5 +1,6 @@
 class AssistRequest < ApplicationRecord
   audited
+  include AssistRequestsHelper
   extend Enumerize
   belongs_to :resource_request_item
   belongs_to :organization
@@ -49,12 +50,12 @@ class AssistRequest < ApplicationRecord
 
   def change_state(params)
     ActiveRecord::Base.transaction do
+      status_text = show_assist_status(self)
       params['assigned_to'] = '' if params['status'] != AssistRequest.status.assigned_to
-      params['comments'] += "(#{Time.zone.now.strftime("%d-%m-%Y %H:%M")})"
+      params['comments'] = "#{status_text} #{params['comments']}"
       update(params)
-      assigned_text = assigned_to? ? ": #{assigned_to}" : ''
       EventAction.create(
-        description: "El recurso #{code} ha cambiado de estado a \"#{status.text}#{assigned_text}\".",
+        description: "El recurso #{code} ha cambiado de estado a \"#{status_text}\".",
         date: arrival_date,
         event: resource_request&.event
       )
@@ -64,6 +65,7 @@ class AssistRequest < ApplicationRecord
   def demobilize(params, create_action = true)
     ActiveRecord::Base.transaction do
       params['demobilized'] = true
+      params['comments'] = "Desmovilizado por #{params['demobilizing_person']} #{params['comments']}"
       update(params)
       ResourcePerOrganization.find_by(resource: resource, organization: organization)&.decrement!(:quantity_used)
       EventAction.create(

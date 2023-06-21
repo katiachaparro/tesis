@@ -4,3 +4,6 @@
 .card-body .badge.rounded-pill{
   width: fit-content;
 }
+.card-body.overflow-y-auto {
+  flex: 1 1 0;
+}
