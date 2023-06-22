@@ -1,23 +1,33 @@
 <div class="col-12 mb-4" xmlns="http://www.w3.org/1999/html">
   <div class="card border-0 shadow components-section">
     <div class="card-header bg-white border-0 pb-0">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center flex-wrap">
+        <%= link_to event_export_201_path(@event, format: "pdf"), :class => 'btn btn-outline-primary d-inline-flex align-items-center me-1 my-0', title: '201', target: :_blank do %>
+          <span class= "fa fa-file-pdf me-2"></span>
+          201
+        <% end %>
+        <%= link_to event_export_207_path(@event, format: "pdf"), :class => 'btn btn-outline-primary d-inline-flex align-items-center me-1 my-0', title: '201', target: :_blank do %>
+          <span class= "fa fa-file-pdf me-2"></span>
+          207
+        <% end %>
+        <%= link_to event_export_211_path(@event, format: "pdf"), :class => 'btn btn-outline-primary d-inline-flex align-items-center me-auto my-0', title: '201', target: :_blank do %>
+          <span class= "fa fa-file-pdf me-2"></span>
+          211
+        <% end %>
+
+        <%= link_to edit_event_path(@event), :class => 'btn btn-outline-info me-1 my-0', title: 'Editar encabezado' do %>
+          <span class= "fa fa-pen-to-square"></span>
+        <% end unless @event.closed %>
+
+        <%= button_to "Cerrar #{@event.kind.text}", event_close_event_modal_path(@event),
+                      method: :get,
+                      data: { turbo_frame: 'remote_modal' },
+                      class: 'btn btn-danger' unless @event.closed %>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-3">
         <strong class="h5"><%= @event.name %></strong>
-        <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %></div>
-        <div>
-          <%= link_to event_export_201_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
-            <span class= "fa fa-file-pdf me-2"></span>
-            201
-          <% end %>
-          <%= link_to event_export_207_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
-            <span class= "fa fa-file-pdf me-2"></span>
-            207
-          <% end %>
-          <%= link_to event_export_211_path(@event, format: "pdf"), :class => 'btn btn-secondary d-inline-flex align-items-center', title: '201', target: :_blank do %>
-            <span class= "fa fa-file-pdf me-2"></span>
-            211
-          <% end %>
-        </div>
+        <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %> <%= " - #{@event.event_end.strftime('%d-%m-%Y %H:%M')}" if @event.closed %></div>
       </div>
       <%= @event.location %>
     </div>
@@ -27,15 +37,17 @@
           <!-- Tab -->
           <nav>
             <div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201 <span class="d-none d-md-inline">- Resumen del Incidente</span></a>
-              <a class="nav-item nav-link" id="nav-201-actions-tab" data-bs-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-actions" aria-selected="false">201 <span class="d-none d-md-inline">- Resumen de las Acciones</span></a>
-              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-victims" role="tab" aria-controls="nav-victims" aria-selected="false">207 <span class="d-none d-md-inline">- Registro de Víctimas</span></a>
-              <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-resources" role="tab" aria-controls="nav-resources" aria-selected="false">211 <span class="d-none d-md-inline">- Registro y Control de Recursos</span></a>
+              <a class="nav-item nav-link active" id="nav-201-tab" data-bs-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">201-1 <span class="d-none d-md-inline">- <%= @event.kind.text %></span></a>
+              <a class="nav-item nav-link" id="nav-201-actions-tab" data-bs-toggle="tab" href="#nav-actions" role="tab" aria-controls="nav-actions" aria-selected="false">201-2 <span class="d-none d-md-inline">- Acciones</span></a>
+              <a class="nav-item nav-link" id="nav-207-tab" data-bs-toggle="tab" href="#nav-victims" role="tab" aria-controls="nav-victims" aria-selected="false">207 <span class="d-none d-md-inline">- Víctimas</span></a>
+              <a class="nav-item nav-link" id="nav-211-tab" data-bs-toggle="tab" href="#nav-resources" role="tab" aria-controls="nav-resources" aria-selected="false">211-1 <span class="d-none d-md-inline">- Solicitud de Recursos</span></a>
+              <a class="nav-item nav-link" id="nav-211-control-tab" data-bs-toggle="tab" href="#nav-resources-control" role="tab" aria-controls="nav-resources-control" aria-selected="false">211-2 <span class="d-none d-md-inline">- Control de Recursos</span></a>
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-event" role="tabpanel" aria-labelledby="nav-201-tab">
-              <%= render 'form_201' %>
+              <%= render 'form_201' unless @event.closed %>
+              <%= render 'form_201_readonly' if @event.closed %>
             </div>
             <div class="tab-pane fade" id="nav-actions" role="tabpanel" aria-labelledby="nav-201-actions-tab">
               <%= render 'event_actions/index' %>
@@ -45,6 +57,9 @@
             </div>
             <div class="tab-pane fade" id="nav-resources" role="tabpanel" aria-labelledby="nav-211-tab">
               <%= render 'resource_requests/index' %>
+            </div>
+            <div class="tab-pane fade" id="nav-resources-control" role="tabpanel" aria-labelledby="nav-211-control-tab">
+              <%= render 'assist_requests/index' %>
             </div>
           </div>
           <!-- End of tab -->

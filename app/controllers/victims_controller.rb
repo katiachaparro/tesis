@@ -6,8 +6,7 @@ class VictimsController < ApplicationController
     @victim = Victim.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @victim = @event.victims.build(victim_params)

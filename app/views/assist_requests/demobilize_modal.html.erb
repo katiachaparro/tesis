@@ -1,0 +1,34 @@
+<%= render 'remote_modal', title: "Desmovilización de #{@assist_request.code}" do %>
+  <%= simple_form_for @assist_request, url: [@assist_request, :demobilize], method: :put, wrapper: :floating_labels_form do |f| %>
+    <div class="row g-0 mb-3">
+      <div class="col-lg-6 pe-1">
+        <div class="form-floating mb-3">
+          <%= f.input_field :demobilization_date,
+                            as: :string,
+                            class: 'form-control',
+                            data: {
+                              controller: 'flatpickr',
+                              enable_time: 'true',
+                              flatpickr_date_format: 'd-m-Y H:i',
+                              flatpickr_alt_input: false,
+                              flatpickr_default_date: (f.object&.demobilization_date || Time.zone.now).strftime("%d-%m-%Y %H:%M")
+                            } %>
+          <label>Fecha y hora de desmovilización</label>
+        </div>
+      </div>
+
+      <div class="col-lg-6 ps-1">
+        <%= f.input :demobilizing_person %>
+      </div>
+    </div>
+
+    <div class="row g-0 mb-3">
+      <%= f.input :comments, as: :text, input_html: { value: '' } %>
+    </div>
+
+    <div class="actions text-start">
+      <%= f.button :submit, "Desmovilizar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+    </div>
+
+  <% end %>
+<% end %>

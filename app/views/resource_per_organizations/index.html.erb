@@ -6,14 +6,15 @@
         <%= link_to "Agregar Recurso", new_organization_resource_per_organization_path(@organization), class: 'btn btn-gray-800 mt-2 animate-up-2' if can? :create, ResourcePerOrganization %>
       </div>
     </div>
+    <%= render 'search_form', q: @q %>
     <div class="card-body pt-0 pb-4">
       <div class="table-responsive">
         <table class="table table-centered table-nowrap mb-0 rounded">
           <thead class="thead-light">
           <tr>
-            <th class="border-0 rounded-start"></th>
-            <th class="border-0">Nombre</th>
+            <th class="border-0 rounded-start">Nombre</th>
             <th class="border-0">Cantidad</th>
+            <th class="border-0">Disponible</th>
             <th class="border-0 rounded-end"></th>
           </tr>
           </thead>
@@ -23,5 +24,7 @@
         </table>
       </div>
     </div>
+    <%= paginate @resource_per_organizations , theme: 'bootstrap-5',
+                 pagination_class: "pagination-sm flex-wrap justify-content-center"%>
   </div>
 </div>

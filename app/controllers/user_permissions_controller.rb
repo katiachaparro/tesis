@@ -1,10 +1,15 @@
 class UserPermissionsController < ApplicationController
   load_and_authorize_resource
-
+  before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
   # GET /user_permissions or /user_permissions.json
   def index
-    # TODO get users by permission
-    @user_permissions = UserPermission.all.includes(:organization, :user)
+    # filter by organization
+    users = UserPermission
+    users = users.where(organization_id: Organization.descendants(current_user.organization_id).pluck(:id)) unless current_user.super_admin?
+
+    @q = users.ransack(params[:q] || {})
+    @user_permissions = @q.result.page(params[:page]).per(@per_page)
+    add_breadcrumbs('Usuarios')
   end
 
 
@@ -12,10 +17,13 @@ class UserPermissionsController < ApplicationController
   def new
     @user_permission = UserPermission.new
     @user_permission.build_user
+    add_breadcrumbs('Nuevo')
   end
 
   # GET /user_permissions/1/edit
   def edit
+    add_breadcrumbs(@user_permission.role, user_permission_path(@user_permission))
+    add_breadcrumbs('Editar')
   end
 
   # POST /user_permissions or /user_permissions.json
@@ -26,7 +34,8 @@ class UserPermissionsController < ApplicationController
 
     respond_to do |format|
       if @user_permission.save
-        format.html { redirect_to user_permissions_url, notice: "El usuario fue creado exitosamente. Password=#{friendly_token}" }
+        UserMailer.with(user: @user_permission.user, pw: friendly_token).welcome_user.deliver_later
+        format.html { redirect_to user_permissions_url, notice: "El usuario fue creado exitosamente. #{friendly_token unless Rails.env.production? }" }
         format.json { render :show, status: :created, location: @user_permission }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,8 +47,8 @@ class UserPermissionsController < ApplicationController
   # PATCH/PUT /user_permissions/1 or /user_permissions/1.json
   def update
     respond_to do |format|
-      if @user_permission.update(user_permission_params)
-        format.html { redirect_to user_permissions_url, notice: "El usuario fue actualizado exitosamente." }
+      if @user_permission.update(user_permission_update_params)
+        format.html { redirect_to user_permissions_url, notice: 'El usuario fue actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @user_permission }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,5 +63,15 @@ class UserPermissionsController < ApplicationController
       params.require(:user_permission)
             .permit(:organization_id, :role,
               user_attributes: [:id, :first_name, :last_name, :ci, :address, :address_two, :city, :birthday, :phone, :email])
+    end
+
+    def user_permission_update_params
+      params.require(:user_permission)
+            .permit(:role,
+                    user_attributes: [:id, :first_name, :last_name, :ci, :address, :address_two, :city, :birthday, :phone])
+    end
+
+    def add_index_breadcrumbs
+      add_breadcrumbs('Usuario', user_permissions_path)
     end
 end

@@ -1,10 +1,14 @@
 <div class="col-12 mb-4">
   <div class="card border-0 shadow components-section">
     <div class="card-header bg-white border-0 pb-0">
-      <h2 class="h4">Crear Organizaci&oacute;n</h2>
+      <h2 class="h4">Crear Organizaci&oacute;n <%= "para #{@organization.parent_organization.name}" if @organization.parent_organization.present?%></h2>
     </div>
     <div class="card-body pb-4">
-      <%= render 'form' %>
+        <%= if  @parent_id.present?
+              render 'form'
+         else
+              render 'form_principal_organition'
+         end %>
     </div>
   </div>
 </div>

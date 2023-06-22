@@ -10,16 +10,21 @@
     <%= stylesheet_link_tag 'volt', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_pack_tag 'volt_channel', 'data-turbo-track': 'reload' %>
     <%= javascript_packs_with_chunks_tag 'application', 'data-turbo-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
   </head>
 
   <body>
-  <%= console if Rails.env.development? %>
+  <%#= console if Rails.env.development? %>
   <%= turbo_frame_tag 'toast_notice' do %>
     <%= render 'layouts/toast', locals: {alert: alert, notice: notice } %>
   <% end %>
   <%= render 'layouts/navbar' if user_signed_in? %>
   <main class="content <%= 'm-0 p-0' unless user_signed_in? %>">
     <%= render 'layouts/header' if user_signed_in? %>
+    <%= render 'shared/breadcrumbs' if user_signed_in? %>
     <%= yield %>
     <%= turbo_frame_tag 'remote_modal', target: "_top" %>
   </main>

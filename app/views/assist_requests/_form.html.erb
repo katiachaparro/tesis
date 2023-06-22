@@ -1,0 +1,8 @@
+<%= form_with url: create_assist_assist_requests_path,  method: :post do |f| %>
+  <%= render partial: 'assist_request_item', collection: @resource_request.resource_request_items, locals: { f: f } %>
+  <%= f.hidden_field :resource_request_id, value: @resource_request.id %>
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-outline-danger mt-2 d-none">Rechazar</button>
+    <%= f.submit 'Asistir', class: "btn btn-gray-800 mt-2 animate-up-2" %>
+  </div>
+<% end %>

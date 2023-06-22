@@ -1,0 +1,35 @@
+<div class="col-12 mb-4">
+  <div class="card border-0 shadow components-section">
+    <div class="card-header bg-white border-0 pb-0">
+      <div class="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
+        <h2 class="h4 m-0 me-auto">Reporte de V&iacute;ctimas</h2>
+      </div>
+    </div>
+    <%= render 'reports/victims/search_form', q: @q %>
+    <div class="card-body pt-0 pb-4">
+      <%- if @victims.present? %>
+        <div class="table-responsive">
+          <table class="table table-centered table-nowrap mb-0 rounded">
+            <thead class="thead-light">
+            <tr>
+              <th class="border-0 rounded-start"><%= sort_link(@q, :name, 'Nombre') %></th>
+              <th class="border-0 rounded-start"><%= sort_link(@q, :sex, 'Sexo') %></th>
+              <th class="border-0 rounded-start"><%= sort_link(@q, :classification, 'Clasificación') %></th>
+              <th class="border-0 rounded-start"><%= sort_link(@q, :created_at, 'Fecha') %></th>
+              <th class="border-0 rounded-start"><%= sort_link(@q, :event_name, 'Evento/Incidente') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <%= render partial: 'reports/victims/victim', collection: @victims %>
+            </tbody>
+          </table>
+          <%= link_to "Exportar CSV", reports_report_path(q: params[:q], format: :csv), class: "btn btn-primary" %>
+        </div>
+      <% elsif params[:q].present? %>
+        <div class="text-center">No se encontraron datos</div>
+      <% end %>
+    </div>
+    <%= paginate @victims , theme: 'bootstrap-5',
+                 pagination_class: "pagination-sm flex-wrap justify-content-center" if @victims.present?%>
+  </div>
+</div>

@@ -31,3 +31,21 @@
 
 en:
   hello: "Hello world"
+  views:
+    pagination:
+      first: 'First'
+      previous: '&lt;span class="glyphicon glyphicon-menu-left" aria-hidden="true"&gt;&lt;/span&gt;'
+      next: '&lt;span class="glyphicon glyphicon-menu-right" aria-hidden="true"&gt;&lt;/span&gt;'
+      last: 'Last'
+  mailer:
+    user_mailer:
+      subject: "Welcome"
+  datetime:
+    distance_in_words:
+      ago_less_than_a_minute: ""
+      ago_x_minutes:
+        one: ""
+        other: ""
+      ago_x_hours:
+        one: ""
+        other: ""

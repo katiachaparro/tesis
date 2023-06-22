@@ -1,5 +1,5 @@
 <%= turbo_frame_tag EventAction.new do  %>
-  <%= render 'event_actions/new_action_button' %>
+  <%= render 'event_actions/new_action_button' unless @event.closed %>
 <% end %>
 
 <%= turbo_frame_tag "event_actions" do  %>

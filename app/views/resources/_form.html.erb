@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :kind, prompt: 'Selecciona un tipo' %>
+    <%= f.input :kind, prompt: 'Selecciona un tipo', input_html: { class: 'form-select' } %>
     <%= f.input :active %>
 
     <div class="actions text-start">

@@ -46,20 +46,26 @@
       </li>
       <li class="nav-item">
         <%= link_to root_path, class:'nav-link' do %>
-          <i class="sidebar-icon fa-solid fa-chart-pie"></i>
-          <span class="sidebar-text">Dashboard</span>
+          <i class="sidebar-icon fa-solid fa-house"></i>
+          <span class="sidebar-text">Inicio</span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to organizations_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-sitemap"></i>
           <span class="sidebar-text">Organizaciones</span>
-        <% end %>
+        <% end if can? :update, Organization %>
       </li>
       <li class="nav-item">
         <%= link_to resources_path, class:'nav-link' do %>
-          <i class="sidebar-icon fa-solid fa-warehouse"></i>
+          <i class="sidebar-icon fa-solid fa-boxes-stacked"></i>
           <span class="sidebar-text">Recursos</span>
+        <% end if can? :manage, Resource %>
+      </li>
+      <li class="nav-item">
+        <%= link_to organization_resource_per_organizations_path(current_user.organization_id), class:'nav-link' do %>
+          <i class="sidebar-icon fa-sharp fa-solid fa-warehouse"></i>
+          <span class="sidebar-text">Mis Recursos</span>
         <% end %>
       </li>
       <li class="nav-item">
@@ -73,6 +79,18 @@
           <i class="sidebar-icon fa-solid fa-house-fire"></i>
           <span class="sidebar-text">Eventos e Incidentes</span>
         <% end if can? :read, Event %>
+      </li>
+      <li class="nav-item">
+        <%= link_to search_resources_resources_path, class:'nav-link' do %>
+          <i class="sidebar-icon fa-solid fa-magnifying-glass"></i>
+          <span class="sidebar-text">Buscador de recursos</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to reports_report_path, class:'nav-link' do %>
+          <i class="sidebar-icon fa-solid fa-chart-pie"></i>
+          <span class="sidebar-text">Reportes</span>
+        <% end if can? :report, Victim %>
       </li>
     </ul>
   </div>

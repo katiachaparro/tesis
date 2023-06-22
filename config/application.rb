@@ -12,7 +12,7 @@ module Tesis
     config.load_defaults 6.1
 
     # Fix audited bug
-    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date]
+    config.active_record.yaml_column_permitted_classes = [ActiveSupport::TimeWithZone, ActiveSupport::TimeZone, Time, Date, BigDecimal]
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -20,6 +20,9 @@ module Tesis
     # in config/environments, which are processed later.
     #
     config.time_zone = "Buenos Aires"
+
+    # default language i18n
+    config.i18n.default_locale = :es
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

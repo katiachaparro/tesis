@@ -1,0 +1,29 @@
+<div class="d-flex w-100 align-items-center">
+  <%- if dashboard %>
+    <span class="d-flex flex-column">
+      <b>#<%= resource_request.code %></b>
+
+      <span>I: <%= resource_request.event.name %></span>
+    </span>
+    <small class="ms-auto me-2 text-end">
+      <div class="d-flex justify-content-end">
+        <%- unless resource_request.event.incident? %>
+          <span class="d-block my-1 badge rounded-pill bg-success text-white">Evento</span>
+        <% end %>
+        <%- if resource_request.organization_id.present? %>
+          <span class="d-block my-1 badge rounded-pill bg-warning text-primary">Solicitud Directa</span>
+        <% end %>
+      </div>
+      <%= resource_request.created_at.strftime('%d-%m-%Y %H:%M') %>
+    </small>
+  <%- else %>
+    <span>
+      <b>Solicitud #<%= resource_request.code %></b>
+      <span class="mx-2 my-0 badge rounded-pill bg-white <%= resource_request_status_class(resource_request) %>"><%= resource_request.status.text %></span>
+      <%- if resource_request.organization_id.present? %>
+        <b>Solicitado a: <%= resource_request.organization.name %></b>
+      <% end %>
+    </span>
+    <small class="ms-auto me-2">Fecha: <%= resource_request.created_at.strftime('%d-%m-%Y %H:%M') %></small>
+  <%- end %>
+</div>

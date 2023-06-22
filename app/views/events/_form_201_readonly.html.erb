@@ -1,0 +1,46 @@
+<%= simple_form_for @event, wrapper: :disabled_floating_labels_form do |f| %>
+  <label class="text-gray-500">Evaluación  Inicial:</label>
+  <div class="row">
+    <%= f.input :event_nature, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:7rem' } %>
+    <%= f.input :threats, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:7rem' } %>
+    <%= f.input :affected_area, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:7rem' } %>
+  </div>
+  <div class="row">
+    <%= f.input :objectives, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:10rem' } %>
+    <%= f.input :strategy, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:10rem' } %>
+    <%= f.input :tactics, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:10rem' } %>
+  </div>
+  <div class="row">
+    <%= f.input :pc_location, wrapper_html: { class: 'mb-3 col-12 col-md' } %>
+    <%= f.input :e_location, wrapper_html: { class: 'mb-3 col-12 col-md' } %>
+  </div>
+  <div class="row">
+    <%= f.input :entry_route, wrapper_html: { class: 'mb-3 col-12 col-md' } %>
+    <%= f.input :egress_route, wrapper_html: { class: 'mb-3 col-12 col-md' } %>
+  </div>
+  <div class="row">
+    <%= f.input :security_message, wrapper_html: { class: 'mb-3 col-12' } %>
+    <%= f.input :communication_channels, wrapper_html: { class: 'mb-3 col-12' } %>
+  </div>
+  <div class="row">
+    <%= f.input :commander, wrapper_html: { class: 'mb-3 col-12' } %>
+  </div>
+  <div class="row">
+    <ul>
+      <% f.object.sketchs.each do |file| %>
+        <li>
+          <%= image_tag file.representation(resize_to_limit: [100, 100])  if file.representable? %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="row">
+    <ul>
+      <% f.object.organization_charts.each do |file| %>
+        <li>
+          <%= image_tag file.representation(resize_to_limit: [100, 100])  if file.representable? %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

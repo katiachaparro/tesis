@@ -53,3 +53,19 @@ form abbr[title], form abbr[data-bs-original-title] {
 .color-black {
   color: black;
 }
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.height-90vh{
+  height: 90vh;
+}
+.height-300{
+  height: 300px;
+}
+
+.table-responsive .table tbody {
+  border-top: none;
+}
+.table-responsive .table .thead-light th {
+  background-color: #f5dbb8;
+}

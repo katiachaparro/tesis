@@ -7,7 +7,7 @@
                       data: { controller: 'ts--select' }
                     }
                     %>
-  <%= f.input :quantity, :as => :decimal, label: false, wrapper_html: { class: 'col-3 mx-1' }, placeholder: "Cant." %>
+  <%= f.input :quantity, :as => :integer, label: false, wrapper_html: { class: 'col-3 mx-1' }, placeholder: "Cant." %>
   <button type="button" data-action="nested-form#remove" class="btn brt-link text-danger mb-3 ms-auto" title="Eliminar">
     <i class="fas fa-trash-can"></i>
   </button>

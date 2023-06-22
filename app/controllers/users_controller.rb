@@ -9,8 +9,8 @@ class UsersController < ApplicationController
         format.html { redirect_to users_profile_path, notice: "Tu perfil fue actualizado exitosamente." }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :show, status: :unprocessable_user }
-        format.json { render json: @user.errors, status: :unprocessable_user }
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

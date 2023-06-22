@@ -6,8 +6,7 @@ class EventActionsController < ApplicationController
     @event_action = EventAction.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @event_action = @event.event_actions.build(event_action_params)

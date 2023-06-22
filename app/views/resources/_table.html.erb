@@ -1,6 +1,5 @@
 <% resources.each do |resource| %>
   <tr>
-    <td class="collapsed collapse-icon px-0"></td>
     <td class="text-start col-4">
       <div class="d-flex align-items-center">
         <div class="dot rounded-circle me-1 <%= resource.active?? 'bg-success':'bg-secondary' %>"></div>
@@ -10,13 +9,10 @@
     <td class="text-start d-none d-md-table-cell"><%= resource.kind_text %></td>
     <td class="text-start d-none d-md-table-cell text-truncate" style="max-width: 100px"><%= resource.description %></td>
     <td class="text-start" style="max-width: 100px"><%= resource.total %></td>
-    <td class="settings px-0">
-      <i class="fa-solid fa-ellipsis-vertical text-end pe-3 w-100" type="button" id="resource-settings<%=resource.id%>" data-bs-toggle="dropdown" aria-expanded="false"></i>
-      <ul class="dropdown-menu" aria-labelledby="resource-settings<%=resource.id%>">
-        <li><%= link_to 'Editar', edit_resource_path(resource), class:'dropdown-item' if can? :edit, resource%></li>
-        <li><button class="dropdown-item" type="button">Another action</button></li>
-        <li><button class="dropdown-item" type="button">Something else here</button></li>
-      </ul>
+    <td class="text-end">
+      <%= link_to edit_resource_path(resource), class: 'text-info me-1 my-0 fs-5', title: 'Editar' do %>
+        <span class= "fa fa-pen-to-square"></span>
+      <% end if can? :edit, resource %>
     </td>
   </tr>
 <% end %>

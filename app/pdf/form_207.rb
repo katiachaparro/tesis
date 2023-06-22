@@ -13,12 +13,12 @@ class Form207 < Prawn::Document
         text 'Formulario SCI - 207', align: :center, size: 16, color: title_color
         text 'Registro de Víctimas', align: :center, size: 16, color: title_color
       end
-
-      #footer
-      bottom = 0
-      number_pages "Página <page> de <total>", at: [bounds.left, bottom], width: 100
-      number_pages "Fecha y Hora de Preparación\n#{event.created_at&.strftime('%d-%m-%Y %H:%M')}", at: [bounds.right-200, bottom], width: 200, align: :right
     end
+
+    # footer
+    bottom = 0
+    number_pages "Página <page> de <total>", at: [bounds.left, bottom], width: 100
+    number_pages "Fecha y Hora de Preparación\n#{event.created_at&.strftime('%d-%m-%Y %H:%M')}", at: [bounds.right-200, bottom], width: 200, align: :right
   end
 
   protected
