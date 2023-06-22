@@ -1,4 +1,10 @@
 es:
+  views:
+    pagination:
+      first: 'Primero'
+      last: 'Último'
+      next: 'Siguiente'
+      previous: 'Anterior'
   mailer:
     user_mailer:
       subject: "Bienvenido al sistema del CMGRRD"
