@@ -11,6 +11,7 @@ class Organization < ApplicationRecord
   #scopes
   scope :allow_sub_organizations, -> { where(allow_sub_organizations: true) }
   scope :organization_and_children, -> (org_id) { where(id: org_id).or(where(parent_organization_id: org_id)).order(:name) }
+  scope :mappable_organizations, -> { where.not(longitude: nil) }
 
   ActionController::Parameters.permit_all_parameters = true
 

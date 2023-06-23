@@ -48,7 +48,12 @@ export default class extends Controller {
             const title = marker.dataset.title
 
             if (lat !== '' && lng !== ''){
-                let leafletMarker = L.marker([lat, lng]).addTo(this.map)
+                const customIcon = L.icon({
+                    iconUrl: `/assets/map_icons/${marker.dataset.icon || 'icon_incident.svg'}`,
+                    iconSize: [32, 32],
+                });
+
+                let leafletMarker = L.marker([lat, lng], { icon: customIcon }).addTo(this.map)
                 leafletMarker.on("click", () => this.onMarkerClick(leafletMarker))
                 leafletMarker.bindPopup(title)
                 this.markers[id] = leafletMarker

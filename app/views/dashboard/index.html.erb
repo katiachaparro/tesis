@@ -3,10 +3,20 @@
     <%= render 'scheduled_events' %>
     <%= render 'resource_requests' %>
   </div>
-  <div class="col-12 col-xl-8">
-    <%- @events.each do |event| %>
-      <div data-map-target="marker" data-id="<%= event.id %>" data-lat="<%= event.latitude %>" data-lng="<%= event.longitude %>" data-title="<%= event.name %>"></div>
+  <div class="col-12 col-xl-8 d-flex flex-column ">
+    <%- @events&.each do |event| %>
+      <div data-map-target="marker" data-id="<%= event.id %>" data-lat="<%= event.latitude %>" data-lng="<%= event.longitude %>" data-title="<%= event.name %>" data-icon="<%= event.incident? ? 'icon_incident.svg' : 'icon_event.svg' %>"></div>
     <% end %>
-    <div data-map-target="map" class="height-90vh"></div>
+    <%- @organizations&.each do |org| %>
+      <div data-map-target="marker" data-lat="<%= org.latitude %>" data-lng="<%= org.longitude %>" data-title="<%= org.name %>" data-icon="<%= 'icon1.svg' %>"></div>
+    <% end %>
+    <%= form_tag(dashboard_index_path, method: :get, class: 'd-flex') do %>
+      <div class="form-check form-switch">
+        <label class="form-check-label" for="show_organizations">Mostrar organizaciones</label>
+        <%= check_box_tag 'show_organizations', '1', @show_organizations, class:'form-check-input', onchange: 'this.form.submit();' %>
+      </div>
+    <% end %>
+
+    <div data-map-target="map" class="height-80vh mt-2"></div>
   </div>
 </div>
