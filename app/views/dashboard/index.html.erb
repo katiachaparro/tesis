@@ -8,7 +8,7 @@
       <div data-map-target="marker" data-id="<%= event.id %>" data-lat="<%= event.latitude %>" data-lng="<%= event.longitude %>" data-title="<%= event.name %>" data-icon="<%= event.incident? ? 'icon_incident.svg' : 'icon_event.svg' %>"></div>
     <% end %>
     <%- @organizations&.each do |org| %>
-      <div data-map-target="marker" data-lat="<%= org.latitude %>" data-lng="<%= org.longitude %>" data-title="<%= org.name %>" data-icon="<%= 'icon1.svg' %>"></div>
+      <div data-map-target="marker" data-lat="<%= org.latitude %>" data-lng="<%= org.longitude %>" data-title="<%= org.name %>" data-icon="<%= org.custom_icon || 'icon1.svg' %>"></div>
     <% end %>
     <%= form_tag(dashboard_index_path, method: :get, class: 'd-flex') do %>
       <div class="form-check form-switch">

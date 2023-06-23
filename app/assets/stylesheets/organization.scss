@@ -21,3 +21,18 @@ td.settings, td.collapse-icon{
   width: 50px;
   text-align: center;
 }
+.icon-radio {
+  > legend {
+    display: none;
+  }
+  > small {
+    display: block;
+  }
+  .form-check{
+    display: inline-block;
+    margin-right: 50px;
+  }
+  .form-check-label {
+    min-width: 3rem;
+  }
+}

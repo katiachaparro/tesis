@@ -13,7 +13,10 @@
     <div class="col-lg-6">
       <%= f.hidden_field :parent_organization_id, value: @parent_id %>
       <%= f.input :allow_sub_organizations %>
-
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
       <div data-controller="map" data-input-marker="true">
         <%= f.hidden_field :longitude, 'data-map-target': 'lngInput' %>
         <%= f.hidden_field :latitude, 'data-map-target': 'latInput' %>
@@ -23,6 +26,16 @@
       <div class="actions text-start">
         <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
         <%= link_to 'Cancelar', organizations_path, class: 'link-secondary ms-3' %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="col">
+        <%= f.input :custom_icon,
+                    :as => :radio_buttons,
+                    wrapper_html: { class: 'icon-radio' },
+                    collection: icon_options,
+                    label_method: :second, value_method: :first,
+                    hint: 'Selecciona el ícono que se mostrará en los mapas de Inicio y Buscador de Recursos.' %>
       </div>
     </div>
   </div>

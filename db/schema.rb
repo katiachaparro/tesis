@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_13_182139) do
+ActiveRecord::Schema.define(version: 2023_06_23_051326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2023_06_13_182139) do
     t.decimal "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "custom_icon"
     t.index ["parent_organization_id"], name: "index_organizations_on_parent_organization_id"
   end
 

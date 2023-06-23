@@ -62,7 +62,7 @@ class OrganizationsController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.require(:organization).permit(:name, :description, :parent_organization_id, :allow_sub_organizations, :longitude, :latitude)
+      params.require(:organization).permit(:name, :description, :parent_organization_id, :allow_sub_organizations, :longitude, :latitude, :custom_icon)
     end
 
   def add_index_breadcrumbs
