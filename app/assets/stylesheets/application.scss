@@ -72,3 +72,8 @@ form abbr[title], form abbr[data-bs-original-title] {
 .table-responsive .table .thead-light th {
   background-color: #f5dbb8;
 }
+
+.notification-list{
+  max-height: 75vh;
+  overflow-y: auto;
+}
