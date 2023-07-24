@@ -31,11 +31,13 @@ class Form207 < Prawn::Document
   end
 
   def form_table
+    start_page = false
     Victim.place_of_registration.values.each_with_index do |pr, i|
       victims = Victim.where(event: @event, place_of_registration: pr)
       next if victims.empty?
 
-      form_header(pr.text, start_page: !i.zero?)
+      form_header(pr.text, start_page: start_page)
+      start_page = true
       move_down 10
       header = [['4. Nombres del paciente:', '5. Sexo:', '6. Edad:', classification_header, '8. Lugar de Traslado o atendido en el sitio:', '9. Trasladado por o no requerido:', '10. Fecha y hora:']]
       rows = victims.order(:date)
