@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
+  #mount ActionCable.server => '/cable'
   resources :events, except: [:destroy] do
     resources :victims, except: [:index, :show]
     resources :event_actions, except: [:index, :show]
