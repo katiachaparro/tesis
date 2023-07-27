@@ -17,7 +17,7 @@
   </head>
 
   <body>
-  <%= console if Rails.env.development? || Rails.env.test? %>
+  <%= console if Rails.env.development? %>
   <%= turbo_frame_tag 'toast_notice' do %>
     <%= render 'layouts/toast', locals: {alert: alert, notice: notice } %>
   <% end %>
