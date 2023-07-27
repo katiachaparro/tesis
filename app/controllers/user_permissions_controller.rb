@@ -34,8 +34,8 @@ class UserPermissionsController < ApplicationController
 
     respond_to do |format|
       if @user_permission.save
-        UserMailer.with(user: @user_permission.user, pw: friendly_token).welcome_user.deliver_later
-        format.html { redirect_to user_permissions_url, notice: "El usuario fue creado exitosamente. #{friendly_token unless Rails.env.production? }" }
+        UserMailer.welcome_user(@user_permission.user, @user_permission.organization, friendly_token).deliver_now
+        format.html { redirect_to user_permissions_url, notice: 'El usuario fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @user_permission }
       else
         format.html { render :new, status: :unprocessable_entity }

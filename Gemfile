@@ -80,3 +80,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "noticed", "~> 1.6"
+# gen to read env file
+gem 'dotenv-rails'
+# gem to sending emails via SMTP
+gem 'mail'
