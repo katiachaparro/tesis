@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  <style>
+    <%= File.read(Rails.root.join('app', 'assets', 'stylesheets', 'mailer_styles.css')) %>
+  </style>
+</head>
+<body>
+  <div class="container card">
+    <div class="card-header">
+      <h1><%= @event.name %></h1>
+    </div>
+    <div class="card-body">
+      <p><%= @notification.message %></p>
+
+      <div class="text-center">
+        <%= link_to 'Ir al evento', event_url(@event), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
