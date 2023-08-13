@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   audited
   extend Enumerize
+  include NotificationsHelper
+
   belongs_to :organization
   has_many_attached :sketchs do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
@@ -18,7 +20,7 @@ class Event < ApplicationRecord
                                 reject_if: :all_blank, allow_destroy: true
   enumerize :kind, in: [:event, :incident], scope: :shallow
 
-  validates :name, presence: true
+  validates :name, :organization_id, presence: true
 
   scope :active_events, -> { where(closed: [nil, false]) }
   scope :mappable_events, -> { active_events.where.not(longitude: nil) }
@@ -26,6 +28,7 @@ class Event < ApplicationRecord
   scope :by_organization, -> (org_id) { includes(:assist_requests).where(organization_id: org_id).or(where(assist_requests: {organization_id: org_id})) }
 
   attr_accessor :demobilization_date, :demobilizing_person, :comments
+  before_save :check_organization_changes
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name organization_id kind closed event_start event_end location commander]
@@ -58,5 +61,11 @@ class Event < ApplicationRecord
       )
       update(closed: true, event_end: params['demobilization_date'])
     end
+  end
+
+  private
+
+  def check_organization_changes
+    notify_assigned_event(organization_id_was, self) if organization_id_changed? && id.present?
   end
 end

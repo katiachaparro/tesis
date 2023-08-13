@@ -29,6 +29,22 @@
         <label>Fecha y hora de Cierre</label>
       </div>
     <% end %>
+
+    <%- if @organization_id == f.object.organization_id %>
+      <div class="mb-3 col-12 col-lg-6">
+        <div class="form-floating select2-form">
+          <%= select_tag(:organization_id,
+                         options_from_collection_for_select(Organization.all.order(:name), 'id', 'name', f.object.organization_id),
+                         class: 'form-select',
+                         prompt: 'Selecciona una Organización',
+                         required: true,
+                         data: { controller: 'ts--select' },
+                         name:'event[organization_id]') %>
+          <label>Asignado a</label>
+        </div>
+      </div>
+    <% end %>
+
     <%= f.input :location, wrapper_html: { class: 'mb-3 col-12' }, label: "Lugar del #{f.object.kind.text}" %>
     <%= f.hidden_field :kind, value: f.object.kind || Event.kind.incident %>
   </div>

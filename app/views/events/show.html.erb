@@ -34,7 +34,8 @@
         </strong>
         <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %> <%= " - #{@event.event_end.strftime('%d-%m-%Y %H:%M')}" if @event.closed %></div>
       </div>
-      <%= @event.location %>
+      <div>Asignado a: <%= @event.organization&.name %></div>
+      <div><%= @event.location %></div>
     </div>
     <div class="card-body pb-4">
       <div class="row">
