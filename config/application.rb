@@ -24,5 +24,19 @@ module Tesis
     # default language i18n
     config.i18n.default_locale = :es
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Sendgrid configuration
+    # config.action_mailer.default_url_options = { host: ENV['EMAIL_HOST'] }
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.perform_deliveries = true
+    # config.action_mailer.smtp_settings = {
+    #   address: 'smtp.sendgrid.net',
+    #   port: 587,
+    #   domain: ENV['EMAIL_HOST'],
+    #   user_name: 'apikey',
+    #   password: ENV['SENDGRID_API_KEY'],
+    #   authentication: :plain,
+    #   enable_starttls_auto: true
+    # }
   end
 end
