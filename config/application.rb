@@ -40,5 +40,21 @@ module Tesis
         enable_starttls_auto: true
       }
     end
+
+    # Gmail configuration
+    if ENV['MAIL_USERNAME'].present?
+      config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.perform_deliveries = true
+      config.action_mailer.smtp_settings = {
+        address: 'smtp.gmail.com',
+        port:  ENV['MAIL_PORT'],
+        domain: ENV['MAIL_HOST'],
+        user_name: ENV['MAIL_USERNAME'],
+        password: ENV['MAIL_PASSWORD'],
+        authentication: :plain,
+        enable_starttls_auto: true
+      }
+    end
   end
 end
