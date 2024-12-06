@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   load_and_authorize_resource
   include NotificationsHelper
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[ show edit update destroy destroy_sketch destroy_organization_chart]
   before_action :add_index_breadcrumbs, only: [:show, :edit, :new]
 
   # GET /events or /events.json
@@ -54,7 +54,19 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1 or /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
+      updated_params = event_params.except(:sketchs, :organization_charts)
+      if @event.update(updated_params)
+        
+        # attach images
+        new_sketchs = params[:event][:sketchs] || []
+        new_organization_charts = params[:event][:organization_charts] || []
+        new_sketchs.each do |new_sketch|
+          @event.sketchs.attach(new_sketch)
+        end
+        new_organization_charts.each do |new_chart|
+          @event.organization_charts.attach(new_chart)
+        end
+
         format.html { redirect_to event_url(@event), notice: 'El evento fue actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -111,20 +123,36 @@ class EventsController < ApplicationController
     end
   end
 
+  # delete sketch
+  def destroy_sketch
+    @sketch = @event.sketchs.find(params[:image_id])
+    @sketch.purge # delete from ActiveStorage
+    redirect_to event_path(@event), notice: 'El croquis fue eliminado correctamente.'
+  end
+
+  # delete organization_chart
+  def destroy_organization_chart
+    @organization_chart = @event.organization_charts.find(params[:image_id])
+    @organization_chart.purge # delete from ActiveStorage
+    redirect_to event_path(@event), notice: 'El organigrama fue eliminado correctamente.'
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:name, :kind, :form_start, :event_start, :event_end, :location, :event_nature, :longitude, :latitude,
+    params.require(:event).permit(
+                                  :name, :kind, :form_start, :event_start, :event_end, :location, :event_nature, :longitude, :latitude,
                                   :threats, :affected_area, :isolation, :objectives, :strategy,
                                   :tactics, :pc_location, :e_location, :entry_route, :egress_route,
                                   :security_message, :communication_channels, :commander, :organization_id,
                                   sketchs: [], organization_charts: [],
-                                  event_actions_attributes: [:id, :description, :date, :_destroy])
+                                  event_actions_attributes: [:id, :description, :date, :_destroy]
+  )
   end
 
   def demobilized_params

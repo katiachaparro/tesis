@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :resource_requests, except: [:destroy, :show, :edit, :update] do
       get :cancel
     end
+    member do
+      delete 'sketch/:image_id', to: 'events#destroy_sketch', as: 'destroy_sketch'
+      delete 'organization_chart/:image_id', to: 'events#destroy_organization_chart', as: 'destroy_organization_chart'
+    end
     get :export_201
     get :export_207
     get :export_211

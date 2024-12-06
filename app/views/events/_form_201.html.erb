@@ -1,4 +1,4 @@
-<%= simple_form_for @event, wrapper: :floating_labels_form do |f| %>
+<%= simple_form_for @event, wrapper: :floating_labels_form, html: { multipart: true } do |f| %>
   <label class="text-gray-500">Evaluación  Inicial:</label>
   <div class="row">
     <%= f.input :event_nature, wrapper_html: { class: 'mb-3 col-12 col-md' }, input_html: { style: 'height:7rem' } %>
@@ -25,26 +25,86 @@
   <div class="row">
     <%= f.input :commander, wrapper_html: { class: 'mb-3 col-12' } %>
   </div>
+  
   <div class="row">
-    <%= f.input :sketchs, wrapper_html: { class: 'mb-3 col-12' }, as: :file, :input_html => { :multiple => true }, name: 'events[sketchs][]' %>
-    <ul>
-      <% f.object.sketchs.each do |file| %>
-        <li>
-          <%= image_tag file.representation(resize_to_limit: [100, 100])  if file.representable? %>
+    <%= f.input :sketchs, wrapper_html: { class: 'mb-3 col-12' }, as: :file, input_html: { multiple: true, class: 'custom-file-input', accept: 'image/*' } %>
+    <ul class="list-unstyled d-flex flex-wrap">
+      <% @event.sketchs.each do |file| %>
+        <li class="me-3 mb-3 position-relative">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-<%= file.id %>">
+            <% if file.representable? %>
+              <%= image_tag file.representation(resize_to_limit: [100, 100]), class: 'img-thumbnail' %>
+            <% else %>
+              <span class="text-muted">Imagen no disponible</span>
+            <% end %>
+          </a>
+
+          <div class="modal fade" id="imageModal-<%= file.id %>" tabindex="-1" aria-labelledby="imageModalLabel-<%= file.id %>" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="imageModalLabel-<%= file.id %>">Mapa Situacional o Croquis</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <% if file.representable? %>
+                    <%= image_tag file.representation(resize_to_limit: [800, 800]), class: 'img-fluid' %>
+                  <% else %>
+                    <p class="text-muted">Imagen no disponible</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%= link_to destroy_sketch_event_path(@event, file), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class: 'position-absolute top-0 start-100 translate-middle p-1 bg-danger badge rounded-pill fs-6 text-white' do %>
+            <i class="fas fa-times"></i>
+          <% end %>
         </li>
       <% end %>
     </ul>
   </div>
+
   <div class="row">
-    <%= f.input :organization_charts, wrapper_html: { class: 'mb-3 col-12' }, as: :file, :input_html => { :multiple => true }, name: 'events[organization_charts][]' %>
-    <ul>
-      <% f.object.organization_charts.each do |file| %>
-        <li>
-          <%= image_tag file.representation(resize_to_limit: [100, 100])  if file.representable? %>
+    <%= f.input :organization_charts, wrapper_html: { class: 'mb-3 col-12' }, as: :file, input_html: { multiple: true, class: 'custom-file-input', accept: 'image/*' } %>
+    <ul class="list-unstyled d-flex flex-wrap">
+      <% @event.organization_charts.each do |file| %>
+        <li class="me-3 mb-3 position-relative">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#imageModalChart-<%= file.id %>">
+            <% if file.representable? %>
+              <%= image_tag file.representation(resize_to_limit: [100, 100]), class: 'img-thumbnail' %>
+            <% else %>
+              <span class="text-muted">Imagen no disponible</span>
+            <% end %>
+          </a>
+
+          <div class="modal fade" id="imageModalChart-<%= file.id %>" tabindex="-1" aria-labelledby="imageModalChartLabel-<%= file.id %>" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="imageModalChartLabel-<%= file.id %>">Organigrama</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <% if file.representable? %>
+                    <%= image_tag file.representation(resize_to_limit: [800, 800]), class: 'img-fluid' %>
+                  <% else %>
+                    <p class="text-muted">Imagen no disponible</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%= link_to destroy_organization_chart_event_path(@event, file), method: :delete, data: { confirm: 'Are you sure you want to delete this image?' }, class: 'position-absolute top-0 start-100 translate-middle p-1 bg-danger badge rounded-pill fs-6 text-white' do %>
+            <i class="fas fa-times"></i>
+          <% end %>
         </li>
       <% end %>
     </ul>
   </div>
+
+
   <div class="actions text-end">
     <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
     <%= link_to 'Cancelar', events_path, class: 'link-secondary ms-3'%>
