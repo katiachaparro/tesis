@@ -30,7 +30,13 @@ class ResourceRequestsController < ApplicationController
         format.turbo_stream { flash.now[:notice] = 'Los recursos fueron solicitados exitosamente.' }
       end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('resource_request_form', partial: 'resource_requests/form', locals: { resource_request: @resource_request }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 

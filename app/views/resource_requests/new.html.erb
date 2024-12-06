@@ -1,3 +1,5 @@
 <%= render 'remote_modal', title: 'Solicitar Recursos' do %>
-  <%= render 'form' %>
+  <turbo-frame id="resource_request_form">
+    <%= render 'form' %>
+  </turbo-frame>
 <% end %>
