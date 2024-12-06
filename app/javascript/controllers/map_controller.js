@@ -45,15 +45,29 @@ export default class extends Controller {
             const id = marker.dataset.id
             const lat = marker.dataset.lat
             const lng = marker.dataset.lng
-            const title = marker.dataset.title
 
             if (lat !== '' && lng !== ''){
-                let leafletMarker = L.marker([lat, lng]).addTo(this.map)
+                const customIcon = L.icon({
+                    iconUrl: `/assets/map_icons/${marker.dataset.icon || 'icon_incident.svg'}`,
+                    iconSize: [32, 32],
+                });
+
+                let leafletMarker = L.marker([lat, lng], { icon: customIcon }).addTo(this.map)
                 leafletMarker.on("click", () => this.onMarkerClick(leafletMarker))
-                leafletMarker.bindPopup(title)
+                leafletMarker.bindPopup(this._marketContent(marker.dataset))
                 this.markers[id] = leafletMarker
             }
         })
+    }
+
+    _marketContent(dataset){
+        return `
+        ${dataset.title}
+        <div class="d-flex justify-content-between" style="min-width: 150px;">
+        ${ dataset.url ? `<a href="${dataset.url}">Ver</a>` : '' }
+        <a href="https://maps.google.com/?q=${dataset.lat},${dataset.lng}" target="_blank">Abrir mapa</a>
+        </div>
+        `
     }
 
     onMarkerClick(leafletMarker) {

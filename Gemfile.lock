@@ -98,6 +98,10 @@ GEM
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     enumerize (2.5.0)
       activesupport (>= 3.2)
     erubi (1.12.0)
@@ -327,6 +331,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 3.26)
   devise
+  dotenv-rails
   enumerize
   faker
   hotwire-rails
@@ -360,4 +365,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.2.33
+   2.4.14

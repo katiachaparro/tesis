@@ -6,7 +6,7 @@
                       input_html: {
                         data: { controller: 'ts--select' }
                       } %>
-    <%= f.input :quantity %>
+    <%= f.input :quantity, input_html: { min: '0' } %>
     <div class="actions text-start">
       <%= f.button :submit, "Guardar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
       <%= link_to 'Cancelar', organization_resource_per_organizations_path(@organization), class: 'link-secondary ms-3'%>

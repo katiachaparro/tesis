@@ -18,8 +18,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
-    @parent_id = params[:parent_id]
-    @organization.parent_organization = Organization.find_by_id(@parent_id) if @parent_id.present?
+    @parent_id = params[:parent_id] || current_user.organization_id
+    @organization.parent_organization_id = @parent_id
 
     add_breadcrumbs("Nuevo")
   end
@@ -62,7 +62,7 @@ class OrganizationsController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.require(:organization).permit(:name, :description, :parent_organization_id, :allow_sub_organizations, :longitude, :latitude)
+      params.require(:organization).permit(:name, :description, :parent_organization_id, :allow_sub_organizations, :longitude, :latitude, :custom_icon)
     end
 
   def add_index_breadcrumbs

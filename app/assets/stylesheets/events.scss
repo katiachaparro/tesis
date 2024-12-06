@@ -9,3 +9,17 @@
   background-color: #f0bc744d;
   color: #4B5563;
 }
+.form-floating.select2-form {
+  border: 0.0625rem solid #D1D5DB;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  label{
+    left: -0.85rem;
+  }
+  .select2-selection {
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 1rem;
+    padding-left: 0;
+  }
+}

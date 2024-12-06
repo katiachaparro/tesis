@@ -10,9 +10,17 @@ export default class extends Controller {
     let parent = el.closest('.modal')
 
     if (parent.length > 0) {
-      el.select2({ dropdownParent: parent, theme: "bootstrap" })
+      el.select2({ dropdownParent: parent, theme: "bootstrap", language: this.translateMessage() })
     } else {
-      el.select2({ theme: "bootstrap" })
+      el.select2({ theme: "bootstrap", language: this.translateMessage() })
+    }
+  }
+
+  translateMessage() {
+    return {
+      noResults: function () {
+        return "Sin resultados";
+      }
     }
   }
 }

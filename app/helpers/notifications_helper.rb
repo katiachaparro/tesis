@@ -43,4 +43,12 @@ module NotificationsHelper
     users = User.include_organization(org_ids)
     EventNotification.with(event: event, message: message).deliver(users)
   end
+
+  def notify_assigned_event(old_org_id, event)
+    org = Organization.find_by_id(old_org_id)
+    message = "La organización \"#{org.name}\" te ha asignado el evento \"#{event.name}\"."
+    users = event.organization.users
+
+    EventNotification.with(event: event, message: message).deliver(users)
+  end
 end

@@ -40,6 +40,7 @@ es:
         description: 'Descripción'
         address: 'Dirección'
         phone: 'Teléfono'
+        custom_icon: 'Ícono para mapas'
         parent_organization: 'Organización responzable'
         allow_sub_organizations: 'Permitir sub-organizaciones'
       resource:

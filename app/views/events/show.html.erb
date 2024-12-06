@@ -26,10 +26,16 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center mt-3">
-        <strong class="h5"><%= @event.name %></strong>
+        <strong class="h5">
+          <%= @event.name %>
+          <%- if @event.longitude %>
+            <a href="https://maps.google.com/?q=<%= @event.latitude %>,<%= @event.longitude %>" target="_blank" title="Abrir mapa" class="ms-2 text-info"><i class="fa-solid fa-map-location-dot"></i></a>
+          <% end %>
+        </strong>
         <div><%= @event.event_start.strftime('%d-%m-%Y %H:%M') %> <%= " - #{@event.event_end.strftime('%d-%m-%Y %H:%M')}" if @event.closed %></div>
       </div>
-      <%= @event.location %>
+      <div>Asignado a: <%= @event.organization&.name %></div>
+      <div><%= @event.location %></div>
     </div>
     <div class="card-body pb-4">
       <div class="row">

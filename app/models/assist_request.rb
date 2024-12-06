@@ -31,7 +31,6 @@ class AssistRequest < ApplicationRecord
       }
 
       request_item.increment!(:quantity_used, by = quantity)
-      ResourcePerOrganization.find_by(resource: resource, organization_id: org_id)&.increment!(:quantity_used, by = quantity)
     end
   end
 
@@ -45,6 +44,7 @@ class AssistRequest < ApplicationRecord
         date: arrival_date,
         event: resource_request&.event
       )
+      ResourcePerOrganization.find_by(resource: resource, organization: organization)&.increment!(:quantity_used)
     end
   end
 

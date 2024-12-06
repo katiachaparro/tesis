@@ -4,11 +4,7 @@
       <h2 class="h4">Crear Organizaci&oacute;n <%= "para #{@organization.parent_organization.name}" if @organization.parent_organization.present?%></h2>
     </div>
     <div class="card-body pb-4">
-        <%= if  @parent_id.present?
-              render 'form'
-         else
-              render 'form_principal_organition'
-         end %>
+        <%= render 'form' %>
     </div>
   </div>
 </div>

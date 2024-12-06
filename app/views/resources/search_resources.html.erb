@@ -5,7 +5,7 @@
   <div class="col-12 col-xl-8">
     <%- @resources_per_organization&.pluck(:organization_id)&.uniq&.each do |org_id| %>
       <%- org = Organization.find_by_id org_id %>
-      <div data-map-target="marker" data-id="<%= org.id %>" data-lat="<%= org.latitude %>" data-lng="<%= org.longitude %>" data-title="<%= org.name %>"></div>
+      <div data-map-target="marker" data-id="<%= org.id %>" data-lat="<%= org.latitude %>" data-lng="<%= org.longitude %>" data-title="<%= org.name %>" data-icon="<%= org.custom_icon || 'icon1.svg' %>" data-url="<%= organization_path(org) %>"></div>
     <% end %>
     <div data-map-target="map" class="height-90vh"></div>
   </div>

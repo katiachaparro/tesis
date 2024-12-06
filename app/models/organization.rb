@@ -11,9 +11,7 @@ class Organization < ApplicationRecord
   #scopes
   scope :allow_sub_organizations, -> { where(allow_sub_organizations: true) }
   scope :organization_and_children, -> (org_id) { where(id: org_id).or(where(parent_organization_id: org_id)).order(:name) }
-
-  # @return [Integer]
-  before_save :is_main_organizer
+  scope :mappable_organizations, -> { where.not(longitude: nil) }
 
   ActionController::Parameters.permit_all_parameters = true
 
@@ -31,13 +29,5 @@ class Organization < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
-  end
-
-  @private
-  def is_main_organizer
-    unless self.parent_organization_id?
-      self.parent_organization_id = Organization.first&.id
-      self.allow_sub_organizations = true
-    end
   end
 end

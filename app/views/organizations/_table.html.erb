@@ -8,7 +8,9 @@
       <ul class="dropdown-menu" aria-labelledby="organization-settings<%=organization.id%>">
         <li><%= link_to 'Editar', edit_organization_path(organization), class:'dropdown-item' if can? :edit, organization %></li>
         <li><%= link_to 'Ver recursos', organization_resource_per_organizations_path(organization), class:'dropdown-item'%></li>
-        <li><%= link_to 'Agregar sub-organizacion', new_organization_path(parent_id:organization.id), class:'dropdown-item'%></li>
+        <%- if organization.allow_sub_organizations %>
+          <li><%= link_to 'Agregar sub-organizacion', new_organization_path(parent_id:organization.id), class:'dropdown-item'%></li>
+        <% end %>
       </ul>
     </td>
   </tr>

@@ -21,7 +21,7 @@ class Ability
     can :manage, :all
 
     return unless user.admin?
-    cannot :create_main_organization, Organization
+    can :create_main_organization, Organization
     cannot :manage, Resource
   end
 end
