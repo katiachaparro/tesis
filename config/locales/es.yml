@@ -58,6 +58,10 @@ es:
         restrict_dependent_destroy:
           has_one: No se puede eliminar el registro porque existe un %{record} dependiente
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
+        required: "debe existir"
+        greater_than: "debe ser mayor que %{count}"
+        blank: "no puede estar en blanco"
+        not_a_number: "no es un número"
       models:
         organization:
           attributes:
@@ -80,6 +84,9 @@ es:
         one: 'Recurso'
         other: 'Recursos'
       resource_per_organization:
+        one: 'Recurso'
+        other: 'Recursos'
+      resource_request_item:
         one: 'Recurso'
         other: 'Recursos'
       user:
@@ -121,6 +128,9 @@ es:
         kind: 'Tipo'
         active: 'Activo'
       resource_per_organization:
+        resource: 'Recurso'
+        quantity: 'Cantidad'
+      resource_request_item:
         resource: 'Recurso'
         quantity: 'Cantidad'
       victim:
