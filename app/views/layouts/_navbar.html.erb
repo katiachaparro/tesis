@@ -58,7 +58,7 @@
       <li class="nav-item">
         <%= link_to resources_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-boxes-stacked"></i>
-          <span class="sidebar-text">Recursos</span>
+          <span class="sidebar-text">Tipos de Recursos</span>
         <% end if can? :manage, Resource %>
       </li>
       <li class="nav-item">
@@ -82,13 +82,13 @@
       <li class="nav-item">
         <%= link_to search_resources_resources_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-magnifying-glass"></i>
-          <span class="sidebar-text">Buscador de recursos</span>
+          <span class="sidebar-text">Buscador de Recursos</span>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to reports_report_path, class:'nav-link' do %>
           <i class="sidebar-icon fa-solid fa-chart-pie"></i>
-          <span class="sidebar-text">Reportes</span>
+          <span class="sidebar-text">Reporte de Víctimas</span>
         <% end if can? :report, Victim %>
       </li>
     </ul>
