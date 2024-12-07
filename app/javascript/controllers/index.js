@@ -24,3 +24,6 @@ application.register("visibility", VisibilityController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import FileValidationController from "./file_validation_controller"
+application.register("file-validation", FileValidationController)

@@ -6,15 +6,32 @@ class r extends n {
         const e = this.templateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime().toString());
         this.targetTarget.insertAdjacentHTML("beforebegin", e);
     }
-    remove(t) {
-        t.preventDefault();
-        const e = t.target.closest(this.wrapperSelectorValue);
-        if (e.dataset.newRecord === "true")
-            e.remove();
-        else {
-            e.style.display = "none";
-            const a = e.querySelector("input[name*='_destroy']");
-            a.value = "1";
+    // Removes a nested form element
+    remove(event) {
+        event.preventDefault();
+
+        // Find all existing wrappers (nested elements)
+        const wrappers = this.element.querySelectorAll(this.wrapperSelectorValue);
+
+        // Prevent removing the last remaining wrapper
+        if (wrappers.length <= 1) {
+            alert("Debes solicitar al menos un recurso");
+            return;
+        }
+
+        // Find the specific wrapper to be removed
+        const wrapper = event.target.closest(this.wrapperSelectorValue);
+
+        // If it's a new record, simply remove it from the DOM
+        if (wrapper.dataset.newRecord === "true") {
+            wrapper.remove();
+        } else {
+            // Hide the existing wrapper and set the `_destroy` field to mark it for removal
+            wrapper.style.display = "none";
+            const destroyField = wrapper.querySelector("input[name*='_destroy']");
+            if (destroyField) {
+                destroyField.value = "1";
+            }
         }
     }
 }
