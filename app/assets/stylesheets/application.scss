@@ -77,3 +77,7 @@ form abbr[title], form abbr[data-bs-original-title] {
   max-height: 75vh;
   overflow-y: auto;
 }
+
+.signin-image {
+  background-image: image-url('signin.svg');
+}
