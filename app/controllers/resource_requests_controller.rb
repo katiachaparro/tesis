@@ -10,7 +10,7 @@ class ResourceRequestsController < ApplicationController
   end
 
   def cancel
-    @resource_request.update(status: ResourceRequest.status.canceled)
+    @resource_request.cancel_request(current_user)
     redirect_to event_path(@event), turbo_stream: true, notice: "La solicitud fue cancelada."
   end
 
