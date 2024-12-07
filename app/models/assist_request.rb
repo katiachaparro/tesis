@@ -50,13 +50,15 @@ class AssistRequest < ApplicationRecord
 
   def change_state(params)
     ActiveRecord::Base.transaction do
+      self.status = params['status']
+      self.assigned_to = params['status'] == AssistRequest.status.assigned_to ? params['assigned_to'] : ''
       status_text = show_assist_status(self)
-      params['assigned_to'] = '' if params['status'] != AssistRequest.status.assigned_to
-      params['comments'] = "#{status_text} #{params['comments']}"
-      update(params)
+      self.comments = "#{status_text} #{params['comments']}" # Use updated attributes
+      save!
+      
       EventAction.create(
-        description: "El recurso #{code} ha cambiado de estado a \"#{status_text}\".",
-        date: arrival_date,
+        description: "El recurso #{code} ha cambiado de estado a \"#{status_text}\". Obs: #{params['comments']}",
+        date: Time.zone.now,
         event: resource_request&.event
       )
     end
