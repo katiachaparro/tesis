@@ -56,8 +56,9 @@ class AssistRequest < ApplicationRecord
       self.comments = "#{status_text} #{params['comments']}" # Use updated attributes
       save!
       
+      obs = params['comments'].present? ? " Obs: #{params['comments']}" : ''
       EventAction.create(
-        description: "El recurso #{code} ha cambiado de estado a \"#{status_text}\". Obs: #{params['comments']}",
+        description: "El recurso #{code} ha cambiado de estado a \"#{status_text}\".#{obs}",
         date: Time.zone.now,
         event: resource_request&.event
       )
