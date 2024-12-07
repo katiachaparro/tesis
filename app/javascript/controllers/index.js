@@ -27,3 +27,6 @@ application.register("map", MapController)
 
 import FileValidationController from "./file_validation_controller"
 application.register("file-validation", FileValidationController)
+
+import RadioRequiredController from "./radio_required_controller"
+application.register("radio-required", RadioRequiredController)

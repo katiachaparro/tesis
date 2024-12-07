@@ -2,7 +2,7 @@
   <fieldset class="form-group radio_buttons optional assist_request_status form-group-valid mb-3 col-12">
     <legend class="col-form-label pt-0 float-none">Estado del recurso</legend>
     <input type="hidden" name="assist_request[status]" value="" autocomplete="off">
-    <div class="row g-0">
+    <div class="row g-0" data-radio-required-target="radioGroup">
       <div class="col-lg-6 d-flex flex-wrap">
         <div class="form-check me-3">
           <input class="form-check-input radio_buttons optional" type="radio" value="available" name="assist_request[status]" id="assist_request_status_available" data-visibility-target="radioButton" <%= 'checked' if f.object.status == AssistRequest.status.available %>>
@@ -21,9 +21,8 @@
         <%= f.input :assigned_to, label: 'Lugar' %>
       </div>
     </div>
+    <div class="invalid-feedback d-none" data-radio-required-target="errorMessage">
+      Debe seleccionar una opción.
+    </div>
   </fieldset>
-</div>
-
-<div class="row g-0 mb-3">
-  <%= f.input :comments, as: :text, input_html: { value: '' } %>
 </div>

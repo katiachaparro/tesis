@@ -1,5 +1,5 @@
 <%= render 'remote_modal', title: 'Registro de arribo' do %>
-  <%= simple_form_for @assist_request, url: [@assist_request, :arrive], method: :put, wrapper: :floating_labels_form do |f| %>
+  <%= simple_form_for @assist_request, url: [@assist_request, :arrive], method: :put, wrapper: :floating_labels_form, data: { controller: "radio-required", action: "submit->radio-required#validate" } do |f| %>
     <div class="row g-0 mb-3">
       <div class="col-lg-6 pe-1">
         <%= f.input :code, wrapper_html: { class: 'mb-3' } %>
@@ -26,8 +26,7 @@
     <%= render 'status_form', f: f %>
 
     <div class="actions text-start">
-      <%= f.button :submit, "Registrar", class: "btn btn-gray-800 mt-2 animate-up-2" %>
+      <%= f.button :submit, "Registrar", class: "btn btn-gray-800 mt-2 animate-up-2", data: { 'radio-required-target': "submitButton" } %>
     </div>
-
   <% end %>
 <% end %>
