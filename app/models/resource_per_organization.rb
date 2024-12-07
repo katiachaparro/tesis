@@ -4,7 +4,7 @@ class ResourcePerOrganization < ApplicationRecord
 
   #validations
   validates :organization, :resource, presence: true
-  validates :organization, uniqueness: { scope: :resource }
+  validates :resource, uniqueness: { scope: :organization }
   validates :quantity, numericality: { greater_than: 0 }
 
   #scopes
