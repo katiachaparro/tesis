@@ -24,7 +24,7 @@
 
       <div class="row justify-content-center">
         <div data-controller="map">
-          <div data-map-target="marker" data-lat="<%= @organization.latitude %>" data-lng="<%= @organization.longitude %>" data-title="<%= @organization.name %>" data-icon="<%= @organization.custom_icon || 'icon1.svg' %>"></div>
+          <div data-map-target="marker" data-lat="<%= @organization.latitude %>" data-lng="<%= @organization.longitude %>" data-title="<%= @organization.name %>" data-icon="<%= asset_path("map_icons/#{@organization.custom_icon || 'icon1.svg'}") %>"></div>
           <div data-map-target="map" style="height: 500px;"></div>
         </div>
       </div>

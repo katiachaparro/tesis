@@ -48,7 +48,7 @@ export default class extends Controller {
 
             if (lat !== '' && lng !== ''){
                 const customIcon = L.icon({
-                    iconUrl: `/assets/map_icons/${marker.dataset.icon || 'icon_incident.svg'}`,
+                    iconUrl: `${marker.dataset.icon || 'icon_incident.svg'}`,
                     iconSize: [32, 32],
                 });
 
