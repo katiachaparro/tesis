@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   def profile
     @user = current_user
   end
+
+  def change_password_modal
+    @user = current_user
+    render layout: false
+  end
   def update
     respond_to do |format|
       if @user.update(user_params)

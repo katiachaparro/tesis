@@ -33,3 +33,6 @@ application.register("radio-required", RadioRequiredController)
 
 import PasswordValidationController from "./password_validation_controller"
 application.register("password-validation", PasswordValidationController)
+
+import PasswordToggleController from "./password_toggle_controller"
+application.register("password-toggle", PasswordToggleController)

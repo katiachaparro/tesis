@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
   #mount ActionCable.server => '/cable'
 
-  # Primero las rutas de Devise para que tengan prioridad
-  devise_for :users, :skip => [:registrations]
+  # Para el restablecimiento de contraseña desde el login
+  devise_for :users, :skip => [:registrations], controllers: {
+    registrations: 'registrations',
+    passwords: 'passwords'  # Opcional: si quieres personalizar el controlador de contraseñas
+  }
+
+  # Para el cambio de contraseña desde el perfil
   as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+    get 'users/edit' => 'registrations#edit', :as => 'edit_user_registration'
+    put 'users' => 'registrations#update', :as => 'user_registration'
   end
 
   # Luego tus rutas personalizadas
   resources :users, only: [:update]
   get 'users/profile'
+  get 'users/change_password_modal', to: 'users#change_password_modal'
 
   resources :events, except: [:destroy] do
     resources :victims, except: [:index, :show]

@@ -44,7 +44,10 @@
               </svg>
               Mi perfil
             <% end %>
-            <%= link_to 'Cambiar contraseña', edit_user_registration_path, class: 'dropdown-item d-flex align-items-center' %>
+            <%= link_to 'Cambiar contraseña', users_change_password_modal_path,
+                        class: 'dropdown-item d-flex align-items-center',
+                        data: { turbo_frame: 'remote_modal' }
+            %>
             <div role="separator" class="dropdown-divider my-1"></div>
             <%= button_to destroy_user_session_path, method: :delete, class: 'dropdown-item d-flex align-items-center' do %>
               <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

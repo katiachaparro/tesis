@@ -81,3 +81,18 @@ form abbr[title], form abbr[data-bs-original-title] {
 .signin-image {
   background-image: image-url('signin.svg');
 }
+
+/* Estilos para los botones de mostrar/ocultar contraseña */
+.password-toggle {
+  border-left: 0;
+  background-color: white;
+}
+
+.password-toggle:hover {
+  background-color: #f8f9fa;
+}
+
+.password-toggle .icon {
+  width: 1rem;
+  height: 1rem;
+}

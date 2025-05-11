@@ -1,5 +1,16 @@
 es:
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: "no es correcta. Por favor, introduce tu contraseña actual correctamente."
+            password:
+              too_short: "es demasiado corta (mínimo %{count} caracteres)"
+              invalid: "debe incluir al menos una letra mayúscula, un número y un carácter especial"
+            password_confirmation:
+              confirmation: "no coincide con la contraseña"
     attributes:
       user:
         confirmation_sent_at: Confirmación enviada a
@@ -92,6 +103,7 @@ es:
       updated: Se ha cambiado tu contraseña. Ya iniciaste sesión.
       updated_not_active: Tu contraseña fue cambiada.
     registrations:
+      updated_password: "Tu contraseña ha sido actualizada correctamente."
       destroyed: "¡Adiós! Tu cuenta ha sido cancelada correctamente. Esperamos verte pronto."
       edit:
         are_you_sure: "¿Está usted seguro?"

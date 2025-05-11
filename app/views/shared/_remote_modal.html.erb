@@ -1,0 +1,29 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"><%= title %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Inicializar y mostrar el modal
+    document.addEventListener('turbo:load', function() {
+        const modal = document.querySelector('.modal')
+        if (modal) {
+            const modalInstance = new bootstrap.Modal(modal)
+            modalInstance.show()
+
+            // Limpiar el contenido cuando se cierra manualmente
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.getElementById('remote_modal').innerHTML = ''
+            })
+        }
+    })
+</script>
