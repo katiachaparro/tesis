@@ -2,25 +2,53 @@
 <html>
 <head>
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-  <style>
-    <%= File.read(Rails.root.join('app', 'assets', 'stylesheets', 'mailer_styles.css')) %>
-  </style>
 </head>
-<body>
-  <div class="container card">
-    <div class="card-header">
-      <h1>Bienvenido <%= @user.full_name %></h1>
-    </div>
-    <div class="card-body">
-      <p>La organizaci&oacute;n <b><%= @organization.name %></b> te a&ntilde;adido a sus usuarios</p>
-      <p class="ms-3"><b>Usuario:</b> <%= @user.email %></p>
-      <p class="ms-3"><b>Contrase&ntilde;a:</b> <%= @pw %></p>
-      <p class="text-danger">Favor cambiar la contrase&ntilde;a al ingresar</p>
+<body style="background-color: #f5f5f5; padding: 20px; margin: 0; font-family: Arial, sans-serif;">
 
-      <div class="text-center">
-        <%= link_to 'Ingresa Aquí', root_url, class: 'btn btn-primary' %>
-      </div>
+<div style="padding: 25px; border: 2px solid #FF8C00; border-radius: 5px; max-width: 600px; margin: 0 auto; background-color: white; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+
+  <div style="text-align: center; margin-bottom: 30px;">
+    <h1 style="color: #FF8C00; margin: 0; font-size: 28px;">¡Bienvenido(a), <%= @user.full_name %>!</h1>
+  </div>
+
+  <p style="font-size: 16px; line-height: 1.6; color: #333;">Te damos la bienvenida a nuestro sistema. La organización <b><%= @organization.name %></b> te ha registrado como usuario.</p>
+
+  <!-- Recuadro especial para las credenciales (estilo más sutil) -->
+  <div style="background-color: #f8f8f8; border: 2px solid #cccccc; padding: 20px; margin: 25px 0; border-radius: 5px;">
+    <h3 style="margin-top: 0; color: #FF8C00; font-size: 20px; text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 10px;">CREDENCIALES DE ACCESO</h3>
+
+    <div style="padding: 15px; border: 1px solid #dddddd; border-radius: 4px; margin-top: 15px; background-color: white;">
+      <p style="margin: 5px 0; font-size: 16px; display: flex; justify-content: space-between; align-items: center;">
+        <strong style="color: #333; min-width: 90px;">Usuario:</strong>
+        <span style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 8px 12px; border-radius: 3px; flex-grow: 1; margin-left: 10px; border: 1px solid #ddd;"><%= @user.email %></span>
+      </p>
+    </div>
+
+    <div style="padding: 15px; border: 1px solid #dddddd; border-radius: 4px; margin-top: 10px; background-color: white;">
+      <p style="margin: 5px 0; font-size: 16px; display: flex; justify-content: space-between; align-items: center;">
+        <strong style="color: #333; min-width: 90px;">Contraseña:</strong>
+        <span style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 8px 12px; border-radius: 3px; flex-grow: 1; margin-left: 10px; border: 1px solid #ddd; font-weight: bold;"><%= @pw %></span>
+      </p>
     </div>
   </div>
+
+  <!-- Cambiado a estilo de advertencia en lugar de error -->
+  <div style="background-color: #fff8e1; border-left: 4px solid #ffc107; padding: 15px; margin: 25px 0; border-radius: 3px;">
+    <p style="margin: 0; color: #856404; font-weight: bold; font-family: Arial, sans-serif;">⚠️ Por seguridad, te recomendamos cambiar tu contraseña en tu primer inicio de sesión.</p>
+  </div>
+
+  <div style="text-align: center; margin: 30px 0;">
+    <%= link_to 'Iniciar Sesión', root_url, style: 'display: inline-block; background-color: #FF8C00; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; border: none; cursor: pointer; text-align: center; font-family: Arial, sans-serif;' %>
+  </div>
+
+  <p style="font-size: 16px; line-height: 1.6; color: #333; font-family: Arial, sans-serif;">Si no esperabas este correo o tienes alguna pregunta, por favor contacta al administrador del sistema.</p>
+
+  <div style="margin-top: 30px; border-top: 1px solid #DDD; padding-top: 15px; font-size: 12px; color: #777; text-align: center;">
+    <p style="font-family: Arial, sans-serif;">Este es un correo automático, por favor no respondas a este mensaje.</p>
+    <p style="font-family: Arial, sans-serif;">© <%= Date.today.year %> <%= @organization.name %>. Todos los derechos reservados.</p>
+  </div>
+
+</div>
+
 </body>
 </html>

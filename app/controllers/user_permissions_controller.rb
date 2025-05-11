@@ -29,12 +29,15 @@ class UserPermissionsController < ApplicationController
   # POST /user_permissions or /user_permissions.json
   def create
     @user_permission = UserPermission.new(user_permission_params)
-    friendly_token = Devise.friendly_token.first(16)
-    @user_permission.user.password = friendly_token
+
+    # Generar una contraseña segura que cumpla con los requisitos
+    secure_password = generate_secure_password
+    @user_permission.user.password = secure_password
+    @user_permission.user.password_confirmation = secure_password
 
     respond_to do |format|
       if @user_permission.save
-        UserMailer.welcome_user(@user_permission.user, @user_permission.organization, friendly_token).deliver_now
+        UserMailer.welcome_user(@user_permission.user, @user_permission.organization, secure_password).deliver_now
         format.html { redirect_to user_permissions_url, notice: 'El usuario fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @user_permission }
       else
@@ -74,4 +77,26 @@ class UserPermissionsController < ApplicationController
     def add_index_breadcrumbs
       add_breadcrumbs('Usuario', user_permissions_path)
     end
+  def generate_secure_password
+    # Caracteres para cada tipo requerido
+    lowercase = ('a'..'z').to_a
+    uppercase = ('A'..'Z').to_a
+    numbers = ('0'..'9').to_a
+    special_chars = ['!', '@', '#', '$', '%', '^', '&', '*']
+
+    # Asegurar que la contraseña tenga al menos uno de cada tipo
+    password = [
+      lowercase.sample,
+      uppercase.sample,
+      numbers.sample,
+      special_chars.sample
+    ]
+
+    # Añadir caracteres adicionales hasta completar al menos 8
+    all_chars = lowercase + uppercase + numbers + special_chars
+    password += (0...4).map { all_chars.sample }
+
+    # Mezclar aleatoriamente para que no tenga un patrón predecible
+    password.shuffle.join
+  end
 end
