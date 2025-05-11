@@ -23,6 +23,7 @@ module Tesis
 
     # default language i18n
     config.i18n.default_locale = :es
+    config.i18n.available_locales = [:es, :en]
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Sendgrid configuration

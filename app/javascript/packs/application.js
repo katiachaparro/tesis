@@ -12,5 +12,6 @@ import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all.css"
 
 import "controllers"
+import './password_validation'
 Turbo.session.drive = true
 

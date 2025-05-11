@@ -24,3 +24,6 @@ UserPermission.create({role: :super_admin, user_id:u.id, organization_id:po.id})
 
 u = User.create({ first_name:'David', last_name:'Kruger', email: 'me@krugerdavid.com', password: password, password_confirmation: password })
 UserPermission.create({role: :super_admin, user_id:u.id, organization_id:po.id})
+
+u = User.create({ first_name:'Katia', last_name:'Chaparro', email: 'katiachaparro.py@gmail.com', password: password, password_confirmation: password })
+UserPermission.create({role: :super_admin, user_id:u.id, organization_id:po.id})

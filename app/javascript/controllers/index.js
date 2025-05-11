@@ -30,3 +30,6 @@ application.register("file-validation", FileValidationController)
 
 import RadioRequiredController from "./radio_required_controller"
 application.register("radio-required", RadioRequiredController)
+
+import PasswordValidationController from "./password_validation_controller"
+application.register("password-validation", PasswordValidationController)

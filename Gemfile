@@ -34,6 +34,7 @@ gem 'matrix'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
+gem 'devise-i18n'
 gem 'cancancan'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
@@ -67,6 +68,8 @@ group :development do
   gem 'spring'
   # gem to help to kill N+1 queries and unused eager loading
   gem 'bullet'
+  #gem to help to test the send emails
+  gem 'letter_opener'
 end
 
 group :test do
