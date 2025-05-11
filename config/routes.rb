@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
   #mount ActionCable.server => '/cable'
+
+  # Primero las rutas de Devise para que tengan prioridad
+  devise_for :users, :skip => [:registrations]
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
+
+  # Luego tus rutas personalizadas
+  resources :users, only: [:update]
+  get 'users/profile'
+
   resources :events, except: [:destroy] do
     resources :victims, except: [:index, :show]
     resources :event_actions, except: [:index, :show]
@@ -16,6 +28,7 @@ Rails.application.routes.draw do
     get :close_event_modal
     post :close_event
   end
+
   resources :resource_requests, only: [:index, :new, :create] do
     resources :assist_requests, only: [:new, :create]
   end
@@ -31,7 +44,9 @@ Rails.application.routes.draw do
     get :state_modal
     put :change_state
   end
+
   resources :user_permissions, :except => [:destroy, :show]
+
   resources :resources, :except => [:destroy, :show] do
     collection do
       get :search_resources
@@ -41,18 +56,13 @@ Rails.application.routes.draw do
   resources :organizations, :except => [:destroy] do
     resources :resource_per_organizations, :except => [:destroy, :show]
   end
-  resources :users, only: [:update]
-  get 'users/profile'
-  devise_for :users, :skip => [:registrations]
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
-  end
+
   resources :notifications, only: [:index, :show] do
     collection do
       get :mark_as_read
     end
   end
+
   get 'reports/report'
   root to: 'dashboard#index'
   get 'dashboard/index'
